@@ -603,7 +603,7 @@ Wire Wire Line
 Wire Wire Line
 	3800 5150 4100 5150
 $Comp
-L Mainboard-rescue:+3.3V-Mainboard-cache #PWR0106
+L Mainboard-rescue:+3.3V-Mainboard-cache-Mainboard-rescue #PWR0106
 U 1 1 5E4CE71E
 P 3800 5150
 AR Path="/5E4CE71E" Ref="#PWR0106"  Part="1" 
@@ -735,7 +735,7 @@ F 3 "~" H 5200 4100 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Mainboard-rescue:TPS63031-iclr U8
+L Mainboard-rescue:TPS63031-iclr-Mainboard-rescue U8
 U 1 1 5DE04FA4
 P 5900 4000
 F 0 "U8" H 5733 4665 50  0000 C CNN
