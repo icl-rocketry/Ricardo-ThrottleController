@@ -227,10 +227,6 @@ Wire Wire Line
 	1750 6500 1550 6500
 Text Label 1750 6500 2    50   ~ 0
 EN
-Text Label 7200 3250 2    50   ~ 0
-BARO_CS
-Wire Wire Line
-	6850 3250 7200 3250
 $Comp
 L Device:LED_Small D3
 U 1 1 5DB110D6
@@ -304,8 +300,6 @@ Wire Wire Line
 	6850 2650 7200 2650
 Wire Wire Line
 	6850 2850 7200 2850
-Wire Wire Line
-	6850 4250 7200 4250
 Wire Wire Line
 	6850 3750 7200 3750
 Wire Wire Line
@@ -564,8 +558,6 @@ F 3 "~" H 2400 2850 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2200 2750 2400 2750
-Text Label 7200 4250 2    50   ~ 0
-SD_CS
 Wire Wire Line
 	6850 3650 7200 3650
 Wire Wire Line
@@ -585,64 +577,6 @@ F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d
 	1    6250 3750
 	1    0    0    -1  
 $EndComp
-Text Label 7600 3950 2    50   ~ 0
-SDA
-Text Label 7600 4050 2    50   ~ 0
-SCL
-Wire Wire Line
-	6850 3950 7300 3950
-Wire Wire Line
-	6850 4050 7400 4050
-Wire Wire Line
-	7400 4050 7400 3850
-Connection ~ 7400 4050
-Wire Wire Line
-	7400 4050 7600 4050
-Wire Wire Line
-	7300 3950 7300 3850
-Connection ~ 7300 3950
-$Comp
-L Device:R_Small R22
-U 1 1 5DB1BC5B
-P 7400 3750
-F 0 "R22" H 7459 3796 50  0000 L CNN
-F 1 "4.7K" H 7459 3705 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 7400 3750 50  0001 C CNN
-F 3 "~" H 7400 3750 50  0001 C CNN
-	1    7400 3750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R21
-U 1 1 5DB1C9E2
-P 7300 3750
-F 0 "R21" H 7359 3796 50  0000 L CNN
-F 1 "4.7K" H 7359 3705 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 7300 3750 50  0001 C CNN
-F 3 "~" H 7300 3750 50  0001 C CNN
-	1    7300 3750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7300 3650 7350 3650
-$Comp
-L power:+3.3V #PWR025
-U 1 1 5DB29AD6
-P 7350 3600
-F 0 "#PWR025" H 7350 3450 50  0001 C CNN
-F 1 "+3.3V" H 7365 3773 50  0000 C CNN
-F 2 "" H 7350 3600 50  0001 C CNN
-F 3 "" H 7350 3600 50  0001 C CNN
-	1    7350 3600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7350 3600 7350 3650
-Connection ~ 7350 3650
-Wire Wire Line
-	7350 3650 7400 3650
-Wire Wire Line
-	6850 3150 7200 3150
 Wire Wire Line
 	6850 4650 7200 4650
 Wire Wire Line
@@ -696,8 +630,6 @@ Text Label 4150 6950 2    50   ~ 0
 CAN_HIGH
 Wire Wire Line
 	3850 7050 4150 7050
-Text Label 7200 3150 2    50   ~ 0
-IMU_CS
 Text Label 7200 4150 2    50   ~ 0
 MOSI
 Wire Wire Line
@@ -715,18 +647,6 @@ F0 "power" 50
 F1 "power.sch" 50
 $EndSheet
 Wire Wire Line
-	6850 4350 7200 4350
-Wire Wire Line
-	6850 4750 7200 4750
-Wire Wire Line
-	6850 4850 7200 4850
-Text Label 7200 4350 2    50   ~ 0
-Nuke1
-Text Label 7200 4750 2    50   ~ 0
-Cont1
-Text Label 7200 4850 2    50   ~ 0
-Cont2
-Wire Wire Line
 	3450 6400 3450 6650
 $Comp
 L Interface_CAN_LIN:SN65HVD230 U2
@@ -741,68 +661,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/sn65hvd230.pdf" H 3350 7350 50  0001 C CNN
 $EndComp
 NoConn ~ 3050 7050
 $Comp
-L Device:LED_Small D5
-U 1 1 5DF0B24E
-P 2600 2000
-F 0 "D5" H 2600 1795 50  0000 C CNN
-F 1 "TX_LED" H 2600 1886 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2600 2000 50  0001 C CNN
-F 3 "~" V 2600 2000 50  0001 C CNN
-	1    2600 2000
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:LED_Small D4
-U 1 1 5DF0B254
-P 2600 1650
-F 0 "D4" H 2600 1445 50  0000 C CNN
-F 1 "RX_LED" H 2600 1536 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2600 1650 50  0001 C CNN
-F 3 "~" V 2600 1650 50  0001 C CNN
-	1    2600 1650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R12
-U 1 1 5DF0B25A
-P 2900 1650
-F 0 "R12" V 2704 1650 50  0000 C CNN
-F 1 "470" V 2795 1650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2900 1650 50  0001 C CNN
-F 3 "~" H 2900 1650 50  0001 C CNN
-	1    2900 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R13
-U 1 1 5DF0B260
-P 2900 2000
-F 0 "R13" V 2704 2000 50  0000 C CNN
-F 1 "470" V 2795 2000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2900 2000 50  0001 C CNN
-F 3 "~" H 2900 2000 50  0001 C CNN
-	1    2900 2000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2700 2000 2800 2000
-Wire Wire Line
-	2700 1650 2800 1650
-Wire Wire Line
-	3000 1650 3000 2000
-Connection ~ 3000 1650
-Wire Wire Line
-	3000 1650 3000 1300
-Connection ~ 3000 1300
-Text Label 2150 1650 0    50   ~ 0
-RADIO_RX
-Wire Wire Line
-	2150 1650 2500 1650
-Wire Wire Line
-	2150 2000 2500 2000
-Text Label 2150 2000 0    50   ~ 0
-RADIO_TX
-$Comp
 L Device:LED_Small D17
 U 1 1 5DFAB0B1
 P 4100 950
@@ -816,12 +674,12 @@ $EndComp
 $Comp
 L Device:R_Small R36
 U 1 1 5DFAB0B7
-P 4400 950
-F 0 "R36" V 4204 950 50  0000 C CNN
-F 1 "470" V 4295 950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 4400 950 50  0001 C CNN
-F 3 "~" H 4400 950 50  0001 C CNN
-	1    4400 950 
+P 4450 950
+F 0 "R36" V 4254 950 50  0000 C CNN
+F 1 "470" V 4345 950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 4450 950 50  0001 C CNN
+F 3 "~" H 4450 950 50  0001 C CNN
+	1    4450 950 
 	0    1    1    0   
 $EndComp
 Wire Wire Line
@@ -830,8 +688,8 @@ Wire Wire Line
 	4000 950  3900 950 
 Connection ~ 3900 950 
 Wire Wire Line
-	4500 950  4900 950 
-Text Label 4900 950  2    50   ~ 0
+	4550 950  4950 950 
+Text Label 4950 950  2    50   ~ 0
 USB_DET
 $Comp
 L Connector:Conn_01x02_Male J9
@@ -863,14 +721,6 @@ Wire Wire Line
 	1800 6500 2100 6500
 Wire Wire Line
 	2200 6500 2500 6500
-Wire Wire Line
-	6850 3450 7200 3450
-Text Label 7200 3450 2    50   ~ 0
-FLASH_CS
-Wire Wire Line
-	6850 3050 7200 3050
-Text Label 7200 3050 2    50   ~ 0
-LORA_CS
 Connection ~ 3500 4400
 $Comp
 L Interface_USB:CP2102N-A01-GQFN24 U1
@@ -955,63 +805,6 @@ F 3 "~" H 4350 7050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3850 6950 4150 6950
-Wire Wire Line
-	7300 3950 7600 3950
-$Comp
-L Connector:TestPoint TP12
-U 1 1 5E3888D9
-P 7600 3950
-F 0 "TP12" V 7554 4138 50  0000 L CNN
-F 1 "TestPoint" V 7645 4138 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7800 3950 50  0001 C CNN
-F 3 "~" H 7800 3950 50  0001 C CNN
-	1    7600 3950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP13
-U 1 1 5E3963BA
-P 7600 4050
-F 0 "TP13" V 7554 4238 50  0000 L CNN
-F 1 "TestPoint" V 7645 4238 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7800 4050 50  0001 C CNN
-F 3 "~" H 7800 4050 50  0001 C CNN
-	1    7600 4050
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP18
-U 1 1 5DEEBC25
-P 7200 3450
-F 0 "TP18" V 7154 3638 50  0000 L CNN
-F 1 "TestPoint" V 7245 3638 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 3450 50  0001 C CNN
-F 3 "~" H 7400 3450 50  0001 C CNN
-	1    7200 3450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP19
-U 1 1 5DF070A0
-P 7200 3150
-F 0 "TP19" V 7154 3338 50  0000 L CNN
-F 1 "TestPoint" V 7245 3338 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 3150 50  0001 C CNN
-F 3 "~" H 7400 3150 50  0001 C CNN
-	1    7200 3150
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP22
-U 1 1 5DF30015
-P 7200 3250
-F 0 "TP22" V 7154 3438 50  0000 L CNN
-F 1 "TestPoint" V 7245 3438 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 3250 50  0001 C CNN
-F 3 "~" H 7400 3250 50  0001 C CNN
-	1    7200 3250
-	0    1    1    0   
-$EndComp
 $Comp
 L Connector:TestPoint TP20
 U 1 1 5DF4B310
@@ -1034,25 +827,6 @@ F 3 "~" H 7400 4550 50  0001 C CNN
 	1    7200 4550
 	0    1    1    0   
 $EndComp
-$Comp
-L Connector:TestPoint TP2
-U 1 1 5DF668A2
-P 7200 4250
-F 0 "TP2" V 7154 4438 50  0000 L CNN
-F 1 "TestPoint" V 7245 4438 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 4250 50  0001 C CNN
-F 3 "~" H 7400 4250 50  0001 C CNN
-	1    7200 4250
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6850 2950 7200 2950
-Text Label 5300 2850 0    50   ~ 0
-LORA_INT
-Wire Wire Line
-	5300 2850 5650 2850
-Text Label 7200 2950 2    50   ~ 0
-LORA_RESET
 NoConn ~ 5650 3750
 NoConn ~ 5650 3850
 NoConn ~ 5650 3950
@@ -1080,40 +854,6 @@ F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 1750 6050 50  0001 C CNN
 F 3 "http://www.diodes.com/_files/datasheets/ds30125.pdf" H 1550 5950 50  0001 C CNN
 	2    1550 5950
 	1    0    0    1   
-$EndComp
-Wire Wire Line
-	6850 2750 7200 2750
-Text Label 7200 2750 2    50   ~ 0
-Buzzer
-$Comp
-L Connector:TestPoint TP23
-U 1 1 5DF14B43
-P 7200 3350
-F 0 "TP23" V 7154 3538 50  0000 L CNN
-F 1 "TestPoint" V 7245 3538 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 3350 50  0001 C CNN
-F 3 "~" H 7400 3350 50  0001 C CNN
-	1    7200 3350
-	0    1    1    0   
-$EndComp
-Text Label 7200 3350 2    50   ~ 0
-MAG_CS
-Wire Wire Line
-	7200 3350 6850 3350
-Text Label 7200 4450 2    50   ~ 0
-Nuke2
-Wire Wire Line
-	6850 4450 7200 4450
-$Comp
-L Connector:TestPoint TP25
-U 1 1 5E3F6828
-P 7200 3050
-F 0 "TP25" V 7154 3238 50  0000 L CNN
-F 1 "TestPoint" V 7245 3238 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 3050 50  0001 C CNN
-F 3 "~" H 7400 3050 50  0001 C CNN
-	1    7200 3050
-	0    1    1    0   
 $EndComp
 $Comp
 L power:VDD #PWR053
