@@ -16,29 +16,27 @@ $EndDescr
 $Comp
 L power:+3.3V #PWR020
 U 1 1 5DA60792
-P 6250 2050
-F 0 "#PWR020" H 6250 1900 50  0001 C CNN
-F 1 "+3.3V" H 6265 2223 50  0000 C CNN
-F 2 "" H 6250 2050 50  0001 C CNN
-F 3 "" H 6250 2050 50  0001 C CNN
-	1    6250 2050
+P 6550 2200
+F 0 "#PWR020" H 6550 2050 50  0001 C CNN
+F 1 "+3.3V" H 6565 2373 50  0000 C CNN
+F 2 "" H 6550 2200 50  0001 C CNN
+F 3 "" H 6550 2200 50  0001 C CNN
+	1    6550 2200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6250 2050 6250 2350
 $Comp
 L power:GND #PWR021
 U 1 1 5DA6110D
-P 6250 5350
-F 0 "#PWR021" H 6250 5100 50  0001 C CNN
-F 1 "GND" H 6255 5177 50  0000 C CNN
-F 2 "" H 6250 5350 50  0001 C CNN
-F 3 "" H 6250 5350 50  0001 C CNN
-	1    6250 5350
+P 6650 5600
+F 0 "#PWR021" H 6650 5350 50  0001 C CNN
+F 1 "GND" H 6655 5427 50  0000 C CNN
+F 2 "" H 6650 5600 50  0001 C CNN
+F 3 "" H 6650 5600 50  0001 C CNN
+	1    6650 5600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6250 5150 6250 5350
+	6650 5400 6650 5600
 $Comp
 L power:+3.3V #PWR06
 U 1 1 5DA6E370
@@ -89,17 +87,13 @@ Text Notes 7400 7500 0    50   ~ 0
 MainBoard\n
 Text Notes 10600 7700 0    50   ~ 0
 0.1\n\n
-Text Label 7200 3850 2    50   ~ 0
+Text Label 7800 3900 2    50   ~ 0
 MISO
-Text Label 7200 3750 2    50   ~ 0
+Text Label 7800 3800 2    50   ~ 0
 SCLK
-Wire Wire Line
-	5450 2550 5650 2550
-Text Label 5450 2550 0    50   ~ 0
-EN
 Text Label 1550 7550 2    50   ~ 0
 EN
-Text Label 7200 2550 2    50   ~ 0
+Text Label 7800 2600 2    50   ~ 0
 BOOT
 $Comp
 L power:+3.3V #PWR09
@@ -295,17 +289,17 @@ RXD
 Text Label 2300 1300 0    50   ~ 0
 TXD
 Wire Wire Line
-	6850 2550 7200 2550
+	7450 2600 7800 2600
 Wire Wire Line
-	6850 2650 7200 2650
+	7450 2700 7800 2700
 Wire Wire Line
-	6850 2850 7200 2850
+	7450 2900 7800 2900
 Wire Wire Line
-	6850 3750 7200 3750
+	7450 3800 7800 3800
 Wire Wire Line
-	6850 3850 7200 3850
+	7450 3900 7800 3900
 Wire Wire Line
-	6850 4150 7200 4150
+	7450 4200 7800 4200
 NoConn ~ 4000 3800
 NoConn ~ 4000 3900
 NoConn ~ 4000 4000
@@ -358,9 +352,9 @@ Text Label 4300 3200 2    50   ~ 0
 RXD
 Text Label 4300 3300 2    50   ~ 0
 TXD
-Text Label 7200 2650 2    50   ~ 0
+Text Label 7800 2700 2    50   ~ 0
 RXD
-Text Label 7200 2850 2    50   ~ 0
+Text Label 7800 2900 2    50   ~ 0
 TXD
 $Comp
 L power:GND #PWR010
@@ -559,31 +553,12 @@ $EndComp
 Wire Wire Line
 	2200 2750 2400 2750
 Wire Wire Line
-	6850 3650 7200 3650
+	7450 4700 7800 4700
 Wire Wire Line
-	6850 3550 7200 3550
-Text Label 7200 3550 2    50   ~ 0
-RADIO_RX
-Text Label 7200 3650 2    50   ~ 0
-RADIO_TX
-$Comp
-L RF_Module:ESP32-WROOM-32 U3
-U 1 1 5DA5F4C7
-P 6250 3750
-F 0 "U3" H 6250 5331 50  0000 C CNN
-F 1 "ESP32-WROOM-32D" H 6250 5240 50  0000 C CNN
-F 2 "RF_Module:ESP32-WROOM-32" H 6250 2250 50  0001 C CNN
-F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf" H 5950 3800 50  0001 C CNN
-	1    6250 3750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6850 4650 7200 4650
-Wire Wire Line
-	6850 4550 7200 4550
-Text Label 7200 4650 2    50   ~ 0
+	7450 4600 7800 4600
+Text Label 7800 4700 2    50   ~ 0
 CAN_RX
-Text Label 7200 4550 2    50   ~ 0
+Text Label 7800 4600 2    50   ~ 0
 CAN_TX
 Wire Wire Line
 	3450 7450 3450 7350
@@ -630,7 +605,7 @@ Text Label 4150 6950 2    50   ~ 0
 CAN_HIGH
 Wire Wire Line
 	3850 7050 4150 7050
-Text Label 7200 4150 2    50   ~ 0
+Text Label 7800 4200 2    50   ~ 0
 MOSI
 Wire Wire Line
 	3900 950  3900 1700
@@ -808,31 +783,25 @@ Wire Wire Line
 $Comp
 L Connector:TestPoint TP20
 U 1 1 5DF4B310
-P 7200 4650
-F 0 "TP20" V 7154 4838 50  0000 L CNN
-F 1 "TestPoint" V 7245 4838 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 4650 50  0001 C CNN
-F 3 "~" H 7400 4650 50  0001 C CNN
-	1    7200 4650
+P 7800 4700
+F 0 "TP20" V 7754 4888 50  0000 L CNN
+F 1 "TestPoint" V 7845 4888 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 8000 4700 50  0001 C CNN
+F 3 "~" H 8000 4700 50  0001 C CNN
+	1    7800 4700
 	0    1    1    0   
 $EndComp
 $Comp
 L Connector:TestPoint TP21
 U 1 1 5DF58E12
-P 7200 4550
-F 0 "TP21" V 7154 4738 50  0000 L CNN
-F 1 "TestPoint" V 7245 4738 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 7400 4550 50  0001 C CNN
-F 3 "~" H 7400 4550 50  0001 C CNN
-	1    7200 4550
+P 7800 4600
+F 0 "TP21" V 7754 4788 50  0000 L CNN
+F 1 "TestPoint" V 7845 4788 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 8000 4600 50  0001 C CNN
+F 3 "~" H 8000 4600 50  0001 C CNN
+	1    7800 4600
 	0    1    1    0   
 $EndComp
-NoConn ~ 5650 3750
-NoConn ~ 5650 3850
-NoConn ~ 5650 3950
-NoConn ~ 5650 4050
-NoConn ~ 5650 4150
-NoConn ~ 5650 4250
 $Comp
 L Transistor_BJT:MMDT2222A Q1
 U 1 1 5E4F19D5
@@ -1032,4 +1001,19 @@ Wire Wire Line
 Wire Wire Line
 	2000 2950 2000 3050
 Connection ~ 2000 3050
+$Comp
+L RF_Module:ESP32-PICO-D4 U?
+U 1 1 618B08BE
+P 6650 3800
+F 0 "U?" H 6650 2111 50  0000 C CNN
+F 1 "ESP32-PICO-D4" H 6650 2020 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.3x5.3mm" H 6650 2100 50  0001 C CNN
+F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-pico-d4_datasheet_en.pdf" H 6900 2800 50  0001 C CNN
+	1    6650 3800
+	1    0    0    -1  
+$EndComp
+Text Label 5650 2400 0    50   ~ 0
+EN
+Wire Wire Line
+	5650 2400 5850 2400
 $EndSCHEMATC

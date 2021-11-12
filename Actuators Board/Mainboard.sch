@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 2
+Sheet 1 4
 Title ""
 Date ""
 Rev ""
@@ -1016,4 +1016,22 @@ Text Label 5650 2400 0    50   ~ 0
 EN
 Wire Wire Line
 	5650 2400 5850 2400
+$Sheet
+S 9500 4100 1400 600 
+U 618EF579
+F0 "Solenoid Valves" 50
+F1 "solenoids.sch" 50
+$EndSheet
+$Sheet
+S 9500 3250 1400 600 
+U 618EEF9C
+F0 "Needle Valve DC Motors" 50
+F1 "needledc.sch" 50
+$EndSheet
+$Sheet
+S 9500 2400 1400 600 
+U 619083B4
+F0 "servos" 50
+F1 "servos.sch" 50
+$EndSheet
 $EndSCHEMATC
