@@ -723,30 +723,6 @@ Text Label 7200 1600 2    50   ~ 0
 DIR
 $Comp
 L Device:R_Small R?
-U 1 1 61950B41
-P 6750 1900
-F 0 "R?" H 6809 1946 50  0000 L CNN
-F 1 "R_Small" H 6809 1855 50  0000 L CNN
-F 2 "" H 6750 1900 50  0001 C CNN
-F 3 "~" H 6750 1900 50  0001 C CNN
-	1    6750 1900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR?
-U 1 1 6195168F
-P 6750 1800
-F 0 "#PWR?" H 6750 1650 50  0001 C CNN
-F 1 "+3.3V" H 6765 1973 50  0000 C CNN
-F 2 "" H 6750 1800 50  0001 C CNN
-F 3 "" H 6750 1800 50  0001 C CNN
-	1    6750 1800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6750 2000 6700 2000
-$Comp
-L Device:R_Small R?
 U 1 1 6195484F
 P 6600 2000
 F 0 "R?" H 6659 2046 50  0000 L CNN
@@ -767,9 +743,6 @@ F 3 "" H 6500 2000 50  0001 C CNN
 	1    6500 2000
 	0    1    1    0   
 $EndComp
-Connection ~ 6750 2000
-Wire Wire Line
-	6750 2000 7350 2000
 $Comp
 L power:+24V #PWR?
 U 1 1 619664D0
@@ -821,7 +794,7 @@ L Device:R_Small R?
 U 1 1 61973011
 P 8750 2050
 F 0 "R?" H 8809 2096 50  0000 L CNN
-F 1 "R_Small" H 8809 2005 50  0000 L CNN
+F 1 "0.1ohms" H 8809 2005 50  0000 L CNN
 F 2 "" H 8750 2050 50  0001 C CNN
 F 3 "~" H 8750 2050 50  0001 C CNN
 	1    8750 2050
@@ -844,4 +817,61 @@ F 3 "" H 8850 2400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 NoConn ~ 7350 2100
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61990603
+P 7250 1900
+F 0 "#PWR?" H 7250 1750 50  0001 C CNN
+F 1 "+3.3V" H 7265 2073 50  0000 C CNN
+F 2 "" H 7250 1900 50  0001 C CNN
+F 3 "" H 7250 1900 50  0001 C CNN
+	1    7250 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 1900 7350 1900
+Wire Wire Line
+	6700 2000 7350 2000
+Text Label 8650 3550 0    50   ~ 0
+Motor+
+Wire Wire Line
+	8350 3550 8650 3550
+Text Label 8650 3650 0    50   ~ 0
+Motor-
+Wire Wire Line
+	8350 3650 8650 3650
+Wire Wire Line
+	8350 3750 8650 3750
+Wire Wire Line
+	8350 3850 8650 3850
+Wire Wire Line
+	8350 3950 8650 3950
+Wire Wire Line
+	8350 4050 8650 4050
+$Comp
+L power:+3.3V #PWR?
+U 1 1 619A8F60
+P 8650 3850
+F 0 "#PWR?" H 8650 3700 50  0001 C CNN
+F 1 "+3.3V" V 8665 3978 50  0000 L CNN
+F 2 "" H 8650 3850 50  0001 C CNN
+F 3 "" H 8650 3850 50  0001 C CNN
+	1    8650 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 619AC4EA
+P 8650 3750
+F 0 "#PWR?" H 8650 3500 50  0001 C CNN
+F 1 "GND" V 8655 3622 50  0000 R CNN
+F 2 "" H 8650 3750 50  0001 C CNN
+F 3 "" H 8650 3750 50  0001 C CNN
+	1    8650 3750
+	0    -1   -1   0   
+$EndComp
+Text Label 8650 3950 0    50   ~ 0
+IO4
+Text Label 8650 4050 0    50   ~ 0
+IO5
 $EndSCHEMATC
