@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 1 4
 Title ""
 Date ""
 Rev ""
@@ -619,4 +619,31 @@ NoConn ~ 5350 1050
 NoConn ~ 4750 1550
 NoConn ~ 4750 1650
 NoConn ~ 5750 1050
+NoConn ~ 5150 1050
+$Comp
+L Device:R_Small R?
+U 1 1 61A58884
+P 5400 2850
+F 0 "R?" H 5341 2804 50  0000 R CNN
+F 1 "4.7k" H 5341 2895 50  0000 R CNN
+F 2 "" H 5400 2850 50  0001 C CNN
+F 3 "~" H 5400 2850 50  0001 C CNN
+	1    5400 2850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5350 2650 5350 2750
+Wire Wire Line
+	5350 2750 5400 2750
+$Comp
+L power:VDD #PWR?
+U 1 1 61A5BB13
+P 5400 2950
+F 0 "#PWR?" H 5400 2800 50  0001 C CNN
+F 1 "VDD" H 5415 3123 50  0000 C CNN
+F 2 "" H 5400 2950 50  0001 C CNN
+F 3 "" H 5400 2950 50  0001 C CNN
+	1    5400 2950
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
