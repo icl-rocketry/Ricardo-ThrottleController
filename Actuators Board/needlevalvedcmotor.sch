@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title ""
 Date ""
 Rev ""
@@ -874,4 +874,17 @@ Text Label 8650 3950 0    50   ~ 0
 IO4
 Text Label 8650 4050 0    50   ~ 0
 IO5
+$Sheet
+S 4900 850  1200 300 
+U 61A238DC
+F0 "rfantenna" 50
+F1 "rfantenna.sch" 50
+F2 "LNA_IN" B L 4900 950 50 
+$EndSheet
+Text Label 5000 2150 0    50   ~ 0
+LNA_IN
+Text Label 4800 950  2    50   ~ 0
+LNA_IN
+Wire Wire Line
+	4900 950  4800 950 
 $EndSCHEMATC

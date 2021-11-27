@@ -1057,4 +1057,18 @@ Wire Wire Line
 Connection ~ 8100 5000
 Wire Wire Line
 	8500 5000 8850 5000
+Wire Wire Line
+	7950 5000 7950 4900
+Connection ~ 7950 5000
+$Comp
+L power:+6V #PWR?
+U 1 1 61AF080C
+P 7950 4900
+F 0 "#PWR?" H 7950 4750 50  0001 C CNN
+F 1 "+6V" H 7965 5073 50  0000 C CNN
+F 2 "" H 7950 4900 50  0001 C CNN
+F 3 "" H 7950 4900 50  0001 C CNN
+	1    7950 4900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
