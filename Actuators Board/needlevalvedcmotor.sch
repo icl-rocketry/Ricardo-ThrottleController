@@ -722,10 +722,10 @@ Wire Wire Line
 Text Label 7200 1600 2    50   ~ 0
 DIR
 $Comp
-L Device:R_Small R?
+L Device:R_Small 1k
 U 1 1 6195484F
 P 6600 2000
-F 0 "R?" H 6659 2046 50  0000 L CNN
+F 0 "1k" H 6659 2046 50  0000 L CNN
 F 1 "R_Small" H 6659 1955 50  0000 L CNN
 F 2 "" H 6600 2000 50  0001 C CNN
 F 3 "~" H 6600 2000 50  0001 C CNN
@@ -746,43 +746,40 @@ $EndComp
 $Comp
 L power:+24V #PWR?
 U 1 1 619664D0
-P 8800 950
-F 0 "#PWR?" H 8800 800 50  0001 C CNN
-F 1 "+24V" H 8815 1123 50  0000 C CNN
-F 2 "" H 8800 950 50  0001 C CNN
-F 3 "" H 8800 950 50  0001 C CNN
-	1    8800 950 
+P 8800 900
+F 0 "#PWR?" H 8800 750 50  0001 C CNN
+F 1 "+24V" H 8815 1073 50  0000 C CNN
+F 2 "" H 8800 900 50  0001 C CNN
+F 3 "" H 8800 900 50  0001 C CNN
+	1    8800 900 
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8800 950  8950 950 
+	8800 900  8950 900 
 $Comp
 L Device:C_Small C?
 U 1 1 6196A0BF
-P 8950 1050
-F 0 "C?" H 9042 1096 50  0000 L CNN
-F 1 "C_Small" H 9042 1005 50  0000 L CNN
-F 2 "" H 8950 1050 50  0001 C CNN
-F 3 "~" H 8950 1050 50  0001 C CNN
-	1    8950 1050
+P 8950 1000
+F 0 "C?" H 9042 1046 50  0000 L CNN
+F 1 "1uF" H 9042 955 50  0000 L CNN
+F 2 "" H 8950 1000 50  0001 C CNN
+F 3 "~" H 8950 1000 50  0001 C CNN
+	1    8950 1000
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 6196B318
-P 8950 1150
-F 0 "#PWR?" H 8950 900 50  0001 C CNN
-F 1 "GND" H 8955 977 50  0000 C CNN
-F 2 "" H 8950 1150 50  0001 C CNN
-F 3 "" H 8950 1150 50  0001 C CNN
-	1    8950 1150
+P 8950 1100
+F 0 "#PWR?" H 8950 850 50  0001 C CNN
+F 1 "GND" H 8955 927 50  0000 C CNN
+F 2 "" H 8950 1100 50  0001 C CNN
+F 3 "" H 8950 1100 50  0001 C CNN
+	1    8950 1100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	8750 1200 8800 1200
-Wire Wire Line
-	8800 1200 8800 950 
-Connection ~ 8800 950 
 Text Label 7350 2200 2    50   ~ 0
 COMM
 Text Label 8750 1800 0    50   ~ 0
@@ -794,7 +791,7 @@ L Device:R_Small R?
 U 1 1 61973011
 P 8750 2050
 F 0 "R?" H 8809 2096 50  0000 L CNN
-F 1 "0.1ohms" H 8809 2005 50  0000 L CNN
+F 1 "0.1" H 8809 2005 50  0000 L CNN
 F 2 "" H 8750 2050 50  0001 C CNN
 F 3 "~" H 8750 2050 50  0001 C CNN
 	1    8750 2050
@@ -817,17 +814,6 @@ F 3 "" H 8850 2400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 NoConn ~ 7350 2100
-$Comp
-L power:+3.3V #PWR?
-U 1 1 61990603
-P 7250 1900
-F 0 "#PWR?" H 7250 1750 50  0001 C CNN
-F 1 "+3.3V" H 7265 2073 50  0000 C CNN
-F 2 "" H 7250 1900 50  0001 C CNN
-F 3 "" H 7250 1900 50  0001 C CNN
-	1    7250 1900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7250 1900 7350 1900
 Wire Wire Line
@@ -870,10 +856,6 @@ F 3 "" H 8650 3750 50  0001 C CNN
 	1    8650 3750
 	0    -1   -1   0   
 $EndComp
-Text Label 8650 3950 0    50   ~ 0
-IO4
-Text Label 8650 4050 0    50   ~ 0
-IO5
 $Sheet
 S 4900 850  1200 300 
 U 61A238DC
@@ -887,4 +869,34 @@ Text Label 4800 950  2    50   ~ 0
 LNA_IN
 Wire Wire Line
 	4900 950  4800 950 
+Text Label 8750 1400 0    50   ~ 0
+Motor+
+Wire Wire Line
+	8800 900  8800 1200
+Connection ~ 8800 900 
+Text Label 8750 1500 0    50   ~ 0
+Motor-
+Text Label 8650 3950 0    50   ~ 0
+Hall1
+Text Label 8650 4050 0    50   ~ 0
+Hall2
+Text Label 5350 2850 2    50   ~ 0
+Hall1
+Text Label 5350 2750 2    50   ~ 0
+Hall2
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61A368CC
+P 7250 1900
+F 0 "#PWR?" H 7250 1750 50  0001 C CNN
+F 1 "+3.3V" V 7265 2028 50  0000 L CNN
+F 2 "" H 7250 1900 50  0001 C CNN
+F 3 "" H 7250 1900 50  0001 C CNN
+	1    7250 1900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5000 2750 5350 2750
+Wire Wire Line
+	5000 2850 5350 2850
 $EndSCHEMATC
