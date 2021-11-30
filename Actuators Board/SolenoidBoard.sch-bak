@@ -643,6 +643,8 @@ S 3250 6750 1350 600
 U 61942B9A
 F0 "CAN-BUS" 50
 F1 "can.sch" 50
+F2 "CAN_TX" I R 4600 6800 50 
+F3 "CAN_RX" O R 4600 6900 50 
 $EndSheet
 Text Label 5000 2150 0    50   ~ 0
 LNA_IN
@@ -758,4 +760,12 @@ Wire Wire Line
 	9850 1350 10000 1350
 Wire Wire Line
 	9600 1350 9750 1350
+Wire Wire Line
+	4600 6800 4700 6800
+Wire Wire Line
+	4600 6900 4700 6900
+Text Label 4700 6800 0    50   ~ 0
+CAN_TX
+Text Label 4700 6900 0    50   ~ 0
+CAN_RX
 $EndSCHEMATC
