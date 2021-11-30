@@ -14,17 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L power:+3.3V #PWR020
-U 1 1 5DA60792
-P 4100 1950
-F 0 "#PWR020" H 4100 1800 50  0001 C CNN
-F 1 "+3.3V" H 4115 2123 50  0000 C CNN
-F 2 "" H 4100 1950 50  0001 C CNN
-F 3 "" H 4100 1950 50  0001 C CNN
-	1    4100 1950
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR021
 U 1 1 5DA6110D
 P 4200 5350
@@ -909,4 +898,80 @@ Text Label 4700 6800 0    50   ~ 0
 CAN_TX
 Text Label 4700 6900 0    50   ~ 0
 CAN_RX
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61AA6780
+P 3600 1800
+F 0 "#PWR?" H 3600 1650 50  0001 C CNN
+F 1 "+3.3V" H 3615 1973 50  0000 C CNN
+F 2 "" H 3600 1800 50  0001 C CNN
+F 3 "" H 3600 1800 50  0001 C CNN
+	1    3600 1800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 61AA6786
+P 3700 1700
+F 0 "C?" H 3500 1750 50  0000 L CNN
+F 1 "10uF" H 3450 1650 50  0000 L CNN
+F 2 "" H 3700 1700 50  0001 C CNN
+F 3 "~" H 3700 1700 50  0001 C CNN
+	1    3700 1700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 61AA678C
+P 3500 1700
+F 0 "C?" H 3592 1746 50  0000 L CNN
+F 1 "0.1uF" H 3592 1655 50  0000 L CNN
+F 2 "" H 3500 1700 50  0001 C CNN
+F 3 "~" H 3500 1700 50  0001 C CNN
+	1    3500 1700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3700 1800 3600 1800
+Wire Wire Line
+	3700 1600 3600 1600
+$Comp
+L power:GND #PWR?
+U 1 1 61AA6794
+P 3600 1600
+F 0 "#PWR?" H 3600 1350 50  0001 C CNN
+F 1 "GND" H 3605 1427 50  0000 C CNN
+F 2 "" H 3600 1600 50  0001 C CNN
+F 3 "" H 3600 1600 50  0001 C CNN
+	1    3600 1600
+	-1   0    0    1   
+$EndComp
+Connection ~ 3600 1600
+Wire Wire Line
+	3600 1600 3500 1600
+Connection ~ 3600 1800
+Wire Wire Line
+	3600 1800 3500 1800
+Wire Wire Line
+	3700 1600 4000 1600
+Wire Wire Line
+	4000 1600 4000 1900
+Connection ~ 3700 1600
+Wire Wire Line
+	4000 1900 4100 1900
+Wire Wire Line
+	4100 1900 4100 1950
+Connection ~ 4000 1900
+Wire Wire Line
+	4000 1900 4000 1950
+Wire Wire Line
+	4100 1900 4200 1900
+Wire Wire Line
+	4200 1900 4200 1950
+Connection ~ 4100 1900
+Wire Wire Line
+	4200 1900 4300 1900
+Wire Wire Line
+	4300 1900 4300 1950
+Connection ~ 4200 1900
 $EndSCHEMATC

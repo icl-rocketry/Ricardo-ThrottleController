@@ -550,6 +550,7 @@ F2 "RTS" O R 2200 3250 50
 F3 "RXD" O R 2200 3350 50 
 F4 "TXD" O R 2200 3450 50 
 F5 "DTR" O R 2200 3550 50 
+F6 "3.3V" O R 2200 3650 50 
 $EndSheet
 $Comp
 L Connector:TestPoint TP?
@@ -1154,4 +1155,19 @@ Wire Wire Line
 	4000 1800 4000 1900
 Connection ~ 3700 1800
 Connection ~ 4000 1900
+Wire Wire Line
+	2200 3650 2300 3650
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61A7095B
+P 2300 3650
+AR Path="/61A7095B" Ref="#PWR?"  Part="1" 
+AR Path="/61AA560B/61A7095B" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 2300 3500 50  0001 C CNN
+F 1 "+3.3V" H 2315 3823 50  0000 C CNN
+F 2 "" H 2300 3650 50  0001 C CNN
+F 3 "" H 2300 3650 50  0001 C CNN
+	1    2300 3650
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
