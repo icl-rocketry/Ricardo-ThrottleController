@@ -20,10 +20,6 @@ Wire Wire Line
 	1400 2150 1800 2150
 Wire Wire Line
 	1400 1850 1400 2150
-Text Label 1200 1650 0    50   ~ 0
-CAN_RX
-Text Label 1200 1550 0    50   ~ 0
-CAN_TX
 Wire Wire Line
 	1400 1650 1200 1650
 Wire Wire Line
@@ -96,4 +92,8 @@ F 3 "~" H 2700 1750 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2200 1650 2500 1650
+Text HLabel 1200 1550 0    50   Input ~ 0
+CAN_TX
+Text HLabel 1200 1650 0    50   Output ~ 0
+CAN_RX
 $EndSCHEMATC

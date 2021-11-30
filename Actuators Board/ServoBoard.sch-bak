@@ -1071,4 +1071,17 @@ F 3 "" H 7950 4900 50  0001 C CNN
 	1    7950 4900
 	1    0    0    -1  
 $EndComp
+$Sheet
+S 5900 750  500  150 
+U 61A24258
+F0 "rfantenna" 50
+F1 "rfantenna.sch" 50
+F2 "LNA_IN" B L 5900 800 50 
+$EndSheet
+Text Label 5850 800  2    50   ~ 0
+LNA_IN
+Wire Wire Line
+	5900 800  5850 800 
+Text Label 5000 2150 0    50   ~ 0
+LNA_IN
 $EndSCHEMATC

@@ -880,9 +880,9 @@ Text Label 8650 3950 0    50   ~ 0
 Hall1
 Text Label 8650 4050 0    50   ~ 0
 Hall2
-Text Label 5000 2750 0    50   ~ 0
+Text Label 5350 2850 2    50   ~ 0
 Hall1
-Text Label 5000 2850 0    50   ~ 0
+Text Label 5350 2750 2    50   ~ 0
 Hall2
 $Comp
 L power:+3.3V #PWR?
@@ -895,4 +895,8 @@ F 3 "" H 7250 1900 50  0001 C CNN
 	1    7250 1900
 	0    -1   -1   0   
 $EndComp
+Wire Wire Line
+	5000 2750 5350 2750
+Wire Wire Line
+	5000 2850 5350 2850
 $EndSCHEMATC
