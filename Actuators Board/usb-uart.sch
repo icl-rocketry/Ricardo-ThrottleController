@@ -395,4 +395,49 @@ Wire Wire Line
 	3850 1800 3850 1750
 Wire Wire Line
 	3850 1750 4400 1750
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AB7CB8
+P 2050 3900
+F 0 "TP?" V 2004 4088 50  0000 L CNN
+F 1 "TestPoint" V 2095 4088 50  0000 L CNN
+F 2 "" H 2250 3900 50  0001 C CNN
+F 3 "~" H 2250 3900 50  0001 C CNN
+	1    2050 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AB87F3
+P 2050 4100
+F 0 "TP?" V 2004 4288 50  0000 L CNN
+F 1 "TestPoint" V 2095 4288 50  0000 L CNN
+F 2 "" H 2250 4100 50  0001 C CNN
+F 3 "~" H 2250 4100 50  0001 C CNN
+	1    2050 4100
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AB9568
+P 2050 4300
+F 0 "TP?" V 2004 4488 50  0000 L CNN
+F 1 "TestPoint" V 2095 4488 50  0000 L CNN
+F 2 "" H 2250 4300 50  0001 C CNN
+F 3 "~" H 2250 4300 50  0001 C CNN
+	1    2050 4300
+	0    1    1    0   
+$EndComp
+Text Label 1750 3900 0    50   ~ 0
+Data-
+Wire Wire Line
+	1750 3900 2050 3900
+Text Label 1750 4100 0    50   ~ 0
+Data+
+Wire Wire Line
+	1750 4100 2050 4100
+Text Label 1750 4300 0    50   ~ 0
+VBUS
+Wire Wire Line
+	1750 4300 2050 4300
 $EndSCHEMATC
