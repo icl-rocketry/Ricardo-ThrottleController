@@ -988,4 +988,8 @@ F 3 "" H 2300 3650 50  0001 C CNN
 	1    2300 3650
 	0    1    1    0   
 $EndComp
+Wire Wire Line
+	5000 3150 5350 3150
+Text Label 5350 3150 2    50   ~ 0
+PWM
 $EndSCHEMATC

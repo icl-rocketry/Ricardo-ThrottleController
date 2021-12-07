@@ -685,8 +685,8 @@ $Comp
 L Connector:Conn_01x06_Male J?
 U 1 1 6194A5D2
 P 8150 3750
-F 0 "J?" H 8258 4131 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 8258 4040 50  0000 C CNN
+F 0 "J?" H 8250 4200 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 8250 4100 50  0000 C CNN
 F 2 "" H 8150 3750 50  0001 C CNN
 F 3 "~" H 8150 3750 50  0001 C CNN
 	1    8150 3750
@@ -810,8 +810,6 @@ Wire Wire Line
 	7250 1900 7350 1900
 Wire Wire Line
 	6700 2000 7350 2000
-Text Label 8650 3550 0    50   ~ 0
-Motor+
 Wire Wire Line
 	8350 3550 8650 3550
 Text Label 8650 3650 0    50   ~ 0
@@ -855,7 +853,7 @@ F0 "rfantenna" 50
 F1 "rfantenna.sch" 50
 F2 "LNA_IN" B L 4900 950 50 
 $EndSheet
-Text Label 5000 2150 0    50   ~ 0
+Text Label 5100 2150 0    50   ~ 0
 LNA_IN
 Text Label 4800 950  2    50   ~ 0
 LNA_IN
@@ -992,4 +990,140 @@ Wire Wire Line
 	5000 3150 5350 3150
 Text Label 5350 3150 2    50   ~ 0
 PWM
+Text Label 8650 3550 0    50   ~ 0
+Motor+
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B1B7B5
+P 5350 2350
+F 0 "TP?" V 5304 2538 50  0000 L CNN
+F 1 "TestPoint" V 5395 2538 50  0000 L CNN
+F 2 "" H 5550 2350 50  0001 C CNN
+F 3 "~" H 5550 2350 50  0001 C CNN
+	1    5350 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B1BFB6
+P 5350 2450
+F 0 "TP?" V 5304 2638 50  0000 L CNN
+F 1 "TestPoint" V 5395 2638 50  0000 L CNN
+F 2 "" H 5550 2450 50  0001 C CNN
+F 3 "~" H 5550 2450 50  0001 C CNN
+	1    5350 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B22D1D
+P 5350 2650
+F 0 "TP?" V 5304 2838 50  0000 L CNN
+F 1 "TestPoint" V 5395 2838 50  0000 L CNN
+F 2 "" H 5550 2650 50  0001 C CNN
+F 3 "~" H 5550 2650 50  0001 C CNN
+	1    5350 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B26251
+P 5350 2750
+F 0 "TP?" V 5304 2938 50  0000 L CNN
+F 1 "TestPoint" V 5395 2938 50  0000 L CNN
+F 2 "" H 5550 2750 50  0001 C CNN
+F 3 "~" H 5550 2750 50  0001 C CNN
+	1    5350 2750
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B29519
+P 5350 2850
+F 0 "TP?" V 5304 3038 50  0000 L CNN
+F 1 "TestPoint" V 5395 3038 50  0000 L CNN
+F 2 "" H 5550 2850 50  0001 C CNN
+F 3 "~" H 5550 2850 50  0001 C CNN
+	1    5350 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B2CAF9
+P 5350 3150
+F 0 "TP?" V 5304 3338 50  0000 L CNN
+F 1 "TestPoint" V 5395 3338 50  0000 L CNN
+F 2 "" H 5550 3150 50  0001 C CNN
+F 3 "~" H 5550 3150 50  0001 C CNN
+	1    5350 3150
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B2FF39
+P 5350 3550
+F 0 "TP?" V 5304 3738 50  0000 L CNN
+F 1 "TestPoint" V 5395 3738 50  0000 L CNN
+F 2 "" H 5550 3550 50  0001 C CNN
+F 3 "~" H 5550 3550 50  0001 C CNN
+	1    5350 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B33316
+P 5350 3950
+F 0 "TP?" V 5304 4138 50  0000 L CNN
+F 1 "TestPoint" V 5395 4138 50  0000 L CNN
+F 2 "" H 5550 3950 50  0001 C CNN
+F 3 "~" H 5550 3950 50  0001 C CNN
+	1    5350 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B3A0CE
+P 5350 3650
+F 0 "TP?" V 5304 3838 50  0000 L CNN
+F 1 "TestPoint" V 5395 3838 50  0000 L CNN
+F 2 "" H 5550 3650 50  0001 C CNN
+F 3 "~" H 5550 3650 50  0001 C CNN
+	1    5350 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B41CB9
+P 7350 1700
+F 0 "TP?" V 7304 1888 50  0000 L CNN
+F 1 "TestPoint" V 7395 1888 50  0000 L CNN
+F 2 "" H 7550 1700 50  0001 C CNN
+F 3 "~" H 7550 1700 50  0001 C CNN
+	1    7350 1700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B452FA
+P 3200 2150
+F 0 "TP?" V 3154 2338 50  0000 L CNN
+F 1 "TestPoint" V 3245 2338 50  0000 L CNN
+F 2 "" H 3400 2150 50  0001 C CNN
+F 3 "~" H 3400 2150 50  0001 C CNN
+	1    3200 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B4D86B
+P 5350 2150
+F 0 "TP?" V 5304 2338 50  0000 L CNN
+F 1 "TestPoint" V 5395 2338 50  0000 L CNN
+F 2 "" H 5550 2150 50  0001 C CNN
+F 3 "~" H 5550 2150 50  0001 C CNN
+	1    5350 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5000 2150 5350 2150
 $EndSCHEMATC
