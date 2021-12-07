@@ -424,7 +424,7 @@ L Device:LED_Small D17
 U 1 1 5DFAB0B1
 P 2500 850
 F 0 "D17" H 2500 645 50  0000 C CNN
-F 1 "USB_LED" H 2500 736 50  0000 C CNN
+F 1 "SolEN_LED" H 2500 736 50  0000 C CNN
 F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2500 850 50  0001 C CNN
 F 3 "~" V 2500 850 50  0001 C CNN
 	1    2500 850 
@@ -446,10 +446,6 @@ Wire Wire Line
 Wire Wire Line
 	2400 850  2300 850 
 Connection ~ 2300 850 
-Wire Wire Line
-	2900 850  3300 850 
-Text Label 3300 850  2    50   ~ 0
-USB_DET
 $Comp
 L Connector:Conn_01x02_Male J9
 U 1 1 5DFF606F
@@ -660,28 +656,10 @@ F 3 "~" H 9800 1500 50  0001 C CNN
 	1    9800 1500
 	1    0    0    -1  
 $EndComp
-<<<<<<< HEAD
-Text Label 9450 2450 2    50   ~ 0
-SolEN
-Text Label 5000 3150 0    50   ~ 0
-SolEN
-$Comp
-L power:GND #PWR?
-U 1 1 61A29C79
-P 9800 2750
-F 0 "#PWR?" H 9800 2500 50  0001 C CNN
-F 1 "GND" H 9805 2577 50  0000 C CNN
-F 2 "" H 9800 2750 50  0001 C CNN
-F 3 "" H 9800 2750 50  0001 C CNN
-	1    9800 2750
-	1    0    0    -1  
-$EndComp
-=======
 Text Label 9450 2350 2    50   ~ 0
 SolEN
 Text Label 5000 3150 0    50   ~ 0
 SolEN
->>>>>>> Actuators
 Text Label 9800 2150 1    50   ~ 0
 SolGND
 $Comp
@@ -714,20 +692,6 @@ Wire Wire Line
 $Comp
 L Device:R_Small R?
 U 1 1 61A5320F
-<<<<<<< HEAD
-P 9450 2600
-F 0 "R?" H 9300 2650 50  0000 L CNN
-F 1 "110" H 9250 2550 50  0000 L CNN
-F 2 "" H 9450 2600 50  0001 C CNN
-F 3 "~" H 9450 2600 50  0001 C CNN
-	1    9450 2600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9450 2500 9450 2450
-Wire Wire Line
-	9450 2450 9500 2450
-=======
 P 9450 2500
 F 0 "R?" H 9300 2550 50  0000 L CNN
 F 1 "110" H 9250 2450 50  0000 L CNN
@@ -740,7 +704,6 @@ Wire Wire Line
 	9450 2400 9450 2350
 Wire Wire Line
 	9450 2350 9500 2350
->>>>>>> Actuators
 $Comp
 L Connector:Conn_01x02_Female J?
 U 1 1 61A71000
@@ -863,31 +826,6 @@ F 3 "" H 2300 3650 50  0001 C CNN
 	1    2300 3650
 	0    1    1    0   
 $EndComp
-<<<<<<< HEAD
-$Comp
-L iclr:SIJA74DP-T1-GE3 U?
-U 1 1 61AB9D88
-P 9500 2450
-F 0 "U?" H 10100 2550 60  0000 L CNN
-F 1 "SIJA74DP-T1-GE3" H 9962 2447 60  0000 L CNN
-F 2 "SOT_4DP-T1-GE3_VIS" H 9950 2290 60  0001 C CNN
-F 3 "" H 9500 2450 60  0000 C CNN
-	1    9500 2450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9900 2650 9800 2650
-Connection ~ 9800 2650
-Wire Wire Line
-	9800 2650 9700 2650
-Wire Wire Line
-	9450 2700 9450 2750
-Wire Wire Line
-	9450 2750 9800 2750
-Wire Wire Line
-	9800 2750 9800 2650
-Connection ~ 9800 2750
-=======
 Wire Wire Line
 	9450 2600 9450 2650
 $Comp
@@ -1046,5 +984,54 @@ NoConn ~ 3400 3750
 NoConn ~ 3400 3850
 NoConn ~ 3400 3950
 NoConn ~ 3400 4050
->>>>>>> Actuators
+$Comp
+L power:+24V #PWR?
+U 1 1 61B6F94F
+P 8350 2000
+F 0 "#PWR?" H 8350 1850 50  0001 C CNN
+F 1 "+24V" V 8365 2128 50  0000 L CNN
+F 2 "" H 8350 2000 50  0001 C CNN
+F 3 "" H 8350 2000 50  0001 C CNN
+	1    8350 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61B70540
+P 8350 2100
+F 0 "#PWR?" H 8350 1950 50  0001 C CNN
+F 1 "+3.3V" V 8365 2228 50  0000 L CNN
+F 2 "" H 8350 2100 50  0001 C CNN
+F 3 "" H 8350 2100 50  0001 C CNN
+	1    8350 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61B717A1
+P 8350 2200
+F 0 "#PWR?" H 8350 1950 50  0001 C CNN
+F 1 "GND" V 8355 2072 50  0000 R CNN
+F 2 "" H 8350 2200 50  0001 C CNN
+F 3 "" H 8350 2200 50  0001 C CNN
+	1    8350 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:Conn_01x05_Male J?
+U 1 1 61AFECDB
+P 8150 2200
+F 0 "J?" H 8258 2581 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 8258 2490 50  0000 C CNN
+F 2 "" H 8150 2200 50  0001 C CNN
+F 3 "~" H 8150 2200 50  0001 C CNN
+	1    8150 2200
+	1    0    0    -1  
+$EndComp
+Text Label 8350 2300 0    50   ~ 0
+CAN_HIGH
+Text Label 8350 2400 0    50   ~ 0
+CAN_LOW
+Text Label 2900 850  0    50   ~ 0
+SolEN
 $EndSCHEMATC
