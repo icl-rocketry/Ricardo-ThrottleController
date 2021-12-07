@@ -859,4 +859,180 @@ F 3 "" H 9800 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 9800 2650
+<<<<<<< HEAD
+=======
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFDF58
+P 5350 2350
+F 0 "TP?" V 5304 2538 50  0000 L CNN
+F 1 "TestPoint" V 5395 2538 50  0000 L CNN
+F 2 "" H 5550 2350 50  0001 C CNN
+F 3 "~" H 5550 2350 50  0001 C CNN
+	1    5350 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFF428
+P 5350 2450
+F 0 "TP?" V 5304 2638 50  0000 L CNN
+F 1 "TestPoint" V 5395 2638 50  0000 L CNN
+F 2 "" H 5550 2450 50  0001 C CNN
+F 3 "~" H 5550 2450 50  0001 C CNN
+	1    5350 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B026A5
+P 5350 2650
+F 0 "TP?" V 5304 2838 50  0000 L CNN
+F 1 "TestPoint" V 5395 2838 50  0000 L CNN
+F 2 "" H 5550 2650 50  0001 C CNN
+F 3 "~" H 5550 2650 50  0001 C CNN
+	1    5350 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0576B
+P 5350 3550
+F 0 "TP?" V 5304 3738 50  0000 L CNN
+F 1 "TestPoint" V 5395 3738 50  0000 L CNN
+F 2 "" H 5550 3550 50  0001 C CNN
+F 3 "~" H 5550 3550 50  0001 C CNN
+	1    5350 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B088E5
+P 5350 3650
+F 0 "TP?" V 5304 3838 50  0000 L CNN
+F 1 "TestPoint" V 5395 3838 50  0000 L CNN
+F 2 "" H 5550 3650 50  0001 C CNN
+F 3 "~" H 5550 3650 50  0001 C CNN
+	1    5350 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0B958
+P 5350 3950
+F 0 "TP?" V 5304 4138 50  0000 L CNN
+F 1 "TestPoint" V 5395 4138 50  0000 L CNN
+F 2 "" H 5550 3950 50  0001 C CNN
+F 3 "~" H 5550 3950 50  0001 C CNN
+	1    5350 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0EC6F
+P 3200 2150
+F 0 "TP?" V 3154 2338 50  0000 L CNN
+F 1 "TestPoint" V 3245 2338 50  0000 L CNN
+F 2 "" H 3400 2150 50  0001 C CNN
+F 3 "~" H 3400 2150 50  0001 C CNN
+	1    3200 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B11C95
+P 5350 2150
+F 0 "TP?" V 5304 2338 50  0000 L CNN
+F 1 "TestPoint" V 5395 2338 50  0000 L CNN
+F 2 "" H 5550 2150 50  0001 C CNN
+F 3 "~" H 5550 2150 50  0001 C CNN
+	1    5350 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5350 2150 5000 2150
+NoConn ~ 5000 3450
+NoConn ~ 5000 3350
+NoConn ~ 5000 3250
+NoConn ~ 5000 3050
+NoConn ~ 5000 2950
+NoConn ~ 5000 2850
+NoConn ~ 5000 2750
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B2ADC4
+P 5350 3150
+F 0 "TP?" V 5304 3338 50  0000 L CNN
+F 1 "TestPoint" V 5395 3338 50  0000 L CNN
+F 2 "" H 5550 3150 50  0001 C CNN
+F 3 "~" H 5550 3150 50  0001 C CNN
+	1    5350 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5350 3150 5000 3150
+NoConn ~ 5000 3750
+NoConn ~ 5000 3850
+NoConn ~ 5000 4050
+NoConn ~ 5000 4150
+NoConn ~ 5000 4250
+NoConn ~ 5000 4550
+NoConn ~ 5000 4650
+NoConn ~ 5000 4850
+NoConn ~ 5000 2550
+NoConn ~ 3400 2350
+NoConn ~ 3400 2450
+NoConn ~ 3400 2550
+NoConn ~ 3400 2650
+NoConn ~ 3400 3550
+NoConn ~ 3400 3650
+NoConn ~ 3400 3750
+NoConn ~ 3400 3850
+NoConn ~ 3400 3950
+NoConn ~ 3400 4050
+$Comp
+L Connector:Conn_01x03_Male J?
+U 1 1 61B69127
+P 7250 2100
+F 0 "J?" H 7358 2381 50  0000 C CNN
+F 1 "Conn_01x03_Male" H 7358 2290 50  0000 C CNN
+F 2 "" H 7250 2100 50  0001 C CNN
+F 3 "~" H 7250 2100 50  0001 C CNN
+	1    7250 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+24V #PWR?
+U 1 1 61B6F94F
+P 7450 2000
+F 0 "#PWR?" H 7450 1850 50  0001 C CNN
+F 1 "+24V" V 7465 2128 50  0000 L CNN
+F 2 "" H 7450 2000 50  0001 C CNN
+F 3 "" H 7450 2000 50  0001 C CNN
+	1    7450 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61B70540
+P 7450 2100
+F 0 "#PWR?" H 7450 1950 50  0001 C CNN
+F 1 "+3.3V" V 7465 2228 50  0000 L CNN
+F 2 "" H 7450 2100 50  0001 C CNN
+F 3 "" H 7450 2100 50  0001 C CNN
+	1    7450 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61B717A1
+P 7450 2200
+F 0 "#PWR?" H 7450 1950 50  0001 C CNN
+F 1 "GND" V 7455 2072 50  0000 R CNN
+F 2 "" H 7450 2200 50  0001 C CNN
+F 3 "" H 7450 2200 50  0001 C CNN
+	1    7450 2200
+	0    -1   -1   0   
+$EndComp
+>>>>>>> Actuators
 $EndSCHEMATC

@@ -550,6 +550,7 @@ F2 "RTS" O R 2200 3250 50
 F3 "RXD" O R 2200 3350 50 
 F4 "TXD" O R 2200 3450 50 
 F5 "DTR" O R 2200 3550 50 
+F6 "3.3V" O R 2200 3650 50 
 $EndSheet
 $Comp
 L Connector:TestPoint TP?
@@ -1154,4 +1155,146 @@ Wire Wire Line
 	4000 1800 4000 1900
 Connection ~ 3700 1800
 Connection ~ 4000 1900
+Wire Wire Line
+	2200 3650 2300 3650
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61A7095B
+P 2300 3650
+AR Path="/61A7095B" Ref="#PWR?"  Part="1" 
+AR Path="/61AA560B/61A7095B" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 2300 3500 50  0001 C CNN
+F 1 "+3.3V" H 2315 3823 50  0000 C CNN
+F 2 "" H 2300 3650 50  0001 C CNN
+F 3 "" H 2300 3650 50  0001 C CNN
+	1    2300 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFEC97
+P 5350 3950
+F 0 "TP?" V 5304 4138 50  0000 L CNN
+F 1 "TestPoint" V 5395 4138 50  0000 L CNN
+F 2 "" H 5550 3950 50  0001 C CNN
+F 3 "~" H 5550 3950 50  0001 C CNN
+	1    5350 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFFB17
+P 5350 3650
+F 0 "TP?" V 5304 3838 50  0000 L CNN
+F 1 "TestPoint" V 5395 3838 50  0000 L CNN
+F 2 "" H 5550 3650 50  0001 C CNN
+F 3 "~" H 5550 3650 50  0001 C CNN
+	1    5350 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B06C77
+P 5350 3550
+F 0 "TP?" V 5304 3738 50  0000 L CNN
+F 1 "TestPoint" V 5395 3738 50  0000 L CNN
+F 2 "" H 5550 3550 50  0001 C CNN
+F 3 "~" H 5550 3550 50  0001 C CNN
+	1    5350 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0E262
+P 5400 3250
+F 0 "TP?" V 5354 3438 50  0000 L CNN
+F 1 "TestPoint" V 5445 3438 50  0000 L CNN
+F 2 "" H 5600 3250 50  0001 C CNN
+F 3 "~" H 5600 3250 50  0001 C CNN
+	1    5400 3250
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B11A26
+P 5350 2650
+F 0 "TP?" V 5304 2838 50  0000 L CNN
+F 1 "TestPoint" V 5395 2838 50  0000 L CNN
+F 2 "" H 5550 2650 50  0001 C CNN
+F 3 "~" H 5550 2650 50  0001 C CNN
+	1    5350 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B19901
+P 5350 2450
+F 0 "TP?" V 5304 2638 50  0000 L CNN
+F 1 "TestPoint" V 5395 2638 50  0000 L CNN
+F 2 "" H 5550 2450 50  0001 C CNN
+F 3 "~" H 5550 2450 50  0001 C CNN
+	1    5350 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B1D3C4
+P 5350 2350
+F 0 "TP?" V 5304 2538 50  0000 L CNN
+F 1 "TestPoint" V 5395 2538 50  0000 L CNN
+F 2 "" H 5550 2350 50  0001 C CNN
+F 3 "~" H 5550 2350 50  0001 C CNN
+	1    5350 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B216B6
+P 3200 2150
+F 0 "TP?" V 3154 2338 50  0000 L CNN
+F 1 "TestPoint" V 3245 2338 50  0000 L CNN
+F 2 "" H 3400 2150 50  0001 C CNN
+F 3 "~" H 3400 2150 50  0001 C CNN
+	1    3200 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B25948
+P 5350 2150
+F 0 "TP?" V 5304 2338 50  0000 L CNN
+F 1 "TestPoint" V 5395 2338 50  0000 L CNN
+F 2 "" H 5550 2150 50  0001 C CNN
+F 3 "~" H 5550 2150 50  0001 C CNN
+	1    5350 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5350 2150 5000 2150
+NoConn ~ 5000 2550
+NoConn ~ 5000 2750
+NoConn ~ 5000 2850
+NoConn ~ 5000 2950
+NoConn ~ 5000 3050
+NoConn ~ 5000 3150
+NoConn ~ 5000 3350
+NoConn ~ 5000 3450
+NoConn ~ 5000 3750
+NoConn ~ 5000 3850
+NoConn ~ 5000 4050
+NoConn ~ 5000 4150
+NoConn ~ 5000 4250
+NoConn ~ 5000 4550
+NoConn ~ 5000 4650
+NoConn ~ 5000 4850
+NoConn ~ 3400 4050
+NoConn ~ 3400 3950
+NoConn ~ 3400 3850
+NoConn ~ 3400 3750
+NoConn ~ 3400 3650
+NoConn ~ 3400 3550
+NoConn ~ 3400 2650
+NoConn ~ 3400 2550
+NoConn ~ 3400 2450
+NoConn ~ 3400 2350
 $EndSCHEMATC

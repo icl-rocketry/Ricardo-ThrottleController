@@ -660,6 +660,7 @@ F 3 "~" H 9800 1500 50  0001 C CNN
 	1    9800 1500
 	1    0    0    -1  
 $EndComp
+<<<<<<< HEAD
 Text Label 9450 2450 2    50   ~ 0
 SolEN
 Text Label 5000 3150 0    50   ~ 0
@@ -675,6 +676,12 @@ F 3 "" H 9800 2750 50  0001 C CNN
 	1    9800 2750
 	1    0    0    -1  
 $EndComp
+=======
+Text Label 9450 2350 2    50   ~ 0
+SolEN
+Text Label 5000 3150 0    50   ~ 0
+SolEN
+>>>>>>> Actuators
 Text Label 9800 2150 1    50   ~ 0
 SolGND
 $Comp
@@ -707,6 +714,7 @@ Wire Wire Line
 $Comp
 L Device:R_Small R?
 U 1 1 61A5320F
+<<<<<<< HEAD
 P 9450 2600
 F 0 "R?" H 9300 2650 50  0000 L CNN
 F 1 "110" H 9250 2550 50  0000 L CNN
@@ -719,6 +727,20 @@ Wire Wire Line
 	9450 2500 9450 2450
 Wire Wire Line
 	9450 2450 9500 2450
+=======
+P 9450 2500
+F 0 "R?" H 9300 2550 50  0000 L CNN
+F 1 "110" H 9250 2450 50  0000 L CNN
+F 2 "" H 9450 2500 50  0001 C CNN
+F 3 "~" H 9450 2500 50  0001 C CNN
+	1    9450 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 2400 9450 2350
+Wire Wire Line
+	9450 2350 9500 2350
+>>>>>>> Actuators
 $Comp
 L Connector:Conn_01x02_Female J?
 U 1 1 61A71000
@@ -841,6 +863,7 @@ F 3 "" H 2300 3650 50  0001 C CNN
 	1    2300 3650
 	0    1    1    0   
 $EndComp
+<<<<<<< HEAD
 $Comp
 L iclr:SIJA74DP-T1-GE3 U?
 U 1 1 61AB9D88
@@ -864,4 +887,164 @@ Wire Wire Line
 Wire Wire Line
 	9800 2750 9800 2650
 Connection ~ 9800 2750
+=======
+Wire Wire Line
+	9450 2600 9450 2650
+$Comp
+L Transistor_FET:DMN3404L Q?
+U 1 1 61B01102
+P 9700 2350
+F 0 "Q?" H 9904 2396 50  0000 L CNN
+F 1 "SI2366DS" H 9904 2305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 9900 2275 50  0001 L CIN
+F 3 "http://www.diodes.com/assets/Datasheets/ds31787.pdf" H 9700 2350 50  0001 L CNN
+	1    9700 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9800 2550 9800 2650
+Wire Wire Line
+	9800 2650 9450 2650
+$Comp
+L power:GND #PWR?
+U 1 1 61B12B7C
+P 9800 2650
+F 0 "#PWR?" H 9800 2400 50  0001 C CNN
+F 1 "GND" H 9805 2477 50  0000 C CNN
+F 2 "" H 9800 2650 50  0001 C CNN
+F 3 "" H 9800 2650 50  0001 C CNN
+	1    9800 2650
+	1    0    0    -1  
+$EndComp
+Connection ~ 9800 2650
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFDF58
+P 5350 2350
+F 0 "TP?" V 5304 2538 50  0000 L CNN
+F 1 "TestPoint" V 5395 2538 50  0000 L CNN
+F 2 "" H 5550 2350 50  0001 C CNN
+F 3 "~" H 5550 2350 50  0001 C CNN
+	1    5350 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61AFF428
+P 5350 2450
+F 0 "TP?" V 5304 2638 50  0000 L CNN
+F 1 "TestPoint" V 5395 2638 50  0000 L CNN
+F 2 "" H 5550 2450 50  0001 C CNN
+F 3 "~" H 5550 2450 50  0001 C CNN
+	1    5350 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B026A5
+P 5350 2650
+F 0 "TP?" V 5304 2838 50  0000 L CNN
+F 1 "TestPoint" V 5395 2838 50  0000 L CNN
+F 2 "" H 5550 2650 50  0001 C CNN
+F 3 "~" H 5550 2650 50  0001 C CNN
+	1    5350 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0576B
+P 5350 3550
+F 0 "TP?" V 5304 3738 50  0000 L CNN
+F 1 "TestPoint" V 5395 3738 50  0000 L CNN
+F 2 "" H 5550 3550 50  0001 C CNN
+F 3 "~" H 5550 3550 50  0001 C CNN
+	1    5350 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B088E5
+P 5350 3650
+F 0 "TP?" V 5304 3838 50  0000 L CNN
+F 1 "TestPoint" V 5395 3838 50  0000 L CNN
+F 2 "" H 5550 3650 50  0001 C CNN
+F 3 "~" H 5550 3650 50  0001 C CNN
+	1    5350 3650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0B958
+P 5350 3950
+F 0 "TP?" V 5304 4138 50  0000 L CNN
+F 1 "TestPoint" V 5395 4138 50  0000 L CNN
+F 2 "" H 5550 3950 50  0001 C CNN
+F 3 "~" H 5550 3950 50  0001 C CNN
+	1    5350 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0EC6F
+P 3200 2150
+F 0 "TP?" V 3154 2338 50  0000 L CNN
+F 1 "TestPoint" V 3245 2338 50  0000 L CNN
+F 2 "" H 3400 2150 50  0001 C CNN
+F 3 "~" H 3400 2150 50  0001 C CNN
+	1    3200 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B11C95
+P 5350 2150
+F 0 "TP?" V 5304 2338 50  0000 L CNN
+F 1 "TestPoint" V 5395 2338 50  0000 L CNN
+F 2 "" H 5550 2150 50  0001 C CNN
+F 3 "~" H 5550 2150 50  0001 C CNN
+	1    5350 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5350 2150 5000 2150
+NoConn ~ 5000 3450
+NoConn ~ 5000 3350
+NoConn ~ 5000 3250
+NoConn ~ 5000 3050
+NoConn ~ 5000 2950
+NoConn ~ 5000 2850
+NoConn ~ 5000 2750
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B2ADC4
+P 5350 3150
+F 0 "TP?" V 5304 3338 50  0000 L CNN
+F 1 "TestPoint" V 5395 3338 50  0000 L CNN
+F 2 "" H 5550 3150 50  0001 C CNN
+F 3 "~" H 5550 3150 50  0001 C CNN
+	1    5350 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5350 3150 5000 3150
+NoConn ~ 5000 3750
+NoConn ~ 5000 3850
+NoConn ~ 5000 4050
+NoConn ~ 5000 4150
+NoConn ~ 5000 4250
+NoConn ~ 5000 4550
+NoConn ~ 5000 4650
+NoConn ~ 5000 4850
+NoConn ~ 5000 2550
+NoConn ~ 3400 2350
+NoConn ~ 3400 2450
+NoConn ~ 3400 2550
+NoConn ~ 3400 2650
+NoConn ~ 3400 3550
+NoConn ~ 3400 3650
+NoConn ~ 3400 3750
+NoConn ~ 3400 3850
+NoConn ~ 3400 3950
+NoConn ~ 3400 4050
+>>>>>>> Actuators
 $EndSCHEMATC
