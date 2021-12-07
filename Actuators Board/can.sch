@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 4
+Sheet 1 1
 Title ""
 Date ""
 Rev ""
@@ -68,32 +68,29 @@ F 3 "http://www.ti.com/lit/ds/symlink/sn65hvd230.pdf" H 1700 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 1400 1750
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61946ECA
-P 2500 1650
-F 0 "TP?" V 2454 1838 50  0000 L CNN
-F 1 "TestPoint" V 2545 1838 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 2700 1650 50  0001 C CNN
-F 3 "~" H 2700 1650 50  0001 C CNN
-	1    2500 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61946ED0
-P 2500 1750
-F 0 "TP?" V 2454 1938 50  0000 L CNN
-F 1 "TestPoint" V 2545 1938 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 2700 1750 50  0001 C CNN
-F 3 "~" H 2700 1750 50  0001 C CNN
-	1    2500 1750
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2200 1650 2500 1650
 Text HLabel 1200 1550 0    50   Input ~ 0
 CAN_TX
 Text HLabel 1200 1650 0    50   Output ~ 0
 CAN_RX
+$Comp
+L Connector:Conn_01x02_Male J?
+U 1 1 61AFAFC6
+P 4950 1350
+F 0 "J?" H 4922 1232 50  0000 R CNN
+F 1 "Conn_01x02_Male" H 4922 1323 50  0000 R CNN
+F 2 "" H 4950 1350 50  0001 C CNN
+F 3 "~" H 4950 1350 50  0001 C CNN
+	1    4950 1350
+	-1   0    0    1   
+$EndComp
+Text Label 4450 1250 0    50   ~ 0
+CAN_LOW
+Text Label 4450 1350 0    50   ~ 0
+CAN_HIGH
+Wire Wire Line
+	4750 1250 4450 1250
+Wire Wire Line
+	4750 1350 4450 1350
 $EndSCHEMATC
