@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 4
+Sheet 2 4
 Title ""
 Date ""
 Rev ""
@@ -440,4 +440,55 @@ Text Label 1750 4300 0    50   ~ 0
 VBUS
 Wire Wire Line
 	1750 4300 2050 4300
+$Comp
+L Device:LED_Small D?
+U 1 1 61B104EA
+P 6400 3650
+AR Path="/61B104EA" Ref="D?"  Part="1" 
+AR Path="/61925999/61B104EA" Ref="D?"  Part="1" 
+F 0 "D?" H 6400 3445 50  0000 C CNN
+F 1 "USB_LED" H 6400 3536 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 6400 3650 50  0001 C CNN
+F 3 "~" V 6400 3650 50  0001 C CNN
+	1    6400 3650
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61B104F0
+P 6100 3650
+F 0 "R?" V 5904 3650 50  0000 C CNN
+F 1 "470" V 5995 3650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 6100 3650 50  0001 C CNN
+F 3 "~" H 6100 3650 50  0001 C CNN
+	1    6100 3650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6300 3650 6200 3650
+$Comp
+L power:GND #PWR?
+U 1 1 61B11F2F
+P 6500 3650
+AR Path="/61B11F2F" Ref="#PWR?"  Part="1" 
+AR Path="/61925999/61B11F2F" Ref="#PWR?"  Part="1" 
+AR Path="/61997866/61B11F2F" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 6500 3400 50  0001 C CNN
+F 1 "GND" V 6505 3522 50  0000 R CNN
+F 2 "" H 6500 3650 50  0001 C CNN
+F 3 "" H 6500 3650 50  0001 C CNN
+	1    6500 3650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:VBUS #PWR?
+U 1 1 61B168A6
+P 6000 3650
+F 0 "#PWR?" H 6000 3500 50  0001 C CNN
+F 1 "VBUS" V 6015 3778 50  0000 L CNN
+F 2 "" H 6000 3650 50  0001 C CNN
+F 3 "" H 6000 3650 50  0001 C CNN
+	1    6000 3650
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
