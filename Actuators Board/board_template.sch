@@ -208,73 +208,6 @@ Wire Wire Line
 	1750 6500 1550 6500
 Text Label 1750 6500 2    50   ~ 0
 EN
-$Comp
-L Device:LED_Small D3
-U 1 1 5DB110D6
-P 1000 1200
-F 0 "D3" H 1000 995 50  0000 C CNN
-F 1 "TX_LED" H 1000 1086 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 1000 1200 50  0001 C CNN
-F 3 "~" V 1000 1200 50  0001 C CNN
-	1    1000 1200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:LED_Small D2
-U 1 1 5DB13286
-P 1000 850
-F 0 "D2" H 1000 645 50  0000 C CNN
-F 1 "RX_LED" H 1000 736 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 1000 850 50  0001 C CNN
-F 3 "~" V 1000 850 50  0001 C CNN
-	1    1000 850 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R10
-U 1 1 5DB4A6E6
-P 1300 850
-F 0 "R10" V 1104 850 50  0000 C CNN
-F 1 "470" V 1195 850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1300 850 50  0001 C CNN
-F 3 "~" H 1300 850 50  0001 C CNN
-	1    1300 850 
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R11
-U 1 1 5DB4B3E7
-P 1300 1200
-F 0 "R11" V 1104 1200 50  0000 C CNN
-F 1 "470" V 1195 1200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1300 1200 50  0001 C CNN
-F 3 "~" H 1300 1200 50  0001 C CNN
-	1    1300 1200
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1100 1200 1200 1200
-Wire Wire Line
-	1100 850  1200 850 
-Wire Wire Line
-	700  850  900  850 
-Wire Wire Line
-	700  1200 900  1200
-$Comp
-L power:GND #PWR012
-U 1 1 5DB5396A
-P 2300 1600
-F 0 "#PWR012" H 2300 1350 50  0001 C CNN
-F 1 "GND" H 2305 1427 50  0000 C CNN
-F 2 "" H 2300 1600 50  0001 C CNN
-F 3 "" H 2300 1600 50  0001 C CNN
-	1    2300 1600
-	1    0    0    -1  
-$EndComp
-Text Label 700  850  0    50   ~ 0
-RXD
-Text Label 700  1200 0    50   ~ 0
-TXD
 Wire Wire Line
 	5000 2350 5350 2350
 Wire Wire Line
@@ -362,45 +295,6 @@ Text Label 2100 5150 2    50   ~ 0
 EN
 Text Label 2100 6200 2    50   ~ 0
 BOOT
-$Comp
-L power:+3.3V #PWR011
-U 1 1 5DC16656
-P 1550 850
-F 0 "#PWR011" H 1550 700 50  0001 C CNN
-F 1 "+3.3V" H 1565 1023 50  0000 C CNN
-F 2 "" H 1550 850 50  0001 C CNN
-F 3 "" H 1550 850 50  0001 C CNN
-	1    1550 850 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:LED_Small D6
-U 1 1 5DC1F7E5
-P 2150 850
-F 0 "D6" H 2150 645 50  0000 C CNN
-F 1 "PWR_LED" H 2150 736 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2150 850 50  0001 C CNN
-F 3 "~" V 2150 850 50  0001 C CNN
-	1    2150 850 
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R_Small R14
-U 1 1 5DC1F7EB
-P 1850 850
-F 0 "R14" V 1654 850 50  0000 C CNN
-F 1 "470" V 1745 850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 1850 850 50  0001 C CNN
-F 3 "~" H 1850 850 50  0001 C CNN
-	1    1850 850 
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1950 850  2050 850 
-Wire Wire Line
-	1550 850  1750 850 
-Wire Wire Line
-	2300 850  2250 850 
 Wire Wire Line
 	5000 4450 5350 4450
 Wire Wire Line
@@ -411,45 +305,6 @@ Text Label 5350 4350 2    50   ~ 0
 CAN_TX
 Text Label 5350 3950 2    50   ~ 0
 MOSI
-Wire Wire Line
-	2300 850  2300 1600
-Wire Wire Line
-	1400 850  1550 850 
-Connection ~ 1550 850 
-Wire Wire Line
-	1400 850  1400 1200
-Connection ~ 1400 850 
-$Comp
-L Device:LED_Small D17
-U 1 1 5DFAB0B1
-P 2500 850
-F 0 "D17" H 2500 645 50  0000 C CNN
-F 1 "USB_LED" H 2500 736 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2500 850 50  0001 C CNN
-F 3 "~" V 2500 850 50  0001 C CNN
-	1    2500 850 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R36
-U 1 1 5DFAB0B7
-P 2800 850
-F 0 "R36" V 2604 850 50  0000 C CNN
-F 1 "470" V 2695 850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 850 50  0001 C CNN
-F 3 "~" H 2800 850 50  0001 C CNN
-	1    2800 850 
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2600 850  2700 850 
-Wire Wire Line
-	2400 850  2300 850 
-Connection ~ 2300 850 
-Wire Wire Line
-	2900 850  3300 850 
-Text Label 3300 850  2    50   ~ 0
-USB_DET
 $Comp
 L Connector:Conn_01x02_Male J9
 U 1 1 5DFF606F
@@ -635,6 +490,8 @@ F0 "CAN-BUS" 50
 F1 "can.sch" 50
 F2 "CAN_TX" O R 4600 6850 50 
 F3 "CAN_RX" I R 4600 6950 50 
+F4 "CAN_HIGH" I R 4600 7050 50 
+F5 "CAN_LOW" I R 4600 7150 50 
 $EndSheet
 Text Label 5000 2150 0    50   ~ 0
 LNA_IN
@@ -746,4 +603,283 @@ F 3 "" H 2300 3650 50  0001 C CNN
 	1    2300 3650
 	0    1    1    0   
 $EndComp
+$Comp
+L Connector:Conn_01x05_Male J?
+U 1 1 61BEA64C
+P 10900 4650
+AR Path="/61BEA64C" Ref="J?"  Part="1" 
+AR Path="/61BE9C19/61BEA64C" Ref="J?"  Part="1" 
+F 0 "J?" H 11000 5050 50  0000 L CNN
+F 1 "Conn_01x05_Male" H 10700 4950 50  0000 L CNN
+F 2 "" H 10900 4650 50  0001 C CNN
+F 3 "~" H 10900 4650 50  0001 C CNN
+	1    10900 4650
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+24V #PWR?
+U 1 1 61BEA652
+P 10700 4450
+AR Path="/61BEA652" Ref="#PWR?"  Part="1" 
+AR Path="/61BE9C19/61BEA652" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 10700 4300 50  0001 C CNN
+F 1 "+24V" V 10700 4650 50  0000 C CNN
+F 2 "" H 10700 4450 50  0001 C CNN
+F 3 "" H 10700 4450 50  0001 C CNN
+	1    10700 4450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61BEA658
+P 10700 4550
+AR Path="/61BEA658" Ref="#PWR?"  Part="1" 
+AR Path="/61BE9C19/61BEA658" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 10700 4300 50  0001 C CNN
+F 1 "GND" V 10700 4350 50  0000 C CNN
+F 2 "" H 10700 4550 50  0001 C CNN
+F 3 "" H 10700 4550 50  0001 C CNN
+	1    10700 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61BEA65E
+P 10700 4650
+AR Path="/61BEA65E" Ref="#PWR?"  Part="1" 
+AR Path="/61BE9C19/61BEA65E" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 10700 4500 50  0001 C CNN
+F 1 "+3.3V" V 10700 4900 50  0000 C CNN
+F 2 "" H 10700 4650 50  0001 C CNN
+F 3 "" H 10700 4650 50  0001 C CNN
+	1    10700 4650
+	0    -1   -1   0   
+$EndComp
+Text Label 10700 4750 2    50   ~ 0
+CAN_HIGH
+Text Label 10700 4850 2    50   ~ 0
+CAN_LOW
+$Comp
+L Device:LED_Small D?
+U 1 1 61BF056C
+P 1150 1350
+F 0 "D?" H 1150 1145 50  0000 C CNN
+F 1 "TX_LED" H 1150 1236 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 1150 1350 50  0001 C CNN
+F 3 "~" V 1150 1350 50  0001 C CNN
+	1    1150 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D?
+U 1 1 61BF0572
+P 1150 1000
+F 0 "D?" H 1150 795 50  0000 C CNN
+F 1 "RX_LED" H 1150 886 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 1150 1000 50  0001 C CNN
+F 3 "~" V 1150 1000 50  0001 C CNN
+	1    1150 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF0578
+P 1450 1000
+F 0 "R?" V 1254 1000 50  0000 C CNN
+F 1 "470" V 1345 1000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 1450 1000 50  0001 C CNN
+F 3 "~" H 1450 1000 50  0001 C CNN
+	1    1450 1000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF057E
+P 1450 1350
+F 0 "R?" V 1254 1350 50  0000 C CNN
+F 1 "470" V 1345 1350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 1450 1350 50  0001 C CNN
+F 3 "~" H 1450 1350 50  0001 C CNN
+	1    1450 1350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1250 1350 1350 1350
+Wire Wire Line
+	1250 1000 1350 1000
+Wire Wire Line
+	850  1000 1050 1000
+Wire Wire Line
+	850  1350 1050 1350
+Text Label 850  1000 0    50   ~ 0
+RXD
+Text Label 850  1350 0    50   ~ 0
+TXD
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61BF058A
+P 1700 1000
+F 0 "#PWR?" H 1700 850 50  0001 C CNN
+F 1 "+3.3V" H 1715 1173 50  0000 C CNN
+F 2 "" H 1700 1000 50  0001 C CNN
+F 3 "" H 1700 1000 50  0001 C CNN
+	1    1700 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D?
+U 1 1 61BF0590
+P 2300 1000
+F 0 "D?" H 2300 795 50  0000 C CNN
+F 1 "3.3V LED" H 2300 886 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2300 1000 50  0001 C CNN
+F 3 "~" V 2300 1000 50  0001 C CNN
+	1    2300 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF0596
+P 2000 1000
+F 0 "R?" V 1804 1000 50  0000 C CNN
+F 1 "470" V 1895 1000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2000 1000 50  0001 C CNN
+F 3 "~" H 2000 1000 50  0001 C CNN
+	1    2000 1000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2100 1000 2200 1000
+Wire Wire Line
+	1700 1000 1900 1000
+Wire Wire Line
+	1550 1000 1700 1000
+Connection ~ 1700 1000
+Wire Wire Line
+	1550 1000 1550 1350
+Connection ~ 1550 1000
+$Comp
+L Device:LED_Small D?
+U 1 1 61BF05A8
+P 2650 1000
+F 0 "D?" H 2650 795 50  0000 C CNN
+F 1 "24V LED" H 2650 886 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2650 1000 50  0001 C CNN
+F 3 "~" V 2650 1000 50  0001 C CNN
+	1    2650 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF05AE
+P 2950 1000
+F 0 "R?" V 2754 1000 50  0000 C CNN
+F 1 "470" V 2845 1000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2950 1000 50  0001 C CNN
+F 3 "~" H 2950 1000 50  0001 C CNN
+	1    2950 1000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+24V #PWR?
+U 1 1 61BF05B4
+P 4100 800
+F 0 "#PWR?" H 4100 650 50  0001 C CNN
+F 1 "+24V" H 4115 973 50  0000 C CNN
+F 2 "" H 4100 800 50  0001 C CNN
+F 3 "" H 4100 800 50  0001 C CNN
+	1    4100 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF05BA
+P 3800 800
+F 0 "R?" V 3604 800 50  0000 C CNN
+F 1 "1k" V 3695 800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3800 800 50  0001 C CNN
+F 3 "~" H 3800 800 50  0001 C CNN
+	1    3800 800 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61BF05C0
+P 3500 800
+F 0 "R?" V 3400 800 50  0000 C CNN
+F 1 "470" V 3600 800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3500 800 50  0001 C CNN
+F 3 "~" H 3500 800 50  0001 C CNN
+	1    3500 800 
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3600 800  3650 800 
+Wire Wire Line
+	3650 800  3650 1000
+Wire Wire Line
+	3650 1000 3350 1000
+Connection ~ 3650 800 
+Wire Wire Line
+	3650 800  3700 800 
+Wire Wire Line
+	2400 1000 2450 1000
+Wire Wire Line
+	2450 1000 2450 1300
+Connection ~ 2450 1000
+Wire Wire Line
+	2450 1000 2550 1000
+$Comp
+L power:GND #PWR?
+U 1 1 61BF05CF
+P 2450 1300
+F 0 "#PWR?" H 2450 1050 50  0001 C CNN
+F 1 "GND" H 2455 1127 50  0000 C CNN
+F 2 "" H 2450 1300 50  0001 C CNN
+F 3 "" H 2450 1300 50  0001 C CNN
+	1    2450 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 1000 2850 1000
+$Comp
+L power:GND #PWR?
+U 1 1 61BF05D6
+P 3300 800
+F 0 "#PWR?" H 3300 550 50  0001 C CNN
+F 1 "GND" H 3305 627 50  0000 C CNN
+F 2 "" H 3300 800 50  0001 C CNN
+F 3 "" H 3300 800 50  0001 C CNN
+	1    3300 800 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3400 800  3350 800 
+Wire Wire Line
+	3350 800  3350 1000
+Connection ~ 3350 800 
+Wire Wire Line
+	3350 800  3300 800 
+Connection ~ 3350 1000
+Wire Wire Line
+	3350 1000 3050 1000
+$Comp
+L Device:R_Small R?
+U 1 1 61BF05E2
+P 4000 800
+F 0 "R?" V 3804 800 50  0000 C CNN
+F 1 "1k" V 3895 800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 4000 800 50  0001 C CNN
+F 3 "~" H 4000 800 50  0001 C CNN
+	1    4000 800 
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4600 7050 4700 7050
+Wire Wire Line
+	4600 7150 4700 7150
+Text Label 4700 7050 0    50   ~ 0
+CAN_HIGH
+Text Label 4700 7150 0    50   ~ 0
+CAN_LOW
 $EndSCHEMATC
