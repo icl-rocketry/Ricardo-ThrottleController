@@ -866,7 +866,7 @@
   )
 
   (module TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm (layer F.Cu) (tedit 5A0F774F) (tstamp 61B51D0A)
-    (at 106.987 106.17)
+    (at 190.807 87.12)
     (descr "THT rectangular pad as test Point, square 1.0mm side length, hole diameter 0.5mm")
     (tags "test point THT pad rectangle square")
     (path /61925999/61AB9568)
@@ -893,7 +893,7 @@
   )
 
   (module TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm (layer F.Cu) (tedit 5A0F774F) (tstamp 61B51CFC)
-    (at 104.787 109.22)
+    (at 188.607 90.17)
     (descr "THT rectangular pad as test Point, square 1.0mm side length, hole diameter 0.5mm")
     (tags "test point THT pad rectangle square")
     (path /61925999/61AB87F3)
@@ -920,7 +920,7 @@
   )
 
   (module TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm (layer F.Cu) (tedit 5A0F774F) (tstamp 61B51CEE)
-    (at 110.037 106.17)
+    (at 193.857 87.12)
     (descr "THT rectangular pad as test Point, square 1.0mm side length, hole diameter 0.5mm")
     (tags "test point THT pad rectangle square")
     (path /61925999/61AB7CB8)
@@ -1487,7 +1487,7 @@
   )
 
   (module Resistor_SMD:R_0603_1608Metric (layer F.Cu) (tedit 5F68FEEE) (tstamp 61B51BCD)
-    (at 116.84 92.71)
+    (at 128.27 88.9)
     (descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
     (tags resistor)
     (path /61925999/61A58884)
