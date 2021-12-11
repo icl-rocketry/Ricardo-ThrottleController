@@ -617,6 +617,8 @@ F0 "CAN-BUS" 50
 F1 "can.sch" 50
 F2 "CAN_TX" I R 4600 6800 50 
 F3 "CAN_RX" O R 4600 6900 50 
+F4 "CAN_HIGH" I R 4600 7000 50 
+F5 "CAN_LOW" I R 4600 7100 50 
 $EndSheet
 Text Label 5000 2150 0    50   ~ 0
 LNA_IN
@@ -1095,4 +1097,34 @@ Wire Wire Line
 Connection ~ 2300 1250
 Wire Wire Line
 	2300 1250 2300 1600
+Text Label 4700 7000 0    50   ~ 0
+CAN_HIGH
+Text Label 4700 7100 0    50   ~ 0
+CAN_LOW
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B51801
+P 5100 7000
+F 0 "TP?" V 5054 7188 50  0000 L CNN
+F 1 "TestPoint" V 5145 7188 50  0000 L CNN
+F 2 "" H 5300 7000 50  0001 C CNN
+F 3 "~" H 5300 7000 50  0001 C CNN
+	1    5100 7000
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B53AEC
+P 5100 7100
+F 0 "TP?" V 5054 7288 50  0000 L CNN
+F 1 "TestPoint" V 5145 7288 50  0000 L CNN
+F 2 "" H 5300 7100 50  0001 C CNN
+F 3 "~" H 5300 7100 50  0001 C CNN
+	1    5100 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4600 7100 5100 7100
+Wire Wire Line
+	4600 7000 5100 7000
 $EndSCHEMATC
