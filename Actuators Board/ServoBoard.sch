@@ -76,8 +76,6 @@ Text Notes 10600 7700 0    50   ~ 0
 0.1\n\n
 Text Label 1550 7550 2    50   ~ 0
 EN
-Text Label 5350 2350 2    50   ~ 0
-BOOT
 $Comp
 L power:+3.3V #PWR09
 U 1 1 5DAB272A
@@ -272,16 +270,6 @@ RXD
 Text Label 700  1200 0    50   ~ 0
 TXD
 Wire Wire Line
-	5000 2350 5350 2350
-Wire Wire Line
-	5000 2450 5350 2450
-Wire Wire Line
-	5000 2650 5350 2650
-Text Label 5350 2450 2    50   ~ 0
-RXD
-Text Label 5350 2650 2    50   ~ 0
-TXD
-Wire Wire Line
 	1000 7550 1200 7550
 Wire Wire Line
 	1200 7550 1200 7500
@@ -400,44 +388,13 @@ CAN_RX
 Text Label 5350 4350 2    50   ~ 0
 CAN_TX
 Wire Wire Line
-	2300 850  2300 1600
+	2300 850  2300 950 
 Wire Wire Line
 	1400 850  1550 850 
 Connection ~ 1550 850 
 Wire Wire Line
 	1400 850  1400 1200
 Connection ~ 1400 850 
-$Comp
-L Device:LED_Small D17
-U 1 1 5DFAB0B1
-P 2500 850
-F 0 "D17" H 2500 645 50  0000 C CNN
-F 1 "USB_LED" H 2500 736 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2500 850 50  0001 C CNN
-F 3 "~" V 2500 850 50  0001 C CNN
-	1    2500 850 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R36
-U 1 1 5DFAB0B7
-P 2800 850
-F 0 "R36" V 2604 850 50  0000 C CNN
-F 1 "470" V 2695 850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 2800 850 50  0001 C CNN
-F 3 "~" H 2800 850 50  0001 C CNN
-	1    2800 850 
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2600 850  2700 850 
-Wire Wire Line
-	2400 850  2300 850 
-Connection ~ 2300 850 
-Wire Wire Line
-	2900 850  3300 850 
-Text Label 3300 850  2    50   ~ 0
-USB_DET
 $Comp
 L Connector:Conn_01x02_Male J9
 U 1 1 5DFF606F
@@ -512,21 +469,6 @@ F 3 "http://www.diodes.com/_files/datasheets/ds30125.pdf" H 1550 5950 50  0001 C
 	2    1550 5950
 	1    0    0    1   
 $EndComp
-$Comp
-L RF_Module:ESP32-PICO-D4 U?
-U 1 1 618B08BE
-P 4200 3550
-F 0 "U?" H 4200 1861 50  0000 C CNN
-F 1 "ESP32-PICO-D4" H 4200 1770 50  0000 C CNN
-F 2 "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.3x5.3mm" H 4200 1850 50  0001 C CNN
-F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-pico-d4_datasheet_en.pdf" H 4450 2550 50  0001 C CNN
-	1    4200 3550
-	1    0    0    -1  
-$EndComp
-Text Label 3200 2150 0    50   ~ 0
-EN
-Wire Wire Line
-	3200 2150 3400 2150
 Text Notes 7400 7500 0    50   ~ 0
 Board Template\n
 $Sheet
@@ -600,14 +542,6 @@ Wire Wire Line
 	2200 3450 2300 3450
 Wire Wire Line
 	2200 3550 2300 3550
-Text Label 2300 3250 0    50   ~ 0
-RTS
-Text Label 2300 3350 0    50   ~ 0
-RXD
-Text Label 2300 3450 0    50   ~ 0
-TXD
-Text Label 2300 3550 0    50   ~ 0
-DTR
 Text Label 1350 2650 2    50   ~ 0
 RTS
 Text Label 1350 2750 2    50   ~ 0
@@ -623,6 +557,8 @@ F0 "CAN-BUS" 50
 F1 "can.sch" 50
 F2 "CAN_TX" I R 4600 6850 50 
 F3 "CAN_RX" O R 4600 6950 50 
+F4 "CAN_HIGH" I R 4600 7050 50 
+F5 "CAN_LOW" I R 4600 7150 50 
 $EndSheet
 $Comp
 L iclr:TPS54233D U?
@@ -966,10 +902,6 @@ ServoPWM
 NoConn ~ 9900 4700
 NoConn ~ 9900 4800
 NoConn ~ 9900 4900
-Text Label 5400 3250 2    50   ~ 0
-ServoPWM
-Wire Wire Line
-	5000 3250 5400 3250
 $Comp
 L Device:C_Small C?
 U 1 1 61AA4813
@@ -1036,19 +968,6 @@ F 3 "" H 7950 4900 50  0001 C CNN
 	1    7950 4900
 	1    0    0    -1  
 $EndComp
-$Sheet
-S 5900 750  500  150 
-U 61A24258
-F0 "rfantenna" 50
-F1 "rfantenna.sch" 50
-F2 "LNA_IN" B L 5900 800 50 
-$EndSheet
-Text Label 5850 800  2    50   ~ 0
-LNA_IN
-Wire Wire Line
-	5900 800  5850 800 
-Text Label 5000 2150 0    50   ~ 0
-LNA_IN
 Wire Wire Line
 	4600 6850 4700 6850
 Wire Wire Line
@@ -1059,90 +978,6 @@ Text Label 4700 6950 0    50   ~ 0
 CAN_RX
 Wire Wire Line
 	8100 5000 8850 5000
-$Comp
-L power:+3.3V #PWR?
-U 1 1 61AA6780
-P 3600 1800
-AR Path="/61AA6780" Ref="#PWR?"  Part="1" 
-AR Path="/61AA560B/61AA6780" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 3600 1650 50  0001 C CNN
-F 1 "+3.3V" H 3615 1973 50  0000 C CNN
-F 2 "" H 3600 1800 50  0001 C CNN
-F 3 "" H 3600 1800 50  0001 C CNN
-	1    3600 1800
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 61AA6786
-P 3700 1700
-AR Path="/61AA6786" Ref="C?"  Part="1" 
-AR Path="/61AA560B/61AA6786" Ref="C?"  Part="1" 
-F 0 "C?" H 3500 1750 50  0000 L CNN
-F 1 "10uF" H 3450 1650 50  0000 L CNN
-F 2 "" H 3700 1700 50  0001 C CNN
-F 3 "~" H 3700 1700 50  0001 C CNN
-	1    3700 1700
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 61AA678C
-P 3500 1700
-AR Path="/61AA678C" Ref="C?"  Part="1" 
-AR Path="/61AA560B/61AA678C" Ref="C?"  Part="1" 
-F 0 "C?" H 3592 1746 50  0000 L CNN
-F 1 "0.1uF" H 3592 1655 50  0000 L CNN
-F 2 "" H 3500 1700 50  0001 C CNN
-F 3 "~" H 3500 1700 50  0001 C CNN
-	1    3500 1700
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	3700 1800 3600 1800
-Wire Wire Line
-	3700 1600 3600 1600
-$Comp
-L power:GND #PWR?
-U 1 1 61AA6794
-P 3600 1600
-AR Path="/61AA6794" Ref="#PWR?"  Part="1" 
-AR Path="/61AA560B/61AA6794" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 3600 1350 50  0001 C CNN
-F 1 "GND" H 3605 1427 50  0000 C CNN
-F 2 "" H 3600 1600 50  0001 C CNN
-F 3 "" H 3600 1600 50  0001 C CNN
-	1    3600 1600
-	-1   0    0    1   
-$EndComp
-Connection ~ 3600 1600
-Wire Wire Line
-	3600 1600 3500 1600
-Connection ~ 3600 1800
-Wire Wire Line
-	3600 1800 3500 1800
-Wire Wire Line
-	4000 1900 4100 1900
-Wire Wire Line
-	4100 1900 4100 1950
-Wire Wire Line
-	4000 1900 4000 1950
-Wire Wire Line
-	4100 1900 4200 1900
-Wire Wire Line
-	4200 1900 4200 1950
-Connection ~ 4100 1900
-Wire Wire Line
-	4200 1900 4300 1900
-Wire Wire Line
-	4300 1900 4300 1950
-Connection ~ 4200 1900
-Wire Wire Line
-	3700 1800 4000 1800
-Wire Wire Line
-	4000 1800 4000 1900
-Connection ~ 3700 1800
-Connection ~ 4000 1900
 Wire Wire Line
 	2200 3650 2300 3650
 $Comp
@@ -1158,82 +993,6 @@ F 3 "" H 2300 3650 50  0001 C CNN
 	1    2300 3650
 	0    1    1    0   
 $EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B0E262
-P 5400 3250
-F 0 "TP?" V 5354 3438 50  0000 L CNN
-F 1 "TestPoint" V 5445 3438 50  0000 L CNN
-F 2 "" H 5600 3250 50  0001 C CNN
-F 3 "~" H 5600 3250 50  0001 C CNN
-	1    5400 3250
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B11A26
-P 5350 2650
-F 0 "TP?" V 5304 2838 50  0000 L CNN
-F 1 "TestPoint" V 5395 2838 50  0000 L CNN
-F 2 "" H 5550 2650 50  0001 C CNN
-F 3 "~" H 5550 2650 50  0001 C CNN
-	1    5350 2650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B19901
-P 5350 2450
-F 0 "TP?" V 5304 2638 50  0000 L CNN
-F 1 "TestPoint" V 5395 2638 50  0000 L CNN
-F 2 "" H 5550 2450 50  0001 C CNN
-F 3 "~" H 5550 2450 50  0001 C CNN
-	1    5350 2450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B1D3C4
-P 5350 2350
-F 0 "TP?" V 5304 2538 50  0000 L CNN
-F 1 "TestPoint" V 5395 2538 50  0000 L CNN
-F 2 "" H 5550 2350 50  0001 C CNN
-F 3 "~" H 5550 2350 50  0001 C CNN
-	1    5350 2350
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B216B6
-P 3200 2150
-F 0 "TP?" V 3154 2338 50  0000 L CNN
-F 1 "TestPoint" V 3245 2338 50  0000 L CNN
-F 2 "" H 3400 2150 50  0001 C CNN
-F 3 "~" H 3400 2150 50  0001 C CNN
-	1    3200 2150
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B25948
-P 5350 2150
-F 0 "TP?" V 5304 2338 50  0000 L CNN
-F 1 "TestPoint" V 5395 2338 50  0000 L CNN
-F 2 "" H 5550 2150 50  0001 C CNN
-F 3 "~" H 5550 2150 50  0001 C CNN
-	1    5350 2150
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	5350 2150 5000 2150
-NoConn ~ 5000 2550
-NoConn ~ 5000 2750
-NoConn ~ 5000 2850
-NoConn ~ 5000 2950
-NoConn ~ 5000 3050
-NoConn ~ 5000 3150
-NoConn ~ 5000 3350
-NoConn ~ 5000 3450
 NoConn ~ 5000 3750
 NoConn ~ 5000 3850
 NoConn ~ 5000 4050
@@ -1248,10 +1007,6 @@ NoConn ~ 3400 3850
 NoConn ~ 3400 3750
 NoConn ~ 3400 3650
 NoConn ~ 3400 3550
-NoConn ~ 3400 2650
-NoConn ~ 3400 2550
-NoConn ~ 3400 2450
-NoConn ~ 3400 2350
 $Comp
 L Connector:TestPoint TP?
 U 1 1 61B8F221
@@ -1319,4 +1074,355 @@ CAN_LOW
 NoConn ~ 5000 3550
 NoConn ~ 5000 3650
 NoConn ~ 5000 3950
+Text Label 4700 7050 0    50   ~ 0
+CAN_HIGH
+Text Label 4700 7150 0    50   ~ 0
+CAN_LOW
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B4FF54
+P 5150 7000
+F 0 "TP?" V 5104 7188 50  0000 L CNN
+F 1 "TestPoint" V 5195 7188 50  0000 L CNN
+F 2 "" H 5350 7000 50  0001 C CNN
+F 3 "~" H 5350 7000 50  0001 C CNN
+	1    5150 7000
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B51A6B
+P 5150 7150
+F 0 "TP?" V 5104 7338 50  0000 L CNN
+F 1 "TestPoint" V 5195 7338 50  0000 L CNN
+F 2 "" H 5350 7150 50  0001 C CNN
+F 3 "~" H 5350 7150 50  0001 C CNN
+	1    5150 7150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4600 7150 5150 7150
+Wire Wire Line
+	4600 7050 5150 7050
+Wire Wire Line
+	5150 7050 5150 7000
+NoConn ~ 3400 2350
+NoConn ~ 3400 2450
+NoConn ~ 3400 2550
+NoConn ~ 3400 2650
+NoConn ~ 5000 3450
+NoConn ~ 5000 3350
+NoConn ~ 5000 3150
+NoConn ~ 5000 3050
+NoConn ~ 5000 2950
+NoConn ~ 5000 2850
+NoConn ~ 5000 2750
+NoConn ~ 5000 2550
+Wire Wire Line
+	5350 2150 5000 2150
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B25948
+P 5350 2150
+F 0 "TP?" V 5304 2338 50  0000 L CNN
+F 1 "TestPoint" V 5395 2338 50  0000 L CNN
+F 2 "" H 5550 2150 50  0001 C CNN
+F 3 "~" H 5550 2150 50  0001 C CNN
+	1    5350 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B216B6
+P 3200 2150
+F 0 "TP?" V 3154 2338 50  0000 L CNN
+F 1 "TestPoint" V 3245 2338 50  0000 L CNN
+F 2 "" H 3400 2150 50  0001 C CNN
+F 3 "~" H 3400 2150 50  0001 C CNN
+	1    3200 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B1D3C4
+P 5350 2350
+F 0 "TP?" V 5304 2538 50  0000 L CNN
+F 1 "TestPoint" V 5395 2538 50  0000 L CNN
+F 2 "" H 5550 2350 50  0001 C CNN
+F 3 "~" H 5550 2350 50  0001 C CNN
+	1    5350 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B19901
+P 5350 2450
+F 0 "TP?" V 5304 2638 50  0000 L CNN
+F 1 "TestPoint" V 5395 2638 50  0000 L CNN
+F 2 "" H 5550 2450 50  0001 C CNN
+F 3 "~" H 5550 2450 50  0001 C CNN
+	1    5350 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B11A26
+P 5350 2650
+F 0 "TP?" V 5304 2838 50  0000 L CNN
+F 1 "TestPoint" V 5395 2838 50  0000 L CNN
+F 2 "" H 5550 2650 50  0001 C CNN
+F 3 "~" H 5550 2650 50  0001 C CNN
+	1    5350 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B0E262
+P 5400 3250
+F 0 "TP?" V 5354 3438 50  0000 L CNN
+F 1 "TestPoint" V 5445 3438 50  0000 L CNN
+F 2 "" H 5600 3250 50  0001 C CNN
+F 3 "~" H 5600 3250 50  0001 C CNN
+	1    5400 3250
+	0    1    1    0   
+$EndComp
+Connection ~ 4000 1900
+Connection ~ 3700 1800
+Wire Wire Line
+	4000 1800 4000 1900
+Wire Wire Line
+	3700 1800 4000 1800
+Connection ~ 4200 1900
+Wire Wire Line
+	4300 1900 4300 1950
+Wire Wire Line
+	4200 1900 4300 1900
+Connection ~ 4100 1900
+Wire Wire Line
+	4200 1900 4200 1950
+Wire Wire Line
+	4100 1900 4200 1900
+Wire Wire Line
+	4000 1900 4000 1950
+Wire Wire Line
+	4100 1900 4100 1950
+Wire Wire Line
+	4000 1900 4100 1900
+Wire Wire Line
+	3600 1800 3500 1800
+Connection ~ 3600 1800
+Wire Wire Line
+	3600 1600 3500 1600
+Connection ~ 3600 1600
+$Comp
+L power:GND #PWR?
+U 1 1 61AA6794
+P 3600 1600
+AR Path="/61AA6794" Ref="#PWR?"  Part="1" 
+AR Path="/61AA560B/61AA6794" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3600 1350 50  0001 C CNN
+F 1 "GND" H 3605 1427 50  0000 C CNN
+F 2 "" H 3600 1600 50  0001 C CNN
+F 3 "" H 3600 1600 50  0001 C CNN
+	1    3600 1600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3700 1600 3600 1600
+Wire Wire Line
+	3700 1800 3600 1800
+$Comp
+L Device:C_Small C?
+U 1 1 61AA678C
+P 3500 1700
+AR Path="/61AA678C" Ref="C?"  Part="1" 
+AR Path="/61AA560B/61AA678C" Ref="C?"  Part="1" 
+F 0 "C?" H 3592 1746 50  0000 L CNN
+F 1 "0.1uF" H 3592 1655 50  0000 L CNN
+F 2 "" H 3500 1700 50  0001 C CNN
+F 3 "~" H 3500 1700 50  0001 C CNN
+	1    3500 1700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 61AA6786
+P 3700 1700
+AR Path="/61AA6786" Ref="C?"  Part="1" 
+AR Path="/61AA560B/61AA6786" Ref="C?"  Part="1" 
+F 0 "C?" H 3500 1750 50  0000 L CNN
+F 1 "10uF" H 3450 1650 50  0000 L CNN
+F 2 "" H 3700 1700 50  0001 C CNN
+F 3 "~" H 3700 1700 50  0001 C CNN
+	1    3700 1700
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 61AA6780
+P 3600 1800
+AR Path="/61AA6780" Ref="#PWR?"  Part="1" 
+AR Path="/61AA560B/61AA6780" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3600 1650 50  0001 C CNN
+F 1 "+3.3V" H 3615 1973 50  0000 C CNN
+F 2 "" H 3600 1800 50  0001 C CNN
+F 3 "" H 3600 1800 50  0001 C CNN
+	1    3600 1800
+	-1   0    0    1   
+$EndComp
+Text Label 5000 2150 0    50   ~ 0
+LNA_IN
+Wire Wire Line
+	5900 800  5850 800 
+Text Label 5850 800  2    50   ~ 0
+LNA_IN
+$Sheet
+S 5900 750  500  150 
+U 61A24258
+F0 "rfantenna" 50
+F1 "rfantenna.sch" 50
+F2 "LNA_IN" B L 5900 800 50 
+$EndSheet
+Wire Wire Line
+	5000 3250 5400 3250
+Text Label 5400 3250 2    50   ~ 0
+ServoPWM
+Text Label 2300 3550 0    50   ~ 0
+DTR
+Text Label 2300 3450 0    50   ~ 0
+TXD
+Text Label 2300 3350 0    50   ~ 0
+RXD
+Text Label 2300 3250 0    50   ~ 0
+RTS
+Wire Wire Line
+	3200 2150 3400 2150
+Text Label 3200 2150 0    50   ~ 0
+EN
+$Comp
+L RF_Module:ESP32-PICO-D4 U?
+U 1 1 618B08BE
+P 4200 3550
+F 0 "U?" H 4200 1861 50  0000 C CNN
+F 1 "ESP32-PICO-D4" H 4200 1770 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.3x5.3mm" H 4200 1850 50  0001 C CNN
+F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-pico-d4_datasheet_en.pdf" H 4450 2550 50  0001 C CNN
+	1    4200 3550
+	1    0    0    -1  
+$EndComp
+Text Label 5350 2650 2    50   ~ 0
+TXD
+Text Label 5350 2450 2    50   ~ 0
+RXD
+Wire Wire Line
+	5000 2650 5350 2650
+Wire Wire Line
+	5000 2450 5350 2450
+Wire Wire Line
+	5000 2350 5350 2350
+Text Label 5350 2350 2    50   ~ 0
+BOOT
+$Comp
+L Device:LED_Small D?
+U 1 1 61B674E8
+P 2700 950
+F 0 "D?" H 2700 745 50  0000 C CNN
+F 1 "24V_LED" H 2700 836 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Castellated" V 2700 950 50  0001 C CNN
+F 3 "~" V 2700 950 50  0001 C CNN
+	1    2700 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 950  2850 950 
+$Comp
+L Device:R_Small R?
+U 1 1 61B6BC0B
+P 3000 950
+F 0 "R?" V 2804 950 50  0000 C CNN
+F 1 "470" V 2895 950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3000 950 50  0001 C CNN
+F 3 "~" H 3000 950 50  0001 C CNN
+	1    3000 950 
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61B6FE72
+P 2800 750
+F 0 "#PWR?" H 2800 500 50  0001 C CNN
+F 1 "GND" V 2805 622 50  0000 R CNN
+F 2 "" H 2800 750 50  0001 C CNN
+F 3 "" H 2800 750 50  0001 C CNN
+	1    2800 750 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2800 750  2850 750 
+Wire Wire Line
+	2850 750  2850 950 
+Connection ~ 2850 950 
+Wire Wire Line
+	2850 950  2900 950 
+$Comp
+L Device:R_Small R?
+U 1 1 61B755F7
+P 2950 750
+F 0 "R?" V 2754 750 50  0000 C CNN
+F 1 "470" V 2845 750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 2950 750 50  0001 C CNN
+F 3 "~" H 2950 750 50  0001 C CNN
+	1    2950 750 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3050 750  3100 750 
+Wire Wire Line
+	3100 950  3100 750 
+Connection ~ 3100 750 
+Wire Wire Line
+	3100 750  3250 750 
+$Comp
+L Device:R_Small R?
+U 1 1 61B82E24
+P 3350 750
+F 0 "R?" V 3154 750 50  0000 C CNN
+F 1 "1k" V 3245 750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3350 750 50  0001 C CNN
+F 3 "~" H 3350 750 50  0001 C CNN
+	1    3350 750 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 61B875F5
+P 3650 750
+F 0 "R?" V 3454 750 50  0000 C CNN
+F 1 "1k" V 3545 750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 3650 750 50  0001 C CNN
+F 3 "~" H 3650 750 50  0001 C CNN
+	1    3650 750 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3450 750  3550 750 
+$Comp
+L power:+24V #PWR?
+U 1 1 61B909C1
+P 3800 750
+F 0 "#PWR?" H 3800 600 50  0001 C CNN
+F 1 "+24V" H 3815 923 50  0000 C CNN
+F 2 "" H 3800 750 50  0001 C CNN
+F 3 "" H 3800 750 50  0001 C CNN
+	1    3800 750 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 750  3800 750 
+Wire Wire Line
+	2600 950  2300 950 
+Connection ~ 2300 950 
+Connection ~ 2850 750 
+Wire Wire Line
+	2300 950  2300 1600
 $EndSCHEMATC

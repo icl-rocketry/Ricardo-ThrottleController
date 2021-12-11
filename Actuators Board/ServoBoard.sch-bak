@@ -74,10 +74,6 @@ Wire Wire Line
 	650  7550 800  7550
 Text Notes 10600 7700 0    50   ~ 0
 0.1\n\n
-Text Label 5350 3650 2    50   ~ 0
-MISO
-Text Label 5350 3550 2    50   ~ 0
-SCLK
 Text Label 1550 7550 2    50   ~ 0
 EN
 Text Label 5350 2350 2    50   ~ 0
@@ -281,12 +277,6 @@ Wire Wire Line
 	5000 2450 5350 2450
 Wire Wire Line
 	5000 2650 5350 2650
-Wire Wire Line
-	5000 3550 5350 3550
-Wire Wire Line
-	5000 3650 5350 3650
-Wire Wire Line
-	5000 3950 5350 3950
 Text Label 5350 2450 2    50   ~ 0
 RXD
 Text Label 5350 2650 2    50   ~ 0
@@ -409,8 +399,6 @@ Text Label 5350 4450 2    50   ~ 0
 CAN_RX
 Text Label 5350 4350 2    50   ~ 0
 CAN_TX
-Text Label 5350 3950 2    50   ~ 0
-MOSI
 Wire Wire Line
 	2300 850  2300 1600
 Wire Wire Line
@@ -1172,39 +1160,6 @@ F 3 "" H 2300 3650 50  0001 C CNN
 $EndComp
 $Comp
 L Connector:TestPoint TP?
-U 1 1 61AFEC97
-P 5350 3950
-F 0 "TP?" V 5304 4138 50  0000 L CNN
-F 1 "TestPoint" V 5395 4138 50  0000 L CNN
-F 2 "" H 5550 3950 50  0001 C CNN
-F 3 "~" H 5550 3950 50  0001 C CNN
-	1    5350 3950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61AFFB17
-P 5350 3650
-F 0 "TP?" V 5304 3838 50  0000 L CNN
-F 1 "TestPoint" V 5395 3838 50  0000 L CNN
-F 2 "" H 5550 3650 50  0001 C CNN
-F 3 "~" H 5550 3650 50  0001 C CNN
-	1    5350 3650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B06C77
-P 5350 3550
-F 0 "TP?" V 5304 3738 50  0000 L CNN
-F 1 "TestPoint" V 5395 3738 50  0000 L CNN
-F 2 "" H 5550 3550 50  0001 C CNN
-F 3 "~" H 5550 3550 50  0001 C CNN
-	1    5350 3550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
 U 1 1 61B0E262
 P 5400 3250
 F 0 "TP?" V 5354 3438 50  0000 L CNN
@@ -1361,4 +1316,7 @@ Text Label 9150 2050 0    50   ~ 0
 CAN_HIGH
 Text Label 9150 2150 0    50   ~ 0
 CAN_LOW
+NoConn ~ 5000 3550
+NoConn ~ 5000 3650
+NoConn ~ 5000 3950
 $EndSCHEMATC
