@@ -123,7 +123,7 @@ AR Path="/61925999/61988C49" Ref="J3"  Part="1"
 AR Path="/61997866/61988C49" Ref="J?"  Part="1" 
 F 0 "J3" H 4057 4967 50  0000 C CNN
 F 1 "USB_C_Receptacle_USB2.0" H 4057 4876 50  0000 C CNN
-F 2 "" H 4100 4100 50  0001 C CNN
+F 2 "Connector_USB:USB_C_Receptacle_GCT_USB4085" H 4100 4100 50  0001 C CNN
 F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 4100 4100 50  0001 C CNN
 	1    3950 4100
 	1    0    0    -1  
