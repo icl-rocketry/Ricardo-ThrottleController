@@ -74,10 +74,6 @@ Wire Wire Line
 	650  7550 800  7550
 Text Notes 10600 7700 0    50   ~ 0
 0.1\n\n
-Text Label 5350 3650 2    50   ~ 0
-MISO
-Text Label 5350 3550 2    50   ~ 0
-SCLK
 Text Label 1550 7550 2    50   ~ 0
 EN
 Text Label 5350 2350 2    50   ~ 0
@@ -270,12 +266,6 @@ Wire Wire Line
 	5000 2450 5350 2450
 Wire Wire Line
 	5000 2650 5350 2650
-Wire Wire Line
-	5000 3550 5350 3550
-Wire Wire Line
-	5000 3650 5350 3650
-Wire Wire Line
-	5000 3950 5350 3950
 Text Label 5350 2450 2    50   ~ 0
 RXD
 Text Label 5350 2650 2    50   ~ 0
@@ -396,8 +386,6 @@ Text Label 5350 4450 2    50   ~ 0
 CAN_RX
 Text Label 5350 4350 2    50   ~ 0
 CAN_TX
-Text Label 5350 3950 2    50   ~ 0
-MOSI
 Wire Wire Line
 	1400 900  1550 900 
 Connection ~ 1550 900 
@@ -1014,46 +1002,13 @@ F 3 "~" H 5550 3150 50  0001 C CNN
 $EndComp
 $Comp
 L Connector:TestPoint TP?
-U 1 1 61B2FF39
-P 5350 3550
-F 0 "TP?" V 5304 3738 50  0000 L CNN
-F 1 "TestPoint" V 5395 3738 50  0000 L CNN
-F 2 "" H 5550 3550 50  0001 C CNN
-F 3 "~" H 5550 3550 50  0001 C CNN
-	1    5350 3550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B33316
-P 5350 3950
-F 0 "TP?" V 5304 4138 50  0000 L CNN
-F 1 "TestPoint" V 5395 4138 50  0000 L CNN
-F 2 "" H 5550 3950 50  0001 C CNN
-F 3 "~" H 5550 3950 50  0001 C CNN
-	1    5350 3950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 61B3A0CE
-P 5350 3650
-F 0 "TP?" V 5304 3838 50  0000 L CNN
-F 1 "TestPoint" V 5395 3838 50  0000 L CNN
-F 2 "" H 5550 3650 50  0001 C CNN
-F 3 "~" H 5550 3650 50  0001 C CNN
-	1    5350 3650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
 U 1 1 61B41CB9
-P 7350 1700
-F 0 "TP?" V 7304 1888 50  0000 L CNN
-F 1 "TestPoint" V 7395 1888 50  0000 L CNN
-F 2 "" H 7550 1700 50  0001 C CNN
-F 3 "~" H 7550 1700 50  0001 C CNN
-	1    7350 1700
+P 7100 1700
+F 0 "TP?" V 7054 1888 50  0000 L CNN
+F 1 "TestPoint" V 7145 1888 50  0000 L CNN
+F 2 "" H 7300 1700 50  0001 C CNN
+F 3 "~" H 7300 1700 50  0001 C CNN
+	1    7100 1700
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -1080,8 +1035,6 @@ F 3 "~" H 5550 2150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5000 2150 5350 2150
-NoConn ~ 5000 3250
-NoConn ~ 5000 3350
 NoConn ~ 5000 3450
 NoConn ~ 5000 3750
 NoConn ~ 5000 3850
@@ -1300,4 +1253,27 @@ F 3 "~" H 3850 700 50  0001 C CNN
 	1    3850 700 
 	0    -1   -1   0   
 $EndComp
+Text Label 7350 1700 2    50   ~ 0
+FAULT
+Wire Wire Line
+	7350 1700 7100 1700
+NoConn ~ 5000 3950
+NoConn ~ 5000 3650
+NoConn ~ 5000 3250
+Text Label 5350 3550 2    50   ~ 0
+FAULT
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61B8C6BC
+P 5350 3550
+F 0 "TP?" V 5304 3738 50  0000 L CNN
+F 1 "TestPoint" V 5395 3738 50  0000 L CNN
+F 2 "" H 5550 3550 50  0001 C CNN
+F 3 "~" H 5550 3550 50  0001 C CNN
+	1    5350 3550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5000 3550 5350 3550
+NoConn ~ 5000 3350
 $EndSCHEMATC
