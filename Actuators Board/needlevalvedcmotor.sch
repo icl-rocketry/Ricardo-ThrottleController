@@ -631,7 +631,7 @@ U 1 1 6194A5D2
 P 9950 2150
 F 0 "J1" H 10050 2600 50  0000 C CNN
 F 1 "Conn_01x06_Male" H 10050 2500 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical_SMD_Pin1Left" H 9950 2150 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical" H 9950 2150 50  0001 C CNN
 F 3 "~" H 9950 2150 50  0001 C CNN
 	1    9950 2150
 	1    0    0    -1  
@@ -657,17 +657,6 @@ Wire Wire Line
 	7350 1600 7200 1600
 Text Label 7200 1600 2    50   ~ 0
 DIR
-$Comp
-L Device:R_Small 1k1
-U 1 1 6195484F
-P 6600 2000
-F 0 "1k1" H 6659 2046 50  0000 L CNN
-F 1 "R?" H 6659 1955 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 6600 2000 50  0001 C CNN
-F 3 "~" H 6600 2000 50  0001 C CNN
-	1    6600 2000
-	0    1    1    0   
-$EndComp
 $Comp
 L power:GND #PWR0102
 U 1 1 6195519D
@@ -1299,4 +1288,15 @@ F 3 "" H 6500 1500 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6500 1700 7350 1700
+$Comp
+L Device:R_Small R19
+U 1 1 61BA7710
+P 6600 2000
+F 0 "R19" H 6650 1950 50  0000 L CNN
+F 1 "1.1k" H 6650 2050 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 6600 2000 50  0001 C CNN
+F 3 "~" H 6600 2000 50  0001 C CNN
+	1    6600 2000
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
