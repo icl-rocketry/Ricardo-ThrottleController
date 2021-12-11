@@ -521,8 +521,8 @@ Text Label 3200 2150 0    50   ~ 0
 EN
 Wire Wire Line
 	3200 2150 3400 2150
-Text Notes 7400 7500 0    50   ~ 0
-Board Template\n
+Text Notes 8250 7500 2    50   ~ 0
+Solenoid Control Board\n
 $Sheet
 S 1200 3200 1000 500 
 U 61925999
