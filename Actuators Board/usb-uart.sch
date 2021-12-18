@@ -336,7 +336,7 @@ F 3 "" H 5400 2950 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 NoConn ~ 5450 2650
-Text HLabel 3700 2050 0    50   Output ~ 0
+Text HLabel 3400 2050 0    50   Output ~ 0
 3.3V
 $Comp
 L Device:C_Small C9
@@ -488,4 +488,17 @@ F 3 "~" H 4450 2400 50  0001 C CNN
 	1    4450 2400
 	-1   0    0    1   
 $EndComp
+$Comp
+L Device:D_Small D10
+U 1 1 61E1C0D8
+P 3600 2050
+F 0 "D10" H 3600 2257 50  0000 C CNN
+F 1 "D_Small" H 3600 2166 50  0000 C CNN
+F 2 "Diode_SMD:D_0805_2012Metric_Castellated" V 3600 2050 50  0001 C CNN
+F 3 "~" V 3600 2050 50  0001 C CNN
+	1    3600 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 2050 3400 2050
 $EndSCHEMATC
