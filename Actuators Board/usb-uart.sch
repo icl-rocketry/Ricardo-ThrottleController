@@ -209,17 +209,6 @@ Wire Wire Line
 Wire Wire Line
 	4400 1700 4400 1750
 $Comp
-L Device:C_Small C10
-U 1 1 61A2A124
-P 4450 2400
-F 0 "C10" H 4358 2354 50  0000 R CNN
-F 1 "0.1uF" H 4358 2445 50  0000 R CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 4450 2400 50  0001 C CNN
-F 3 "~" H 4450 2400 50  0001 C CNN
-	1    4450 2400
-	-1   0    0    1   
-$EndComp
-$Comp
 L Device:C_Small C8
 U 1 1 61A28787
 P 4050 2400
@@ -259,9 +248,6 @@ Wire Wire Line
 	4250 2500 4450 2500
 Wire Wire Line
 	4050 2150 4450 2150
-Wire Wire Line
-	4450 2500 4500 2500
-Connection ~ 4450 2500
 Connection ~ 4450 2150
 $Comp
 L power:VBUS #PWR0126
@@ -490,5 +476,16 @@ F 2 "" H 6000 3650 50  0001 C CNN
 F 3 "" H 6000 3650 50  0001 C CNN
 	1    6000 3650
 	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C_Small C10
+U 1 1 61A2A124
+P 4450 2400
+F 0 "C10" H 4358 2354 50  0000 R CNN
+F 1 "0.1uF" H 4358 2445 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 4450 2400 50  0001 C CNN
+F 3 "~" H 4450 2400 50  0001 C CNN
+	1    4450 2400
+	-1   0    0    1   
 $EndComp
 $EndSCHEMATC
