@@ -899,7 +899,6 @@ $EndComp
 NoConn ~ 5300 4000
 NoConn ~ 5300 4100
 NoConn ~ 5300 4300
-NoConn ~ 5300 4400
 NoConn ~ 5300 4800
 NoConn ~ 5300 4900
 NoConn ~ 5300 5100
@@ -1419,16 +1418,16 @@ HBridgePWM
 Wire Wire Line
 	8100 3600 7950 3600
 Text Label 7950 3600 2    50   ~ 0
-DIR
+HBridgeDIR
 $Comp
 L power:GND #PWR0117
 U 1 1 61BFAAD4
-P 7250 4000
-F 0 "#PWR0117" H 7250 3750 50  0001 C CNN
-F 1 "GND" H 7255 3827 50  0000 C CNN
-F 2 "" H 7250 4000 50  0001 C CNN
-F 3 "" H 7250 4000 50  0001 C CNN
-	1    7250 4000
+P 8100 4000
+F 0 "#PWR0117" H 8100 3750 50  0001 C CNN
+F 1 "GND" H 8105 3827 50  0000 C CNN
+F 2 "" H 8100 4000 50  0001 C CNN
+F 3 "" H 8100 4000 50  0001 C CNN
+	1    8100 4000
 	0    1    1    0   
 $EndComp
 $Comp
@@ -1504,8 +1503,6 @@ $EndComp
 NoConn ~ 8100 4100
 Wire Wire Line
 	8000 3900 8100 3900
-Wire Wire Line
-	7450 4000 8100 4000
 Text Label 9500 3400 0    50   ~ 0
 Motor+
 Wire Wire Line
@@ -1562,17 +1559,6 @@ F 3 "" H 7250 3500 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7250 3700 8100 3700
-$Comp
-L Device:R_Small R19
-U 1 1 61BFAB38
-P 7350 4000
-F 0 "R19" H 7400 3950 50  0000 L CNN
-F 1 "1.1k" H 7400 4050 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 7350 4000 50  0001 C CNN
-F 3 "~" H 7350 4000 50  0001 C CNN
-	1    7350 4000
-	0    1    1    0   
-$EndComp
 Text Label 5650 3100 2    50   ~ 0
 Hall1
 Text Label 5650 3000 2    50   ~ 0
@@ -1854,4 +1840,19 @@ $EndComp
 Connection ~ 2300 1200
 Wire Wire Line
 	2300 1200 2300 1600
+Wire Wire Line
+	5300 4400 5800 4400
+Text Label 5800 4400 2    50   ~ 0
+HBridgeDIR
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61CE8ABF
+P 5800 4400
+F 0 "TP?" V 5754 4588 50  0000 L CNN
+F 1 "TestPoint" V 5845 4588 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 6000 4400 50  0001 C CNN
+F 3 "~" H 6000 4400 50  0001 C CNN
+	1    5800 4400
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
