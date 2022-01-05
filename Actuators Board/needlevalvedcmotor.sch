@@ -658,17 +658,6 @@ Wire Wire Line
 Text Label 7200 1600 2    50   ~ 0
 DIR
 $Comp
-L power:GND #PWR0102
-U 1 1 6195519D
-P 6500 2000
-F 0 "#PWR0102" H 6500 1750 50  0001 C CNN
-F 1 "GND" H 6505 1827 50  0000 C CNN
-F 2 "" H 6500 2000 50  0001 C CNN
-F 3 "" H 6500 2000 50  0001 C CNN
-	1    6500 2000
-	0    1    1    0   
-$EndComp
-$Comp
 L power:+24V #PWR0103
 U 1 1 619664D0
 P 8800 900
@@ -741,8 +730,6 @@ $EndComp
 NoConn ~ 7350 2100
 Wire Wire Line
 	7250 1900 7350 1900
-Wire Wire Line
-	6700 2000 7350 2000
 Wire Wire Line
 	10150 1950 10450 1950
 Text Label 10450 2050 0    50   ~ 0
@@ -1245,8 +1232,6 @@ $EndComp
 Text Label 7350 1700 2    50   ~ 0
 FAULT
 NoConn ~ 5000 3950
-NoConn ~ 5000 3650
-NoConn ~ 5000 3250
 Text Label 5350 3550 2    50   ~ 0
 FAULT
 $Comp
@@ -1289,14 +1274,30 @@ $EndComp
 Wire Wire Line
 	6500 1700 7350 1700
 $Comp
-L Device:R_Small R19
-U 1 1 61BA7710
-P 6600 2000
-F 0 "R19" H 6650 1950 50  0000 L CNN
-F 1 "1.1k" H 6650 2050 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 6600 2000 50  0001 C CNN
-F 3 "~" H 6600 2000 50  0001 C CNN
-	1    6600 2000
+L power:GND #PWR0102
+U 1 1 6195519D
+P 7350 2000
+F 0 "#PWR0102" H 7350 1750 50  0001 C CNN
+F 1 "GND" H 7355 1827 50  0000 C CNN
+F 2 "" H 7350 2000 50  0001 C CNN
+F 3 "" H 7350 2000 50  0001 C CNN
+	1    7350 2000
 	0    1    1    0   
 $EndComp
+NoConn ~ 5000 3650
+Wire Wire Line
+	5000 3250 5350 3250
+$Comp
+L Connector:TestPoint TP?
+U 1 1 61CE7E78
+P 5350 3250
+F 0 "TP?" V 5304 3438 50  0000 L CNN
+F 1 "TestPoint" V 5395 3438 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm" H 5550 3250 50  0001 C CNN
+F 3 "~" H 5550 3250 50  0001 C CNN
+	1    5350 3250
+	0    1    1    0   
+$EndComp
+Text Label 5350 3250 2    50   ~ 0
+DIR
 $EndSCHEMATC

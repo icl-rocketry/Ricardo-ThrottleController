@@ -469,8 +469,8 @@ F 3 "http://www.diodes.com/_files/datasheets/ds30125.pdf" H 1550 5950 50  0001 C
 	2    1550 5950
 	1    0    0    1   
 $EndComp
-Text Notes 7400 7500 0    50   ~ 0
-Board Template\n
+Text Notes 7350 7500 0    50   ~ 0
+Servo Control Board
 $Sheet
 S 1200 3200 1000 500 
 U 61925999
