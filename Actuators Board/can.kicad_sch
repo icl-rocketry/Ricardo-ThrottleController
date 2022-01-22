@@ -1,6 +1,10 @@
 (kicad_sch (version 20211123) (generator eeschema)
 
+<<<<<<< HEAD
   (uuid dd3da890-32ef-4a5a-aea4-e5d2141f1ff1)
+=======
+  (uuid fe4068b9-89da-4c59-ba51-b5949772f5d8)
+>>>>>>> Actuators
 
   (paper "A4")
 
@@ -163,6 +167,7 @@
   )
 
   (junction (at 45.72 54.61) (diameter 0) (color 0 0 0 0)
+<<<<<<< HEAD
     (uuid be118b00-015b-445a-8fc5-7bf35350fda8)
   )
 
@@ -220,6 +225,65 @@
   (hierarchical_label "CAN_LOW" (shape input) (at 63.5 44.45 0)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid d7df1f01-3f56-437b-a452-e88ad90a9805)
+=======
+    (uuid b6924901-677d-424a-a3f4-52c8dd1fa5f5)
+  )
+
+  (no_connect (at 35.56 44.45) (uuid 80b9a57f-3326-43ca-b6ca-5e911992b3c4))
+
+  (wire (pts (xy 35.56 41.91) (xy 30.48 41.91))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 105d44ff-63b9-4299-9078-473af583971a)
+  )
+  (wire (pts (xy 45.72 27.94) (xy 45.72 34.29))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 2c10387c-3cac-4a7c-bbfb-95d69f41a890)
+  )
+  (wire (pts (xy 35.56 39.37) (xy 30.48 39.37))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 341e67eb-d5e1-4cb7-9d11-5aa4ab832a2a)
+  )
+  (wire (pts (xy 35.56 54.61) (xy 45.72 54.61))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 41ab46ed-40f5-461d-81aa-1f02dc069a49)
+  )
+  (wire (pts (xy 45.72 55.88) (xy 45.72 54.61))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 7043f61a-4f1e-4cab-9031-a6449e41a893)
+  )
+  (wire (pts (xy 45.72 54.61) (xy 45.72 52.07))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 92574e8a-729f-48de-afcb-97b4f5e826f8)
+  )
+  (wire (pts (xy 55.88 44.45) (xy 63.5 44.45))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid c7db4903-f95a-49f5-bcce-c52f0ca8defc)
+  )
+  (wire (pts (xy 35.56 46.99) (xy 35.56 54.61))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid d8d71ad3-6fd1-4a98-9c1f-70c4fbf3d1d1)
+  )
+  (wire (pts (xy 55.88 41.91) (xy 63.5 41.91))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid ed612f6d-67c1-4198-976d-84139f8d99bc)
+  )
+
+  (hierarchical_label "CAN_LOW" (shape input) (at 63.5 44.45 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 017667a9-f5de-49c7-af53-4f9af2f3a311)
+  )
+  (hierarchical_label "CAN_TX" (shape input) (at 30.48 39.37 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid 1ae3634a-f90f-4c6a-8ba7-b38f98d4ccb2)
+  )
+  (hierarchical_label "CAN_HIGH" (shape input) (at 63.5 41.91 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 4c144ffa-02d0-42da-aef1-f5175cbde9c0)
+  )
+  (hierarchical_label "CAN_RX" (shape output) (at 30.48 41.91 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid 7d2422a2-6679-4b2f-b253-47eef0da2414)
+>>>>>>> Actuators
   )
 
   (symbol (lib_id "power:GND") (at 45.72 55.88 0) (unit 1)
@@ -235,7 +299,11 @@
     (property "Datasheet" "" (id 3) (at 45.72 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+<<<<<<< HEAD
     (pin "1" (uuid d3735220-582e-4e07-8f3b-97857ebd4afd))
+=======
+    (pin "1" (uuid 794b85db-8b67-47ab-b9a0-3dfaf058659c))
+>>>>>>> Actuators
   )
 
   (symbol (lib_id "power:+3.3V") (at 45.72 27.94 0) (unit 1)
@@ -251,7 +319,11 @@
     (property "Datasheet" "" (id 3) (at 45.72 27.94 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+<<<<<<< HEAD
     (pin "1" (uuid d9127015-d9a5-45b6-be1e-b09965f18baf))
+=======
+    (pin "1" (uuid 94a3f322-4169-47d4-9347-8555138eae93))
+>>>>>>> Actuators
   )
 
   (symbol (lib_id "Interface_CAN_LIN:SN65HVD230") (at 45.72 41.91 0) (unit 1)
@@ -265,6 +337,7 @@
     (property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn65hvd230.pdf" (id 3) (at 43.18 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+<<<<<<< HEAD
     (pin "1" (uuid 2f1749e1-abed-43a9-8bd4-d14296cc65d4))
     (pin "2" (uuid 4b17e14c-c0bf-4248-a869-36231aaf1350))
     (pin "3" (uuid fac20585-fd36-4c59-94bd-110042bceb4f))
@@ -273,5 +346,15 @@
     (pin "6" (uuid 3d84dc90-9658-4b39-82d4-0e424e1bf413))
     (pin "7" (uuid a4c52666-2a1b-4967-9b13-b3aade21fcad))
     (pin "8" (uuid 3325ca6b-0a0e-4b60-bc10-9e351ac8d77d))
+=======
+    (pin "1" (uuid 741d339a-7f9c-4365-95dc-22a32f41f038))
+    (pin "2" (uuid 6158f367-f08b-40da-8469-9ab484dcabf4))
+    (pin "3" (uuid 1fc208cf-cf55-4975-805e-2865f872ba63))
+    (pin "4" (uuid 7d01c5b3-30cc-43d7-aec3-b39115398b91))
+    (pin "5" (uuid ac11d40f-471a-41fa-b6d2-4d041e0aa3b1))
+    (pin "6" (uuid 940e3ba2-a30f-40eb-bafa-0fe7aa3d9508))
+    (pin "7" (uuid fe1459e5-024b-4be6-baa6-4b64dca0e84e))
+    (pin "8" (uuid 16afd83a-94c6-47de-9b89-b559d8b1b2d6))
+>>>>>>> Actuators
   )
 )
