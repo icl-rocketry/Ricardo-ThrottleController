@@ -3605,8 +3605,8 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006199cc35)
     (property "Reference" "L2" (id 0) (at 248.92 29.464 90))
-    (property "Value" "851-CDRH104RNP-270NC" (id 1) (at 248.92 31.7754 90))
-    (property "Footprint" "Inductor_SMD:L_10.4x10.4_H4.8" (id 2) (at 248.92 34.29 0)
+    (property "Value" "ETQP5M" (id 1) (at 248.92 31.7754 90))
+    (property "Footprint" "iclr:IND_ETQP5M330YFM" (id 2) (at 248.92 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 248.92 34.29 0)
@@ -3729,10 +3729,10 @@
     (property "Reference" "D8" (id 0) (at 247.142 36.9316 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "B340" (id 1) (at 247.142 39.243 90)
+    (property "Value" "MBR260HWTR" (id 1) (at 247.142 39.243 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Diode_SMD:D_SMC" (id 2) (at 240.665 38.1 0)
+    (property "Footprint" "Diode_SMD:D_SOD-123" (id 2) (at 240.665 38.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf" (id 3) (at 245.11 38.1 0)
@@ -4832,7 +4832,7 @@
   (symbol (lib_id "Device:R_Small") (at 241.3 102.87 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061bfaaf1)
-    (property "Reference" "R_SENS1" (id 0) (at 242.7986 101.7016 0)
+    (property "Reference" "R_SNS1" (id 0) (at 242.7986 101.7016 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "50m" (id 1) (at 242.7986 104.013 0)
@@ -5403,7 +5403,7 @@
       (reference "D7") (unit 1) (value "24V_LED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-0000619bfc91"
-      (reference "D8") (unit 1) (value "B340") (footprint "Diode_SMD:D_SMC")
+      (reference "D8") (unit 1) (value "MBR260HWTR") (footprint "Diode_SMD:D_SOD-123")
     )
     (path "/00000000-0000-0000-0000-000061be7627"
       (reference "D9") (unit 1) (value "D") (footprint "Diode_SMD:D_0603_1608Metric")
@@ -5436,7 +5436,7 @@
       (reference "L1") (unit 1) (value "LQG15WZ1N8B02D") (footprint "Inductor_SMD:L_0402_1005Metric_Pad0.77x0.64mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-00006199cc35"
-      (reference "L2") (unit 1) (value "851-CDRH104RNP-270NC") (footprint "Inductor_SMD:L_10.4x10.4_H4.8")
+      (reference "L2") (unit 1) (value "ETQP5M") (footprint "iclr:IND_ETQP5M330YFM")
     )
     (path "/00000000-0000-0000-0000-00005e4f19d5"
       (reference "Q1") (unit 1) (value "MMDT2222A") (footprint "Package_TO_SOT_SMD:SOT-363_SC-70-6")
@@ -5514,7 +5514,7 @@
       (reference "R23") (unit 1) (value "1.54K") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061bfaaf1"
-      (reference "R_SENS1") (unit 1) (value "50m") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R_SNS1") (unit 1) (value "50m") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00006199cf60"
       (reference "TP1") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm")
