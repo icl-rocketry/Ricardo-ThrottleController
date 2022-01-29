@@ -276,7 +276,7 @@
     (uuid 00000000-0000-0000-0000-000061a4fe2f)
     (property "Reference" "L1" (id 0) (at 148.59 37.084 90))
     (property "Value" "LQG15WZ1N8B02D" (id 1) (at 148.59 39.3954 90))
-    (property "Footprint" "Inductor_SMD:L_0402_1005Metric_Pad0.77x0.64mm_HandSolder" (id 2) (at 148.59 41.91 0)
+    (property "Footprint" "Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder" (id 2) (at 148.59 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 148.59 41.91 0)
