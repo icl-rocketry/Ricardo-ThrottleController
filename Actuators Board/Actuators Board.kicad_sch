@@ -3349,7 +3349,7 @@
     (property "Reference" "J9" (id 0) (at 27.7876 161.5948 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "Conn_01x02_Male" (id 1) (at 27.7876 163.9062 90)
+    (property "Value" "Conn_01x02_Male" (id 1) (at 13.97 157.48 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" (id 2) (at 26.67 160.02 0)
