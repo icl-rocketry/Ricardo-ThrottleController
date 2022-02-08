@@ -4641,9 +4641,9 @@
   (symbol (lib_id "iclr:LTC4411") (at 140.97 33.02 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 427435d2-68b6-463c-a7b0-b9e895f2d8c2)
-    (property "Reference" "U?" (id 0) (at 140.97 30.48 0))
+    (property "Reference" "U5" (id 0) (at 140.97 30.48 0))
     (property "Value" "LTC4411" (id 1) (at 140.97 33.02 0))
-    (property "Footprint" "" (id 2) (at 140.97 33.02 0)
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (id 2) (at 140.97 33.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (id 3) (at 140.97 33.02 0)
@@ -4659,7 +4659,7 @@
   (symbol (lib_id "power:GND") (at 154.94 43.18 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 4a32519b-38c3-4ef3-b91b-ab30c9909ae2)
-    (property "Reference" "#PWR?" (id 0) (at 154.94 49.53 0)
+    (property "Reference" "#PWR0140" (id 0) (at 154.94 49.53 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 154.94 48.26 0))
@@ -4703,7 +4703,7 @@
   (symbol (lib_id "power:GND") (at 129.54 43.18 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 6a872826-c335-4683-aa10-f7bbc9966469)
-    (property "Reference" "#PWR?" (id 0) (at 123.19 43.18 0)
+    (property "Reference" "#PWR0148" (id 0) (at 123.19 43.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 127 45.72 90)
@@ -4721,13 +4721,13 @@
   (symbol (lib_id "Device:C_Small") (at 154.94 40.64 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 7203a4cd-9333-480a-97ce-bf57a111c8cf)
-    (property "Reference" "C?" (id 0) (at 157.48 39.3762 0)
+    (property "Reference" "C22" (id 0) (at 157.48 39.3762 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "4.7uF" (id 1) (at 157.48 41.9162 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (id 2) (at 154.94 40.64 0)
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 154.94 40.64 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 154.94 40.64 0)
@@ -4909,7 +4909,7 @@
   (symbol (lib_id "power:+3.3V") (at 161.29 38.1 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid db7556dc-365c-4ba5-a3e8-a7992af37864)
-    (property "Reference" "#PWR?" (id 0) (at 161.29 41.91 0)
+    (property "Reference" "#PWR0147" (id 0) (at 161.29 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (id 1) (at 161.29 33.02 0))
@@ -5178,6 +5178,9 @@
     (path "/00000000-0000-0000-0000-000061b017e5"
       (reference "#PWR0139") (unit 1) (value "+24V") (footprint "")
     )
+    (path "/4a32519b-38c3-4ef3-b91b-ab30c9909ae2"
+      (reference "#PWR0140") (unit 1) (value "GND") (footprint "")
+    )
     (path "/00000000-0000-0000-0000-000061be762f"
       (reference "#PWR0141") (unit 1) (value "+24V") (footprint "")
     )
@@ -5196,20 +5199,17 @@
     (path "/00000000-0000-0000-0000-000061925999/29ade111-412e-4dd5-9693-a3c9a1762d0d"
       (reference "#PWR0146") (unit 1) (value "GND") (footprint "")
     )
-    (path "/4a32519b-38c3-4ef3-b91b-ab30c9909ae2"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/00000000-0000-0000-0000-000061925999/5d60cb60-109f-4f47-a369-e940a4c7606c"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    (path "/db7556dc-365c-4ba5-a3e8-a7992af37864"
+      (reference "#PWR0147") (unit 1) (value "+3.3V") (footprint "")
     )
     (path "/6a872826-c335-4683-aa10-f7bbc9966469"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+      (reference "#PWR0148") (unit 1) (value "GND") (footprint "")
     )
     (path "/00000000-0000-0000-0000-000061925999/bf245106-2887-49a9-af16-cd92fb99f638"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+      (reference "#PWR0149") (unit 1) (value "GND") (footprint "")
     )
-    (path "/db7556dc-365c-4ba5-a3e8-a7992af37864"
-      (reference "#PWR?") (unit 1) (value "+3.3V") (footprint "")
+    (path "/00000000-0000-0000-0000-000061925999/5d60cb60-109f-4f47-a369-e940a4c7606c"
+      (reference "#PWR0150") (unit 1) (value "GND") (footprint "")
     )
     (path "/00000000-0000-0000-0000-000061a24258/00000000-0000-0000-0000-000061a4fe29"
       (reference "ANT1") (unit 1) (value "AMCA31-2R450G-S1F-T3") (footprint "iclr:ANT_AMCA31-2R450G-S1F-T3")
@@ -5278,10 +5278,10 @@
       (reference "C21") (unit 1) (value "22uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/7203a4cd-9333-480a-97ce-bf57a111c8cf"
-      (reference "C?") (unit 1) (value "4.7uF") (footprint "")
+      (reference "C22") (unit 1) (value "4.7uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061925999/f6d92f4e-2e3d-4f6b-8a27-5d40a9c9c758"
-      (reference "C?") (unit 1) (value "4.7uF") (footprint "")
+      (reference "C23") (unit 1) (value "4.7uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061db1e33"
       (reference "D1") (unit 1) (value "Solenoid LED") (footprint "LED_SMD:LED_0603_1608Metric")
@@ -5499,14 +5499,14 @@
     (path "/00000000-0000-0000-0000-000061942b9a/00000000-0000-0000-0000-000061946ec3"
       (reference "U4") (unit 1) (value "SN65HVD230") (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
     )
+    (path "/427435d2-68b6-463c-a7b0-b9e895f2d8c2"
+      (reference "U5") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
+    )
     (path "/00000000-0000-0000-0000-000061925999/664ae9f5-2b0c-4b11-a427-dc1b8ed50034"
       (reference "U6") (unit 1) (value "AZ1084-3.3") (footprint "Package_TO_SOT_SMD:TO-252-3_TabPin2")
     )
     (path "/00000000-0000-0000-0000-000061925999/261fd709-b119-45e9-aff5-04154ebd9314"
-      (reference "U?") (unit 1) (value "LTC4411") (footprint "")
-    )
-    (path "/427435d2-68b6-463c-a7b0-b9e895f2d8c2"
-      (reference "U?") (unit 1) (value "LTC4411") (footprint "")
+      (reference "U7") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
     )
   )
 )
