@@ -1,4 +1,4 @@
-19864235995633073
+19870822647918823
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -84567,12 +84567,40 @@ PHOENIX_1757242
 2
 2
 iclr
+PQFN50P300X300X80-16N
+
+
+0
+16
+16
+iclr
+PQFN50P300X300X100-16N
+
+
+0
+16
+16
+iclr
 QFN28G_0.5-5X5MM
 
 
 0
 29
 29
+iclr
+QFN50P400X400X95-24N
+
+
+0
+24
+24
+iclr
+QFN65P400X400X100-17N
+
+
+0
+17
+17
 iclr
 SOIC127P599X175-8N
 
