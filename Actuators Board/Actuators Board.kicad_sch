@@ -3687,7 +3687,7 @@
     (uuid 00000000-0000-0000-0000-000061945344)
     (property "Reference" "U2" (id 0) (at 223.52 27.559 0))
     (property "Value" "TPS54233D" (id 1) (at 223.52 29.8704 0))
-    (property "Footprint" "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm_ThermalVias" (id 2) (at 208.28 24.13 0)
+    (property "Footprint" "iclr:SOIC127P599X175-8N" (id 2) (at 208.28 24.13 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "http://www.ti.com/general/docs/lit/getliterature.tsp?genericPartNumber=TPS54233&fileType=pdf" (id 3) (at 208.28 21.59 0)
@@ -5207,7 +5207,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 83.82 96.52 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid b8f01e39-e210-4b5f-b9a1-2ce391ff5aff)
-    (property "Reference" "TP?" (id 0) (at 79.0448 97.6884 90)
+    (property "Reference" "TP8" (id 0) (at 79.0448 97.6884 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "TestPoint" (id 1) (at 79.0448 95.377 90)
@@ -5978,6 +5978,9 @@
     (path "/00000000-0000-0000-0000-000061b51a6b"
       (reference "TP7") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
     )
+    (path "/b8f01e39-e210-4b5f-b9a1-2ce391ff5aff"
+      (reference "TP8") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm")
+    )
     (path "/00000000-0000-0000-0000-000061b1d3c4"
       (reference "TP9") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm")
     )
@@ -6014,14 +6017,11 @@
     (path "/00000000-0000-0000-0000-000061ce8abf"
       (reference "TP24") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm")
     )
-    (path "/b8f01e39-e210-4b5f-b9a1-2ce391ff5aff"
-      (reference "TP?") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_THTPad_1.0x1.0mm_Drill0.5mm")
-    )
     (path "/00000000-0000-0000-0000-0000618b08be"
       (reference "U1") (unit 1) (value "ESP32-PICO-D4") (footprint "Package_DFN_QFN:QFN-48-1EP_7x7mm_P0.5mm_EP5.3x5.3mm")
     )
     (path "/00000000-0000-0000-0000-000061945344"
-      (reference "U2") (unit 1) (value "TPS54233D") (footprint "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm_ThermalVias")
+      (reference "U2") (unit 1) (value "TPS54233D") (footprint "iclr:SOIC127P599X175-8N")
     )
     (path "/00000000-0000-0000-0000-000061925999/00000000-0000-0000-0000-00006198efbf"
       (reference "U3") (unit 1) (value "INTERFACE-CP2102-GMR(QFN28)") (footprint "iclr:QFN28G_0.5-5X5MM")
