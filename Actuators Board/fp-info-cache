@@ -1,4 +1,4 @@
-19874112456292149
+19877404749090577
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -84532,6 +84532,13 @@ IND_ETQP5M330YFM
 2
 2
 iclr
+IND_SRP6540-390M
+
+
+0
+2
+2
+iclr
 LGA88-1.4-17.8X15.8X2.4MM
 
 
@@ -84601,6 +84608,13 @@ QFN65P400X400X100-17N
 0
 17
 17
+iclr
+SI7315DNT1GE3
+SI7315DN-T1-GE3-1
+MOSFET (P-Channel)
+0
+9
+9
 iclr
 SIS862DNT1GE3
 PowerPAK 1212-8 Single_2
