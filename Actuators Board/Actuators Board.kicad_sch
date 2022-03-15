@@ -6101,6 +6101,9 @@
     (path "/df1dfd1b-6bce-40e0-991a-3b3bd1f903cf"
       (reference "JP3") (unit 1) (value "Pull-Up") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
+    (path "/00000000-0000-0000-0000-000061942b9a/07d5c73c-8fc0-4762-b96b-d67536f8bc5f"
+      (reference "JP?") (unit 1) (value "SolderJumper_2_Open") (footprint "")
+    )
     (path "/00000000-0000-0000-0000-000061a24258/00000000-0000-0000-0000-000061a4fe2f"
       (reference "L1") (unit 1) (value "LQG15WZ1N8B02D") (footprint "Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
     )
