@@ -4103,7 +4103,7 @@
     (uuid 00000000-0000-0000-0000-000061a7be4f)
     (property "Reference" "J4" (id 0) (at 275.59 120.65 0))
     (property "Value" "Conn_01x03_Male" (id 1) (at 275.59 118.11 0))
-    (property "Footprint" "Connector_JST:JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical" (id 2) (at 278.13 127 0)
+    (property "Footprint" "Connector_Molex:Molex_Nano-Fit_105309-xx03_1x03_P2.50mm_Vertical" (id 2) (at 278.13 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 278.13 127 0)
@@ -4435,7 +4435,7 @@
     (property "Value" "Solenoid(Sol)" (id 1) (at 254 140.97 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" (id 2) (at 259.08 142.24 0)
+    (property "Footprint" "Connector_Molex:Molex_Nano-Fit_105309-xx02_1x02_P2.50mm_Vertical" (id 2) (at 259.08 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 259.08 142.24 0)
@@ -4486,7 +4486,7 @@
     (uuid 00000000-0000-0000-0000-000061bfaac3)
     (property "Reference" "J5" (id 0) (at 274.32 81.28 0))
     (property "Value" "Conn_01x06_Male" (id 1) (at 274.32 83.82 0))
-    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" (id 2) (at 283.21 95.25 0)
+    (property "Footprint" "Connector_Molex:Molex_Nano-Fit_105309-xx07_1x07_P2.50mm_Vertical" (id 2) (at 283.21 95.25 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 283.21 95.25 0)
@@ -6004,16 +6004,16 @@
       (reference "J1") (unit 1) (value "Conn_01x05_Male") (footprint "Connector_Molex:Molex_Mini-Fit_Jr_5566-06A_2x03_P4.20mm_Vertical")
     )
     (path "/00000000-0000-0000-0000-000061be7646"
-      (reference "J2") (unit 1) (value "Solenoid(Sol)") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+      (reference "J2") (unit 1) (value "Solenoid(Sol)") (footprint "Connector_Molex:Molex_Nano-Fit_105309-xx02_1x02_P2.50mm_Vertical")
     )
     (path "/00000000-0000-0000-0000-000061925999/00000000-0000-0000-0000-000061988c49"
       (reference "J3") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "Connector_USB:USB_C_Receptacle_GCT_USB4085")
     )
     (path "/00000000-0000-0000-0000-000061a7be4f"
-      (reference "J4") (unit 1) (value "Conn_01x03_Male") (footprint "Connector_JST:JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical")
+      (reference "J4") (unit 1) (value "Conn_01x03_Male") (footprint "Connector_Molex:Molex_Nano-Fit_105309-xx03_1x03_P2.50mm_Vertical")
     )
     (path "/00000000-0000-0000-0000-000061bfaac3"
-      (reference "J5") (unit 1) (value "Conn_01x06_Male") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")
+      (reference "J5") (unit 1) (value "Conn_01x06_Male") (footprint "Connector_Molex:Molex_Nano-Fit_105309-xx07_1x07_P2.50mm_Vertical")
     )
     (path "/215f95ae-32c0-4801-b5d2-372b7548c088"
       (reference "J6") (unit 1) (value "Conn_01x02_Female") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
