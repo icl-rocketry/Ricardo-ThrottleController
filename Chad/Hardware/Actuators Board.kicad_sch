@@ -3130,7 +3130,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005da70d8a)
     (property "Reference" "C2" (id 0) (at 22.86 185.9534 90))
-    (property "Value" "1uF" (id 1) (at 22.86 188.2648 90))
+    (property "Value" "0.1uF" (id 1) (at 22.86 188.2648 90))
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 22.86 191.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -3212,7 +3212,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005dab5946)
     (property "Reference" "C3" (id 0) (at 54.61 164.3634 90))
-    (property "Value" "1uF" (id 1) (at 54.61 166.6748 90))
+    (property "Value" "1nF" (id 1) (at 54.61 166.6748 90))
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 54.61 170.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -5161,11 +5161,11 @@
     (pin "2" (uuid 2e20faf4-7401-46d5-ae6b-fc5bbb32f6ff))
     (pin "3" (uuid 58649918-4caf-4312-87ca-bee40c1faef6))
     (pin "4" (uuid a3883662-2d57-4471-9f3d-7b28e4d02ced))
-    (pin "9" (uuid 8b250678-8232-4131-9946-a13ccccf913d))
     (pin "5" (uuid 208852a4-c92a-4457-a020-d509b402d330))
     (pin "6" (uuid 420b1d11-9e30-4ae1-acfb-fa89a4b9c393))
     (pin "7" (uuid 51c712eb-6513-4a0f-8db4-ad2acb415d80))
     (pin "8" (uuid 4e6be61f-eaa0-45db-867d-8103ce1c52cc))
+    (pin "9" (uuid 8b250678-8232-4131-9946-a13ccccf913d))
   )
 
   (symbol (lib_id "power:GND") (at 250.19 85.09 0) (unit 1)
@@ -5741,10 +5741,10 @@
       (reference "C1") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005da70d8a"
-      (reference "C2") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C2") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005dab5946"
-      (reference "C3") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C3") (unit 1) (value "1nF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/194a6401-2f3b-4426-b35d-f49a3f03a2bd"
       (reference "C4") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
