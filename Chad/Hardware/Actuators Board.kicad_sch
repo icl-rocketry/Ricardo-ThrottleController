@@ -3212,7 +3212,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005dab5946)
     (property "Reference" "C3" (id 0) (at 54.61 164.3634 90))
-    (property "Value" "1nF" (id 1) (at 54.61 166.6748 90))
+    (property "Value" "0.1uF" (id 1) (at 54.61 166.6748 90))
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 54.61 170.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -3258,7 +3258,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005dabbfe7)
     (property "Reference" "C1" (id 0) (at 25.4 164.3634 90))
-    (property "Value" "1uF" (id 1) (at 25.4 166.6748 90))
+    (property "Value" "0.1uF" (id 1) (at 25.4 166.6748 90))
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 25.4 170.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -5738,13 +5738,13 @@
       (reference "ANT1") (unit 1) (value "AMCA31-2R450G-S1F-T3") (footprint "iclr:ANT_AMCA31-2R450G-S1F-T3")
     )
     (path "/00000000-0000-0000-0000-00005dabbfe7"
-      (reference "C1") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C1") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005da70d8a"
       (reference "C2") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005dab5946"
-      (reference "C3") (unit 1) (value "1nF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C3") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/194a6401-2f3b-4426-b35d-f49a3f03a2bd"
       (reference "C4") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
