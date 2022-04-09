@@ -6211,7 +6211,7 @@
       (reference "U5") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
     )
     (path "/00000000-0000-0000-0000-000061925999/a8f5718a-9498-4816-a1ce-ace2140e0f78"
-      (reference "U6") (unit 1) (value "RT9025-25GSP") (footprint "Package_SO:SOP-8_3.9x4.9mm_P1.27mm")
+      (reference "U6") (unit 1) (value "RT9025-25GSP") (footprint "iclr:SOIC127P599X175-9N")
     )
     (path "/00000000-0000-0000-0000-000061925999/261fd709-b119-45e9-aff5-04154ebd9314"
       (reference "U7") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
