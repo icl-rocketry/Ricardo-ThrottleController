@@ -1,4 +1,4 @@
-20122442315344244
+20125755106541976
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -85484,6 +85484,13 @@ Integrated Circuit
 48
 48
 iclr
+RESC50110X70N
+
+
+0
+2
+2
+iclr
 SI7315DNT1GE3
 SI7315DN-T1-GE3-1
 MOSFET (P-Channel)
@@ -85553,6 +85560,13 @@ SOT95P280X145-6N
 0
 6
 6
+iclr
+TO127P457X1016X2052-7P
+
+
+0
+7
+7
 iclr
 TO254P483X1016X2222-3P
 

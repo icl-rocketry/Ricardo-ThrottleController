@@ -2198,6 +2198,10 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 2b25e886-ded1-450a-ada1-ece4208052e4)
   )
+  (wire (pts (xy 83.82 96.52) (xy 93.98 96.52))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 2c24684c-5454-4207-bc3f-b66e8c50caf8)
+  )
   (wire (pts (xy 93.98 54.61) (xy 95.25 54.61))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 2d7b3935-f4ee-4536-81fb-1cfe64f542a1)
@@ -2400,6 +2404,10 @@
   (wire (pts (xy 114.3 55.88) (xy 116.84 55.88))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 67ec5d1d-cb58-4f05-b188-948abe287f6d)
+  )
+  (wire (pts (xy 134.62 121.92) (xy 143.51 121.92))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 69ebec1a-dc8b-4a4e-aa2e-a4099383e417)
   )
   (wire (pts (xy 92.71 27.94) (xy 92.71 26.67))
     (stroke (width 0) (type default) (color 0 0 0 0))
@@ -2818,10 +2826,6 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid e4ed0100-ffd9-4da7-8ecf-5fe58a5f7ce8)
   )
-  (wire (pts (xy 134.62 121.92) (xy 144.78 121.92))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid e665dca2-fdd6-4025-8f9a-ac948a48dab5)
-  )
   (wire (pts (xy 134.62 114.3) (xy 143.51 114.3))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid e69c64f9-717d-4a97-b3df-80325ec2fa63)
@@ -3024,10 +3028,6 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 64fe3829-b641-4e02-b0fe-15ee493e5943)
   )
-  (label "ServoPWM" (at 144.78 121.92 180)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 6509861d-4e0b-4f64-9750-8b26f3d0652f)
-  )
   (label "Hall1" (at 143.51 116.84 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 6742a066-6a5f-4185-90ae-b7fe8c6eda52)
@@ -3039,6 +3039,10 @@
   (label "CAN_LOW" (at 115.57 25.4 270)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 6ea0f2f7-b064-4b8f-bd17-48195d1c83d1)
+  )
+  (label "ServoPWM" (at 93.98 96.52 180)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 6ea125c5-7ea8-443a-a266-f55045a038ca)
   )
   (label "CAN_RX" (at 143.51 114.3 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
@@ -3096,10 +3100,6 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 9e0e6fc0-a269-4822-b93d-4c5e6689ff11)
   )
-  (label "ES1GPIO" (at 93.98 96.52 180)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 9e6d7c9a-915d-4703-aff8-4c24d461d30f)
-  )
   (label "RXD" (at 17.78 21.59 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid aa1c6f47-cbd4-4cbd-8265-e5ac08b7ffc8)
@@ -3127,6 +3127,10 @@
   (label "EN" (at 49.53 123.19 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid ca5b6af8-ca05-4338-b852-b51f2b49b1db)
+  )
+  (label "ES1GPIO" (at 143.51 121.92 180)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid d3d8f82f-fea1-4f34-ad30-64bf39f5248e)
   )
   (label "RXD" (at 143.51 68.58 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
@@ -3228,7 +3232,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005da70d8a)
     (property "Reference" "C2" (id 0) (at 22.86 185.9534 90))
-    (property "Value" "0.1uF" (id 1) (at 22.86 188.2648 90))
+    (property "Value" "1uF" (id 1) (at 22.86 188.2648 90))
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 22.86 191.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -4343,7 +4347,7 @@
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061b6bc0b)
     (property "Reference" "R4" (id 0) (at 68.58 21.6916 90))
-    (property "Value" "3.5k" (id 1) (at 68.58 24.003 90))
+    (property "Value" "3k" (id 1) (at 68.58 24.003 90))
     (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (id 2) (at 68.58 26.67 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -5220,6 +5224,24 @@
     (pin "2" (uuid 0ecc34c6-2704-45f8-bbbf-cd0f00bbe8fa))
   )
 
+  (symbol (lib_id "Connector:TestPoint") (at 83.82 96.52 90) (unit 1)
+    (in_bom yes) (on_board yes)
+    (uuid a101baee-116e-4be1-9a34-0dfd37bf6955)
+    (property "Reference" "TP12" (id 0) (at 79.0448 97.6884 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "TestPoint" (id 1) (at 79.0448 95.377 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm" (id 2) (at 83.82 91.44 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 83.82 91.44 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid f7a0212c-a673-43fe-ae57-c300516cfc9a))
+  )
+
   (symbol (lib_id "iclr:BD62120AEFJ-E2") (at 205.74 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid a9ca37b3-d0be-4022-acd0-baf378937a34)
@@ -5504,24 +5526,6 @@
     (pin "1" (uuid 5eba33d1-3eab-439a-98d9-2eb75bdc91d0))
   )
 
-  (symbol (lib_id "Connector:TestPoint") (at 144.78 121.92 270) (unit 1)
-    (in_bom yes) (on_board yes)
-    (uuid f8a7cf99-fb92-4312-b900-3804c63ab7dd)
-    (property "Reference" "TP12" (id 0) (at 149.5552 120.7516 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "TestPoint" (id 1) (at 149.5552 123.063 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm" (id 2) (at 144.78 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (id 3) (at 144.78 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid d284f75b-685f-4f75-aef7-e03fa40e5d76))
-  )
-
   (symbol (lib_id "Device:C_Small") (at 95.25 49.53 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid fdc48780-ffa0-4743-a45e-8b1b4c72d650)
@@ -5709,6 +5713,9 @@
     (path "/00000000-0000-0000-0000-000061acfc73"
       (reference "#PWR0114") (unit 1) (value "GND") (footprint "")
     )
+    (path "/00000000-0000-0000-0000-000061925999/c9a8b450-3b80-4c73-8844-e1ff92c5c260"
+      (reference "#PWR0115") (unit 1) (value "GND") (footprint "")
+    )
     (path "/0b72ffc6-666f-4365-a8e2-e330a45de594"
       (reference "#PWR0116") (unit 1) (value "GND") (footprint "")
     )
@@ -5842,7 +5849,7 @@
       (reference "C1") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005da70d8a"
-      (reference "C2") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C2") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005dab5946"
       (reference "C3") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
@@ -5924,9 +5931,6 @@
     )
     (path "/07bf834e-8f9e-43f6-af1b-f9cbc5cd21ec"
       (reference "C31") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
-    )
-    (path "/00000000-0000-0000-0000-000061942b9a/39194db9-a03c-43f0-ad59-d69dd5910874"
-      (reference "C32") (unit 1) (value "160pF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061942b9a/759646bf-5c31-420e-aff7-2c1a28ce32e1"
       (reference "C33") (unit 1) (value "100nF") (footprint "Capacitor_SMD:C_0603_1608Metric")
@@ -6028,7 +6032,7 @@
       (reference "R3") (unit 1) (value "24k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061b6bc0b"
-      (reference "R4") (unit 1) (value "3.5k") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R4") (unit 1) (value "3k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00005dabbfed"
       (reference "R5") (unit 1) (value "470") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -6090,20 +6094,14 @@
     (path "/00000000-0000-0000-0000-000061925999/6b47f4a4-64e3-45ab-9091-b627a37737cb"
       (reference "R25") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
-    (path "/00000000-0000-0000-0000-000061942b9a/4ebf59df-bc69-439f-b9f2-cb433efbca66"
-      (reference "R26") (unit 1) (value "90") (footprint "Resistor_SMD:R_0603_1608Metric")
-    )
-    (path "/00000000-0000-0000-0000-000061942b9a/476229cc-ca1e-4a0f-8f09-96ad5be435cb"
-      (reference "R27") (unit 1) (value "90") (footprint "Resistor_SMD:R_0603_1608Metric")
-    )
     (path "/00000000-0000-0000-0000-000061942b9a/c0a35b75-0e83-4311-add3-5a3930110d30"
       (reference "R28") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061942b9a/c4e42d16-8dbe-42af-a61a-faa72b95fe53"
-      (reference "R29") (unit 1) (value "60") (footprint "Resistor_SMD:R_0805_2012Metric")
+      (reference "R29") (unit 1) (value "60") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000061942b9a/c363df37-be76-44cd-846e-5e1010ee0d3e"
-      (reference "R30") (unit 1) (value "60") (footprint "Resistor_SMD:R_0805_2012Metric")
+      (reference "R30") (unit 1) (value "60") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/116e1149-ba9e-462a-beb7-8e276ef3a596"
       (reference "R31") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -6150,7 +6148,7 @@
     (path "/00000000-0000-0000-0000-000061b11a26"
       (reference "TP11") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
     )
-    (path "/f8a7cf99-fb92-4312-b900-3804c63ab7dd"
+    (path "/a101baee-116e-4be1-9a34-0dfd37bf6955"
       (reference "TP12") (unit 1) (value "TestPoint") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
     )
     (path "/e3011f6d-ec9d-42ec-8f1c-238ee297f9f3"
@@ -6196,7 +6194,7 @@
       (reference "U5") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
     )
     (path "/00000000-0000-0000-0000-000061925999/a8f5718a-9498-4816-a1ce-ace2140e0f78"
-      (reference "U6") (unit 1) (value "RT9025-25GSP") (footprint "iclr:SOIC127P599X175-9N")
+      (reference "U6") (unit 1) (value "SC2416H") (footprint "iclr:SOIC127P599X175-9N")
     )
     (path "/00000000-0000-0000-0000-000061925999/261fd709-b119-45e9-aff5-04154ebd9314"
       (reference "U7") (unit 1) (value "LTC4411") (footprint "Package_TO_SOT_SMD:SOT-23-5")
