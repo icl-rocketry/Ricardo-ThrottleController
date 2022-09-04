@@ -2,3 +2,5 @@
 *.kicad_prl
 
 Chad/Hardware/Actuators Board-backups/
+
+Chad/Software/lib/librnp/

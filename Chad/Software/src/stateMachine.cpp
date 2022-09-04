@@ -43,7 +43,9 @@ stateMachine::stateMachine() :
     networkmanager(static_cast<uint8_t>(DEFAULT_ADDRESS::GROUNDSTATION_GATEWAY),NODETYPE::HUB,true),
     commandhandler(this),
     logcontroller(networkmanager),
-    systemstatus(&logcontroller)
+    systemstatus(&logcontroller),
+    nrcremoteservo(ServoPWM,0,networkmanager),
+    nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,1,2)
 {};
 
 
@@ -51,7 +53,7 @@ void stateMachine::initialise(State* initStatePtr) {
 
   //internal io initilization must happen here so io buses setup for sensor initialzation
   //intialize i2c interface
-  I2C.begin(_SDA,_SCL,I2C_FREQUENCY);
+  I2C.begin(-1,-1,I2C_FREQUENCY);
   //initalize spi interface
   vspi.begin();
   vspi.setFrequency(1000000);
@@ -65,6 +67,9 @@ void stateMachine::initialise(State* initStatePtr) {
   //open serial port on usb interface
   Serial.begin(Serial_baud);
   Serial.setRxBufferSize(SERIAL_SIZE_RX);
+
+  //setup pins
+  pinMode(ES1GPIO,INPUT);
 
   //setup interfaces
   usbserial.setup();
@@ -86,12 +91,11 @@ void stateMachine::initialise(State* initStatePtr) {
   logcontroller.setup();
   networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
 
- 
-
 
   //call setup state
   changeState(initStatePtr);
- 
+
+  nrcremoteservo.reset();
   
 };
 

@@ -21,45 +21,6 @@ namespace CommandPacket{
 };
 
 
-class SimpleCommandPacket: public RnpPacket{
-    private:
-        static constexpr auto getSerializer()
-        {
-            auto ret = RnpSerializer(
-                &SimpleCommandPacket::command,
-                &SimpleCommandPacket::arg
-            );
-            return ret;
-        }
-    public:
-        ~SimpleCommandPacket();
-        SimpleCommandPacket(uint8_t command, uint32_t arg);
-
-        /**
-         * @brief Deserialize Command Packet from serialized data
-         * 
-         * @param packet 
-         */
-        SimpleCommandPacket(const RnpPacketSerialized& packet);
-
-        /**
-         * @brief Serialize into provided buffer
-         * 
-         * @param buf 
-         */
-        void serialize(std::vector<uint8_t>& buf) override;
-
-        //data members
-        command_t command;
-
-        int32_t arg;
-
-
-        static constexpr size_t size(){
-            return getSerializer().member_size();
-        }
-};
-
 class MagCalCommandPacket: public RnpPacket{
     private:
         static constexpr auto getSerializer()

@@ -20,6 +20,8 @@ Written by the Electronics team, Imperial College London Rocketry
 
 #include "rnp_networkmanager.h"
 #include "rnp_routingtable.h"
+#include <librrc/nrcremotemotor.h>
+#include <librrc/nrcremoteservo.h>
 
 #include "Commands/commandHandler.h"
 
@@ -53,6 +55,9 @@ class stateMachine {
 
     LogController logcontroller;
     SystemStatus systemstatus;
+
+    NRCRemoteServo nrcremoteservo;
+    NRCRemoteMotor nrcremotemotor;
 
    
   private:

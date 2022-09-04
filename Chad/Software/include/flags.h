@@ -4,8 +4,10 @@
 
 enum class SYSTEM_FLAG:uint32_t{
     //state flags
-    STATE_IDLE = (1 << 0),
-    STATE_ABORT = (1 << 1),
+    STATE_GROUNDSTATION_GATEWAY = (1 << 0),
+    STATE_IDLE = (1 << 1),
+    STATE_ABORT = (1 << 2),
+    
     //flags
     DEBUG = (1 << 7),
     //critical messages 

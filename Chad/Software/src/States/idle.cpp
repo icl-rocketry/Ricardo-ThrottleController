@@ -1,5 +1,6 @@
 #include "idle.h"
-#include <nrcremoteservo.h>
+#include "abort.h"
+#include "ricardo_pins.h"
 
 Idle::Idle(stateMachine* sm):
 State(sm, SYSTEM_FLAG::STATE_IDLE)
@@ -7,12 +8,11 @@ State(sm, SYSTEM_FLAG::STATE_IDLE)
 
 void Idle::initialise(){
     State::initialise();
-    NRCRemoteServo::setup();
 };
 
 State* Idle::update(){
 
-    if(digitalRead(ABORT_PIN) == LOW){
+    if(digitalRead(ES1GPIO) == LOW){
         State* _abort_ptr = new Abort(_sm);
         return _abort_ptr;
     }

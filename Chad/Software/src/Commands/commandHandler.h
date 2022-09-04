@@ -11,7 +11,7 @@
 #include "commands.h"
 #include "rnp_packet.h"
 #include "rnp_networkmanager.h"
-#include "commandpacket.h"
+#include <default_packets/simplecommandpacket.h>
 
 
 class stateMachine;//forward declaration 
