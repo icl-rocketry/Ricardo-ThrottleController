@@ -19,9 +19,8 @@
 
 #include "rnp_packet.h"
 #include "rnp_interface.h"
-#include "Network/interfaces/radio.h"
 #include "commandpacket.h"
-
+#include <default_packets/simplecommandpacket.h>
 
 
 
@@ -50,8 +49,6 @@ std::function<void(std::unique_ptr<RnpPacketSerialized>)> CommandHandler::getCal
 {
 	return std::bind(&CommandHandler::handleCommand, this, std::placeholders::_1);
 };
-
-
 
 void CommandHandler::FreeRamCommand(const RnpPacketSerialized& packet)
 {	

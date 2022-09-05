@@ -15,13 +15,13 @@ Written by the Electronics team, Imperial College London Rocketry
 #include "Storage/logController.h"
 
 #include "Network/interfaces/usb.h"
-#include "Network/interfaces/radio.h"
 #include "Network/interfaces/canbus.h"
 
 #include "rnp_networkmanager.h"
 #include "rnp_routingtable.h"
 #include <librrc/nrcremotemotor.h>
 #include <librrc/nrcremoteservo.h>
+
 
 #include "Commands/commandHandler.h"
 
@@ -43,12 +43,10 @@ class stateMachine {
     void changeState(State* newStatePtr);
 
    
-    SPIClass vspi;
-    SPIClass hspi;
+
     TwoWire I2C;
 
     USB usbserial;
-    Radio radio;
     CanBus canbus;
     RnpNetworkManager networkmanager;
     CommandHandler commandhandler;

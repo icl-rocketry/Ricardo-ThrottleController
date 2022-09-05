@@ -29,7 +29,8 @@ class CommandHandler {
         stateMachine* _sm; //pointer to state machine
 
         void handleCommand(std::unique_ptr<RnpPacketSerialized> packetptr);
-        
+
+        void moveservo(const RnpPacketSerialized& packet);
         void FreeRamCommand(const RnpPacketSerialized& packet);
 
 };	

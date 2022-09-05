@@ -17,7 +17,7 @@ Written by the Electronics team, Imperial College London Rocketry
 
 
 #include "Network/interfaces/usb.h"
-#include "Network/interfaces/radio.h"
+
 #include "Network/interfaces/canbus.h"
 
 #include "rnp_networkmanager.h"
@@ -34,18 +34,15 @@ Written by the Electronics team, Imperial College London Rocketry
 
 
 stateMachine::stateMachine() : 
-    vspi(VSPI),
-    hspi(HSPI),
     I2C(0),
     usbserial(Serial,systemstatus,logcontroller),
-    radio(hspi,systemstatus,logcontroller),
-    canbus(systemstatus,logcontroller,3),
-    networkmanager(static_cast<uint8_t>(DEFAULT_ADDRESS::GROUNDSTATION_GATEWAY),NODETYPE::HUB,true),
+    canbus(systemstatus,logcontroller,2),
+    networkmanager(5,NODETYPE::HUB,true),
     commandhandler(this),
     logcontroller(networkmanager),
     systemstatus(&logcontroller),
-    nrcremoteservo(ServoPWM,0,networkmanager),
-    nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,1,2)
+    nrcremoteservo(32,1,networkmanager),
+    nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,2,3)
 {};
 
 
@@ -55,39 +52,35 @@ void stateMachine::initialise(State* initStatePtr) {
   //intialize i2c interface
   I2C.begin(-1,-1,I2C_FREQUENCY);
   //initalize spi interface
-  vspi.begin();
-  vspi.setFrequency(1000000);
-  vspi.setBitOrder(MSBFIRST);
-  vspi.setDataMode(SPI_MODE0);
-
-  hspi.begin();
-  hspi.setFrequency(8000000);
-  hspi.setBitOrder(MSBFIRST);
-  hspi.setDataMode(SPI_MODE0);
   //open serial port on usb interface
   Serial.begin(Serial_baud);
   Serial.setRxBufferSize(SERIAL_SIZE_RX);
 
   //setup pins
-  pinMode(ES1GPIO,INPUT);
+  pinMode(ES1GPIO,INPUT_PULLUP);
+  // pinMode(Hall1,INPUT);
+  // pinMode(Hall2,INPUT);
 
   //setup interfaces
   usbserial.setup();
-  radio.setup();
   canbus.setup();
 
   //setup network manager so communication is running
   // add interfaces
   networkmanager.addInterface(&usbserial);
-  networkmanager.addInterface(&radio);
   networkmanager.addInterface(&canbus);
 
   networkmanager.enableAutoRouteGen(true);
-  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2,3});
+  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2});
+
+  nrcremoteservo.setup();
+  nrcremotemotor.setup();
 
    // command handler callback
   networkmanager.registerService(static_cast<uint8_t>(DEFAULT_SERVICES::COMMAND),commandhandler.getCallback()); 
-    
+  networkmanager.registerService(10,nrcremoteservo.getThisNetworkCallback());
+  networkmanager.registerService(11,nrcremotemotor.getThisNetworkCallback());
+
   logcontroller.setup();
   networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
 
