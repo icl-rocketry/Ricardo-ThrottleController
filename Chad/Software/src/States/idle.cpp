@@ -26,14 +26,14 @@ void Idle::initialise(){
 };
 
 State* Idle::update(){
-    return this;
-    // if(digitalRead(ES1GPIO) == LOW){
-    //     State* _abort_ptr = new Abort(_sm);
-    //     return _abort_ptr;
-    // }
-    // else{
-    //     return this;
-    // }
+    // return this;
+    if(digitalRead(ES1GPIO) == LOW){
+        State* _abort_ptr = new Abort(_sm);
+        return _abort_ptr;
+    }
+    else{
+        return this;
+    }
     
 };
 

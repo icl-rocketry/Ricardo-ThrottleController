@@ -62,5 +62,6 @@ void CommandHandler::FreeRamCommand(const RnpPacketSerialized& packet)
 	message.header.destination = packet.header.source;
 	message.header.uid = packet.header.uid;
 	_sm->networkmanager.sendPacket(message);
+	_sm->logcontroller.log("received");
 	
 }

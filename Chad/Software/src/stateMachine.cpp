@@ -41,7 +41,7 @@ stateMachine::stateMachine() :
     commandhandler(this),
     logcontroller(networkmanager),
     systemstatus(&logcontroller),
-    nrcremoteservo(32,1,networkmanager),
+    nrcremoteservo(ServoPWM,1,networkmanager),
     nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,2,3)
 {};
 
@@ -93,6 +93,7 @@ void stateMachine::initialise(State* initStatePtr) {
 };
 
 void stateMachine::update() {
+  Serial.println(digitalRead(ES1GPIO));
 
   networkmanager.update();
 
