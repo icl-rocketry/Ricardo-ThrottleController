@@ -58,6 +58,8 @@ void stateMachine::initialise(State* initStatePtr) {
 
   //setup pins
   pinMode(ES1GPIO,INPUT_PULLUP);
+  pinMode(forwardButton,INPUT_PULLUP);
+  pinMode(backButton,INPUT_PULLUP);
   // pinMode(Hall1,INPUT);
   // pinMode(Hall2,INPUT);
 
@@ -73,6 +75,34 @@ void stateMachine::initialise(State* initStatePtr) {
   networkmanager.enableAutoRouteGen(true);
   networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2});
 
+  //load default routing table
+  RoutingTable routetable;
+  routetable.setRoute((uint8_t)DEFAULT_ADDRESS::ROCKET,Route{2,1,{}});
+  routetable.setRoute((uint8_t)DEFAULT_ADDRESS::GROUNDSTATION,Route{2,1,{}});
+
+  networkmanager.setRoutingTable(routetable);
+  networkmanager.updateBaseTable(); // save the new base table
+
+  networkmanager.setAddress(default_address);
+
+  networkmanager.enableAutoRouteGen(true); // enable route learning
+  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2}); // enable broadcast over serial and radio only
+  Serial.println(networkmanager.getAddress());
+  
+  logcontroller.setup();
+  networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
+
+  //configure save function from network manager
+  networkmanager.setSaveConfigImpl(RnpNvsSave::SaveToNVS);
+
+  //try to load previous net config from nvs
+  RnpNetworkManagerConfig savedNetworkConfig;
+  if (!RnpNvsSave::ReadFromNVS(savedNetworkConfig))
+  {
+    logcontroller.log("loading saved config");
+    networkmanager.loadconfig(savedNetworkConfig);
+  }
+
   nrcremoteservo.setup();
   nrcremotemotor.setup();
 
@@ -80,10 +110,6 @@ void stateMachine::initialise(State* initStatePtr) {
   networkmanager.registerService(static_cast<uint8_t>(DEFAULT_SERVICES::COMMAND),commandhandler.getCallback()); 
   networkmanager.registerService(10,nrcremoteservo.getThisNetworkCallback());
   networkmanager.registerService(11,nrcremotemotor.getThisNetworkCallback());
-
-  logcontroller.setup();
-  networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
-
 
   //call setup state
   changeState(initStatePtr);
