@@ -31,11 +31,11 @@ void Idle::readButton(){
         bool backButtonState = digitalRead(backButton);
 
         if (forwardButtonState && !backButtonState){
-            _sm->nrcremotemotor.move_motor(motorspped);
+            _sm->nrcremotemotor.move_motor(motorspeed);
             return;
         }
         if (backButtonState && !forwardButtonState){
-            _sm->nrcremotemotor.move_motor(100+motorspped);
+            _sm->nrcremotemotor.move_motor(100+motorspeed);
             return;
         }
 

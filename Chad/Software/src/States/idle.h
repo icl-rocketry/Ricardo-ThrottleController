@@ -13,8 +13,8 @@ class Idle : public State
 
     private:
         uint32_t prevReadButtonTime{0};
-        constexpr uint32_t readButtonDelta = 100;
-        void readButtons();
+        static constexpr uint32_t readButtonDelta = 100;
+        void readButton();
 
-        constexpr int motorspeed = 40;
+        static constexpr int motorspeed = 40;
 };

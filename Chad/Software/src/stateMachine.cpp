@@ -22,12 +22,14 @@ Written by the Electronics team, Imperial College London Rocketry
 
 #include "rnp_networkmanager.h"
 #include "rnp_default_address.h"
+#include "rnp_nvs_save.h"
 
 #include "Storage/logController.h"
 #include "Storage/systemstatus.h"
 
 #include "SPI.h"
 #include "Wire.h"
+
 
 
 
@@ -57,7 +59,6 @@ void stateMachine::initialise(State* initStatePtr) {
   Serial.setRxBufferSize(SERIAL_SIZE_RX);
 
   //setup pins
-  pinMode(ES1GPIO,INPUT_PULLUP);
   pinMode(forwardButton,INPUT_PULLUP);
   pinMode(backButton,INPUT_PULLUP);
   // pinMode(Hall1,INPUT);
@@ -119,7 +120,6 @@ void stateMachine::initialise(State* initStatePtr) {
 };
 
 void stateMachine::update() {
-  Serial.println(digitalRead(ES1GPIO));
 
   networkmanager.update();
 
