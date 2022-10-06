@@ -27,6 +27,8 @@ class LogController{
         void log(const std::string &message);
         void log(uint32_t status,uint32_t flag,std::string message);
 
+        std::function<void(const std::string&)> getLogCB(){return [this](const std::string& message){this->log(message);};};
+
 
     private:
         RnpNetworkManager& _netman;

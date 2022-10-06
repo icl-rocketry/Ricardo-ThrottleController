@@ -21,6 +21,8 @@ Written by the Electronics team, Imperial College London Rocketry
 #include "rnp_routingtable.h"
 #include <librrc/nrcremotemotor.h>
 #include <librrc/nrcremoteservo.h>
+#include <librrc/nrcremotetempssr.h>
+#include <librrc/networksensor.h>
 
 
 #include "Commands/commandHandler.h"
@@ -57,11 +59,17 @@ class stateMachine {
     NRCRemoteServo nrcremoteservo;
     NRCRemoteMotor nrcremotemotor;
 
+    NetworkSensor remoteThermistor;
+    NRCRemoteTempSSR heatpadSSR;
+    
+
+
    
   private:
     State* _currStatePtr;
 
     static constexpr int default_address=100;
+    static constexpr int remoteThermistorService = 4;
 
 
 };

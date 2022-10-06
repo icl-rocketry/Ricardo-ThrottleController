@@ -44,7 +44,9 @@ stateMachine::stateMachine() :
     logcontroller(networkmanager),
     systemstatus(&logcontroller),
     nrcremoteservo(ServoPWM,1,networkmanager),
-    nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,2,3)
+    nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,2,3),
+    remoteThermistor(0,16,remoteThermistorService,10,networkmanager,logcontroller.getLogCB()),
+    heatpadSSR(ssrPin,networkmanager,&remoteThermistor)
 {};
 
 
@@ -106,11 +108,15 @@ void stateMachine::initialise(State* initStatePtr) {
 
   nrcremoteservo.setup();
   nrcremotemotor.setup();
+  heatpadSSR.setup();
 
    // command handler callback
   networkmanager.registerService(static_cast<uint8_t>(DEFAULT_SERVICES::COMMAND),commandhandler.getCallback()); 
+  networkmanager.registerService(remoteThermistorService,[this](packetptr_t packetptr){remoteThermistor.networkCallback(std::move(packetptr));});
+
   networkmanager.registerService(10,nrcremoteservo.getThisNetworkCallback());
   networkmanager.registerService(11,nrcremotemotor.getThisNetworkCallback());
+  networkmanager.registerService(13,heatpadSSR.getThisNetworkCallback());
 
   //call setup state
   changeState(initStatePtr);

@@ -16,6 +16,7 @@ void Idle::initialise(){
 
 State* Idle::update(){
     readButton();
+    _sm->heatpadSSR.update(); // call update on the heatpadssr
     return this;
    
     
