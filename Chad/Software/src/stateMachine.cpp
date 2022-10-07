@@ -75,9 +75,6 @@ void stateMachine::initialise(State* initStatePtr) {
   networkmanager.addInterface(&usbserial);
   networkmanager.addInterface(&canbus);
 
-  networkmanager.enableAutoRouteGen(true);
-  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2});
-
   //load default routing table
   RoutingTable routetable;
   routetable.setRoute((uint8_t)DEFAULT_ADDRESS::ROCKET,Route{2,1,{}});
@@ -89,8 +86,7 @@ void stateMachine::initialise(State* initStatePtr) {
   networkmanager.setAddress(default_address);
 
   networkmanager.enableAutoRouteGen(true); // enable route learning
-  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2}); // enable broadcast over serial and radio only
-  Serial.println(networkmanager.getAddress());
+  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{2}); // enable broadcast over serial and radio only
   
   logcontroller.setup();
   networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
