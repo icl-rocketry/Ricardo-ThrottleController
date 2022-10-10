@@ -1,6 +1,7 @@
 #include "idle.h"
 #include "abort.h"
 #include "ricardo_pins.h"
+#include <librrc/nrcremotemotor.h>
 
 
 #include <rnp_default_address.h>
@@ -27,7 +28,8 @@ void Idle::exitstate(){
 };
 
 void Idle::readButton(){
-    if (millis()-prevReadButtonTime > readButtonDelta){
+    // if (millis()-prevReadButtonTime > readButtonDelta){
+   if (_sm->nrcremotemotor.getStatus() == static_cast<component_status_flags_t>(COMPONENT_STATUS_FLAGS::DISARMED)){
         bool forwardButtonState = digitalRead(forwardButton);
         bool backButtonState = digitalRead(backButton);
 
@@ -42,9 +44,9 @@ void Idle::readButton(){
 
         //write zero
         _sm->nrcremotemotor.move_motor(0);
+   }
 
-
-        prevReadButtonTime = millis();
-    }   
+        // prevReadButtonTime = millis();
+    // }   
 }
 

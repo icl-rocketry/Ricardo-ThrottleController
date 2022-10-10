@@ -61,8 +61,8 @@ void stateMachine::initialise(State* initStatePtr) {
   Serial.setRxBufferSize(SERIAL_SIZE_RX);
 
   //setup pins
-  pinMode(forwardButton,INPUT_PULLUP);
-  pinMode(backButton,INPUT_PULLUP);
+  pinMode(forwardButton,INPUT);
+  pinMode(backButton,INPUT);
   // pinMode(Hall1,INPUT);
   // pinMode(Hall2,INPUT);
 
@@ -106,6 +106,7 @@ void stateMachine::initialise(State* initStatePtr) {
   nrcremotemotor.setup();
   heatpadSSR.setup();
 
+
    // command handler callback
   networkmanager.registerService(static_cast<uint8_t>(DEFAULT_SERVICES::COMMAND),commandhandler.getCallback()); 
   networkmanager.registerService(remoteThermistorService,[this](packetptr_t packetptr){remoteThermistor.networkCallback(std::move(packetptr));});
@@ -122,6 +123,8 @@ void stateMachine::initialise(State* initStatePtr) {
 };
 
 void stateMachine::update() {
+
+  
 
   networkmanager.update();
 

@@ -1,0 +1,526 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						8,
+						9,
+						10,
+						11,
+						12,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						25,
+						26,
+						27
+					]
+				},
+				{
+					"build" : "esp-idf",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521"
+				},
+				{
+					"build" : "esp-idf/esp32",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/esp32"
+				},
+				{
+					"build" : "esp-idf/soc",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/soc",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "esp-idf/xtensa",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/xtensa",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "esp-idf/esp_common",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/esp_common"
+				},
+				{
+					"build" : "esp-idf/esp_rom",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/esp_rom"
+				},
+				{
+					"build" : "esp-idf/log",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/log",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "esp-idf/partition_table",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/partition_table"
+				},
+				{
+					"build" : "esp-idf/bootloader",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/bootloader"
+				},
+				{
+					"build" : "esp-idf/micro-ecc",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "components/micro-ecc",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "esp-idf/spi_flash",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/spi_flash",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "esp-idf/efuse",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/efuse",
+					"targetIndexes" : 
+					[
+						1,
+						13,
+						14,
+						15,
+						24
+					]
+				},
+				{
+					"build" : "esp-idf/bootloader_support",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/bootloader_support",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "esp-idf/esptool_py",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/esptool_py"
+				},
+				{
+					"build" : "esp-idf/main",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "main",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "bootloader",
+					"targetIndexes" : 
+					[
+						8,
+						9,
+						10,
+						11,
+						12,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						25,
+						26,
+						27
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					],
+					"name" : "esp-idf",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						13,
+						14,
+						15,
+						24
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 13,
+					"id" : "__idf_bootloader_support::@d88583f91142925c6676",
+					"jsonFile" : "target-__idf_bootloader_support-b0fd8666c5b910835c74.json",
+					"name" : "__idf_bootloader_support",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "__idf_efuse::@2da764c922f8b73e9c75",
+					"jsonFile" : "target-__idf_efuse-72dee45b6461cf570094.json",
+					"name" : "__idf_efuse",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "__idf_log::@d5e1aa0ef4e3c98c8a70",
+					"jsonFile" : "target-__idf_log-5c150166d9e36d54ca00.json",
+					"name" : "__idf_log",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "__idf_main::@7368607ed66887415643",
+					"jsonFile" : "target-__idf_main-ce68bbbd231a0b9f6a31.json",
+					"name" : "__idf_main",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "__idf_micro-ecc::@37158dc68a69c79f835a",
+					"jsonFile" : "target-__idf_micro-ecc-5e2fd6647016be8709e6.json",
+					"name" : "__idf_micro-ecc",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "__idf_soc::@824f1541829f13857909",
+					"jsonFile" : "target-__idf_soc-d92548512fb1d1f308d5.json",
+					"name" : "__idf_soc",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "__idf_spi_flash::@6f8a8c72478269b2cd60",
+					"jsonFile" : "target-__idf_spi_flash-93a7009541539118f552.json",
+					"name" : "__idf_spi_flash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "__idf_xtensa::@1daaaad7abe597e030f9",
+					"jsonFile" : "target-__idf_xtensa-f853f6c0b769130a7f8a.json",
+					"name" : "__idf_xtensa",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "_project_elf_src::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-_project_elf_src-83f0dd0c843512aaca98.json",
+					"name" : "_project_elf_src",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-app-e30f88599362862c153f.json",
+					"name" : "app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "app-flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-app-flash-5541b010881ae2c5dde3.json",
+					"name" : "app-flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bootloader.elf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bootloader.elf-463c71c00973368f9846.json",
+					"name" : "bootloader.elf",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "confserver::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-confserver-cb7b481bb129ba11f1ce.json",
+					"name" : "confserver",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "efuse_common_table::@2da764c922f8b73e9c75",
+					"jsonFile" : "target-efuse_common_table-ed23e5752daf0177275f.json",
+					"name" : "efuse_common_table",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "efuse_custom_table::@2da764c922f8b73e9c75",
+					"jsonFile" : "target-efuse_custom_table-620d566eef17e8f333b2.json",
+					"name" : "efuse_custom_table",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "efuse_test_table::@2da764c922f8b73e9c75",
+					"jsonFile" : "target-efuse_test_table-a666dbf3b01c11f2051d.json",
+					"name" : "efuse_test_table",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "encrypted-app-flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-encrypted-app-flash-9e9c00641da95eda5704.json",
+					"name" : "encrypted-app-flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "encrypted-flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-encrypted-flash-66f2f381e865b0278565.json",
+					"name" : "encrypted-flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "erase_flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-erase_flash-2bf67eefc3f8141dbf9c.json",
+					"name" : "erase_flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-flash-f46970ec05736e5251b1.json",
+					"name" : "flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gen_project_binary::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gen_project_binary-75b4775359c7bb03200c.json",
+					"name" : "gen_project_binary",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mconf-idf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mconf-idf-8288dd42561ae63c2051.json",
+					"name" : "mconf-idf",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "menuconfig::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-menuconfig-1413ae51ecebcd7d5325.json",
+					"name" : "menuconfig",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "monitor::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-monitor-645eb0a78d490ae3f3b4.json",
+					"name" : "monitor",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "show_efuse_table::@2da764c922f8b73e9c75",
+					"jsonFile" : "target-show_efuse_table-0dad2572cfea72d02b8b.json",
+					"name" : "show_efuse_table",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "size::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-size-58a22f83a264fe0243c4.json",
+					"name" : "size",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "size-components::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-size-components-17e4cc4d2e26bf15f8e6.json",
+					"name" : "size-components",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "size-files::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-size-files-022b9730890607d1206a.json",
+					"name" : "size-files",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/kiran/Documents/Projects/ICLR/Engine-Electronics/Ematch_board/Software/.pio/build/esp32dev/bootloader",
+		"source" : "/Users/kiran/.platformio/packages/framework-espidf@3.40001.200521/components/bootloader/subproject"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
