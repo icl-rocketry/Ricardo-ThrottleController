@@ -16,5 +16,5 @@ class Idle : public State
         static constexpr uint32_t readButtonDelta = 100;
         void readButton();
 
-        static constexpr int motorspeed = 40;
+        static constexpr int motorspeed = 95;
 };

@@ -39,13 +39,13 @@ stateMachine::stateMachine() :
     I2C(0),
     usbserial(Serial,systemstatus,logcontroller),
     canbus(systemstatus,logcontroller,2),
-    networkmanager(5,NODETYPE::HUB,true),
+    networkmanager(100,NODETYPE::HUB,true),
     commandhandler(this),
     logcontroller(networkmanager),
     systemstatus(&logcontroller),
     nrcremoteservo(ServoPWM,1,networkmanager),
     nrcremotemotor(networkmanager,HBridgeDIR1,HBridgeDIR2,2,3),
-    remoteThermistor(0,16,remoteThermistorService,10,networkmanager,logcontroller.getLogCB()),
+    remoteThermistor(0,16,remoteThermistorService,12,networkmanager,logcontroller.getLogCB()),
     heatpadSSR(ssrPin,networkmanager,&remoteThermistor)
 {};
 
@@ -86,7 +86,7 @@ void stateMachine::initialise(State* initStatePtr) {
   networkmanager.setAddress(default_address);
 
   networkmanager.enableAutoRouteGen(true); // enable route learning
-  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{2}); // enable broadcast over serial and radio only
+  networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,2}); // enable broadcast over serial and radio only
   
   logcontroller.setup();
   networkmanager.setLogCb([this](const std::string& message){return logcontroller.log(message);});
