@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.19999999999999998
+          "min_clearance": 0.508
         }
       },
       "diff_pair_dimensions": [
@@ -440,6 +440,10 @@
     [
       "00000000-0000-0000-0000-000061925999",
       "USB -> UART"
+    ],
+    [
+      "00000000-0000-0000-0000-000061a24258",
+      "rfantenna"
     ]
   ],
   "text_variables": {}
