@@ -1,6 +1,12 @@
-[submodule "Chad/Software/lib/librrc"]
-	path = Chad/Software/lib/librrc
+[submodule "Software/lib/librnp/"]
+	path = Software/lib/librnp/
 	url = https://github.com/icl-rocketry/librrc.git
-[submodule "Chad/Software/lib/librnp"]
-	path = Chad/Software/lib/librnp
+[submodule "Software/lib/librrc/"]
+	path = Software/lib/librrc/
+	url = https://github.com/icl-rocketry/librrc
+[submodule "Software/Chad/librnp"]
+	path = Software/Chad/librnp
 	url = https://github.com/icl-rocketry/librnp.git
+[submodule "Software/Chad/librrc"]
+	path = Software/Chad/librrc
+	url = https://github.com/icl-rocketry/librrc.git
