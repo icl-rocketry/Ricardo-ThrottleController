@@ -3647,7 +3647,7 @@
       (reference "J4") (unit 1) (value "ServoCH2") (footprint "Connector_Molex:Molex_Nano-Fit_105313-xx03_1x03_P2.50mm_Horizontal")
     )
     (path "/00000000-0000-0000-0000-000061925999/00000000-0000-0000-0000-000061988c49"
-      (reference "J5") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "Connector_USB:USB_C_Receptacle_GCT_USB4085")
+      (reference "J5") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "Connector_USB:USB_C_Receptacle_Palconn_UTC16-G")
     )
     (path "/00000000-0000-0000-0000-000061942b9a/deb2b25e-9fb0-448e-88c5-95a67db1d371"
       (reference "JP1") (unit 1) (value "TermJP") (footprint "iclr:SmallerSolderJP")
