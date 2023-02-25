@@ -3436,7 +3436,7 @@
     (property "Value" "ICLR LOGO" (at 280.67 43.18 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "iclr:iclr_logo" (at 275.59 48.26 0)
+    (property "Footprint" "iclr:iclr_logo_estd2018_10mm" (at 275.59 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 275.59 48.26 0)

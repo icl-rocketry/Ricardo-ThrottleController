@@ -472,8 +472,8 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
-      "vrml": ""
+      "step": "3D/Chad.step",
+      "vrml": "Chad.wrl"
     },
     "page_layout_descr_file": ""
   },
