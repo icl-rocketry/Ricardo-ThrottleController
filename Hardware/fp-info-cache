@@ -1,4 +1,4 @@
-21574144852484787
+21582547194912250
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -89761,6 +89761,13 @@ MAX1771CSA&plus_
 8
 8
 iclr
+MGAH1004R68M-10
+
+
+0
+2
+2
+iclr
 MIT_logo
 
 
@@ -89774,6 +89781,27 @@ MOLEX_78646-3001
 0
 14
 14
+iclr
+MP28167GQ-A-P
+
+
+0
+16
+16
+iclr
+MP28167GQ-A-Z
+
+
+0
+16
+16
+iclr
+MPLAL60504R7
+MPL-AL6050-4R7-1
+Inductor
+0
+2
+2
 iclr
 Molex_Mini-Fit_Jr_5569-06A2_2x03_P4.20mm_Horizontal_No_Mounting_Holes
 Molex Mini-Fit Jr. Power Connectors, old mpn/engineering number: 5569-06A2, example for new mpn: 39-30-0060, 3 Pins per row, Mounting: Snap-in Plastic Peg PCB Lock (http://www.molex.com/pdm_docs/sd/039300020_sd.pdf), generated with kicad-footprint-generator
@@ -89928,6 +89956,13 @@ SOT95P280X145-6N
 0
 6
 6
+iclr
+SOT95P282X145-5N
+SOT25_
+Integrated Circuit
+0
+5
+5
 iclr
 SOTFL50P160X60-8N
 DRL0008A
