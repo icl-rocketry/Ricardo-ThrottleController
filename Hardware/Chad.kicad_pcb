@@ -1154,7 +1154,7 @@
     (property "ki_keywords" "capacitor cap")
     (path "/8734796e-d088-404b-9453-b276f910a8bb/eefa3894-a1df-45a0-b48d-dbd1286e546c")
     (attr smd)
-    (fp_text reference "Ce" (at 1.216 -1.615 180) (layer "F.SilkS") hide
+    (fp_text reference "C28" (at 1.216 -1.615) (layer "F.SilkS") hide
         (effects (font (size 0.6 0.6) (thickness 0.15) bold))
       (tstamp 026d934d-d564-4c37-9113-57bb727fc2e9)
     )
@@ -1913,7 +1913,7 @@
     (property "ki_keywords" "R resistor")
     (path "/00000000-0000-0000-0000-000061b6bc0b")
     (attr smd)
-    (fp_text reference "Re" (at -1.11 -0.98 90) (layer "F.SilkS") hide
+    (fp_text reference "R7" (at -1.11 -0.98 90) (layer "F.SilkS") hide
         (effects (font (size 0.6 0.6) (thickness 0.15)))
       (tstamp 09039133-a4cd-4c87-ad15-e7527470ab7c)
     )
@@ -3213,7 +3213,7 @@
     (property "ki_keywords" "R resistor")
     (path "/905ebec0-1221-4ed7-b975-adbb49bbd7cb")
     (attr smd)
-    (fp_text reference "Re" (at 0.655 -2.725 90) (layer "F.SilkS") hide
+    (fp_text reference "R25" (at 0.655 -2.725 90) (layer "F.SilkS") hide
         (effects (font (size 0.6 0.6) (thickness 0.15) bold))
       (tstamp b3f772e2-780e-4725-a151-de7ab5c2bf2f)
     )
@@ -3599,7 +3599,7 @@
     (property "ki_keywords" "R resistor")
     (path "/39331482-f222-4e10-bf40-b92267f6399e")
     (attr smd)
-    (fp_text reference "Re" (at 1.734 -0.174 90) (layer "F.SilkS") hide
+    (fp_text reference "R36" (at 1.734 -0.174 90) (layer "F.SilkS") hide
         (effects (font (size 0.64 0.64) (thickness 0.15)))
       (tstamp 13456b24-db57-4418-91a1-4ec6d3236e39)
     )
@@ -3821,7 +3821,7 @@
     (property "ki_keywords" "R resistor")
     (path "/5f662d26-675f-41d0-ac58-8847effe296d")
     (attr smd)
-    (fp_text reference "Re" (at -0.03 -0.95 90) (layer "F.SilkS") hide
+    (fp_text reference "R35" (at -0.03 -0.95 90) (layer "F.SilkS") hide
         (effects (font (size 0.6 0.6) (thickness 0.15) bold))
       (tstamp d492afe4-43e2-4535-9c67-cf2b0e63b0c8)
     )
