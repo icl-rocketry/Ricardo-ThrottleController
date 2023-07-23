@@ -2,23 +2,34 @@
 #include "freertos/task.h"
 #include "esp_task_wdt.h"
 
+#include <Arduino.h>
 #define ARDUINO_LOOP_STACK_SIZE 8192
 
-#include <Arduino.h>
-#include <exception>
-#include "stateMachine.h"
-#include "States/idle.h"
 
-stateMachine statemachine;
+#include <exception>
+
+#include "system.h"
+
+
+
+static constexpr bool exceptionsEnabled = true; //for debugging -> will integrate this into the sd configuration options later
+
+
+TaskHandle_t loopTaskHandle = NULL;
+
+System ricSystem;
+
 
 void setup_task()
 {
-    statemachine.initialise(new Idle(&statemachine));
+    //MUST CALL CORE SYSTEM SETUP
+    ricSystem.coreSystemSetup();
 }
 
 void inner_loop_task()
 {
-    statemachine.update();
+    //must call core system update
+    ricSystem.coreSystemUpdate();
 }
 
 void loopTask(void *pvParameters)
@@ -27,12 +38,9 @@ void loopTask(void *pvParameters)
     setup_task();
     for(;;) {
         inner_loop_task();
-        vTaskDelay(1);
- 
+        vTaskDelay(1); // this is important to allow the watchdog to be reset
     }
 }
-
-TaskHandle_t loopTaskHandle = NULL;
 
 extern "C" void app_main()
 {

@@ -1,52 +1,40 @@
 #include "idle.h"
-#include "abort.h"
-#include "ricardo_pins.h"
-#include <librrc/nrcremotemotor.h>
+
+#include <memory>
+
+#include <libriccore/fsm/state.h>
+#include <libriccore/systemstatus/systemstatus.h>
+#include <libriccore/commands/commandhandler.h>
+#include <libriccore/riccorelogging.h>
+
+#include "config/systemflags_config.h"
+#include "config/types.h"
+
+#include "system.h"
 
 
-#include <rnp_default_address.h>
-
-Idle::Idle(stateMachine* sm):
-State(sm, SYSTEM_FLAG::STATE_IDLE)
+Idle::Idle(Types::CoreTypes::SystemStatus_t& systemtatus, Types::CoreTypes::CommandHandler_t& commandhandler):
+State(SYSTEM_FLAG::STATE_IDLE,systemtatus),
+_commandhandler(commandhandler)
 {};
 
-void Idle::initialise(){
-    State::initialise();
-
+void Idle::initialize()
+{
+    Types::CoreTypes::State_t::initialize(); // call parent initialize first!
 };
 
-State* Idle::update(){
-    readButton();
-    _sm->heatpadSSR.update(); // call update on the heatpadssr
-    return this;
-   
-    
+Types::CoreTypes::State_ptr_t Idle::update()
+{
+    if (millis()-prevLogMessageTime > 1000)
+    {
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Idle heartbeat!");
+        prevLogMessageTime = millis();
+    }
+
+    return nullptr;
 };
 
-void Idle::exitstate(){
-    State::exitstate();
+void Idle::exit()
+{
+    Types::CoreTypes::State_t::exit(); // call parent exit last!
 };
-
-void Idle::readButton(){
-    // if (millis()-prevReadButtonTime > readButtonDelta){
-   if (_sm->nrcremotemotor.getStatus() == static_cast<component_status_flags_t>(COMPONENT_STATUS_FLAGS::DISARMED)){
-        bool forwardButtonState = digitalRead(forwardButton);
-        bool backButtonState = digitalRead(backButton);
-
-        if (forwardButtonState && !backButtonState){
-            _sm->nrcremotemotor.move_motor(motorspeed);
-            return;
-        }
-        if (backButtonState && !forwardButtonState){
-            _sm->nrcremotemotor.move_motor(100+motorspeed);
-            return;
-        }
-
-        //write zero
-        _sm->nrcremotemotor.move_motor(0);
-   }
-
-        // prevReadButtonTime = millis();
-    // }   
-}
-
