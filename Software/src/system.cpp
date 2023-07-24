@@ -21,7 +21,7 @@ System::System():
 RicCoreSystem(Commands::command_map,Commands::defaultEnabledCommands,Serial),
 Servo1(PinMap::ServoPWM1, 0, networkmanager),
 Servo2(PinMap::ServoPWM2, 1, networkmanager),
-Buck(PinMap::BuckPGOOD, PinMap::BuckEN, PinMap::BuckOutputV, 1, 1)
+Buck(PinMap::BuckPGOOD, PinMap::BuckEN, 1, 1, PinMap::BuckOutputV, 1500, 470)
 {};
 
 
@@ -35,6 +35,7 @@ void System::systemSetup(){
 
     //initialize statemachine with idle state
     statemachine.initalize(std::make_unique<Idle>(systemstatus,commandhandler));
+    
     //any other setup goes here
     
     Buck.setup();
@@ -43,7 +44,7 @@ void System::systemSetup(){
     
     //Defining these so the methods following are less ugly
     uint8_t servoservice1 = (uint8_t) Services::ID::Servo1;
-    uint8_t servoservice2 = (uint8_t) Services::ID::Servo1;
+    uint8_t servoservice2 = (uint8_t) Services::ID::Servo2;
 
     networkmanager.registerService(servoservice1,Servo1.getThisNetworkCallback());
     networkmanager.registerService(servoservice2,Servo2.getThisNetworkCallback());
@@ -51,4 +52,6 @@ void System::systemSetup(){
 };
 
 
-void System::systemUpdate(){};
+void System::systemUpdate(){
+    Buck.update();
+};

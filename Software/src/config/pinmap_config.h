@@ -4,6 +4,7 @@
 **********************
  */
 #pragma once
+#include <stdint.h>
 
 namespace PinMap{
     static constexpr int BaroCs = 2;

@@ -1,6 +1,0 @@
-[submodule "Software/lib/librrc"]
-	path = Software/lib/librrc
-	url = https://github.com/icl-rocketry/librrc.git
-[submodule "Software/lib/librnp"]
-	path = Software/lib/librnp
-	url = https://github.com/icl-rocketry/librnp.git
