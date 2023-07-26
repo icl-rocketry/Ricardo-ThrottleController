@@ -20,10 +20,12 @@ class System : public RicCoreSystem<System,SYSTEM_FLAG,Commands::ID>
 
         void systemUpdate();
 
+        SiC43x Buck;
+
     private:
 
         NRCRemoteServo Servo1;
         NRCRemoteServo Servo2;
-        SiC43x Buck;
+        
 
 };

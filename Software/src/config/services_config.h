@@ -19,7 +19,6 @@ namespace Services{
      * 
      */
     enum class ID:uint8_t{
-        Serivce1 = 3,
         Servo1 = 10,
         Servo2 = 11
     };

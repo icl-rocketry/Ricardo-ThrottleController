@@ -11,6 +11,8 @@
 
 #include "commands.h"
 
+#include "packets/ChadTelemPacket.h"
+
 #include <librnp/rnp_packet.h>
 #include <libriccore/commands/commandhandler.h>
 
@@ -35,4 +37,30 @@ void Commands::FreeRamCommand(System& sm, const RnpPacketSerialized& packet)
 	message.header.uid = packet.header.uid;
 	sm.networkmanager.sendPacket(message);
 	
+}
+
+void Commands::ChadTelemCommand(System& sm, const RnpPacketSerialized& packet)
+{	
+	SimpleCommandPacket commandpacket(packet);
+
+	ChadTelemPacket chadtelem;
+
+	chadtelem.header.type = static_cast<uint8_t>(decltype(System::commandhandler)::PACKET_TYPES::CHADTELEMETRY_RESPONSE);
+	chadtelem.header.source = sm.networkmanager.getAddress();
+	chadtelem.header.source_service = sm.commandhandler.getServiceID();
+	chadtelem.header.destination = commandpacket.header.source;
+	chadtelem.header.destination_service = commandpacket.header.source_service;
+	chadtelem.header.uid = commandpacket.header.uid; 
+	chadtelem.servoVoltage = sm.Buck.getOutputV();
+
+	sm.networkmanager.sendPacket(chadtelem);
+	
+}
+
+void Commands::BuckRestartCommand(System& sm, const RnpPacketSerialized& packet)
+{	
+	SimpleCommandPacket receivedpacket(packet);
+
+	sm.Buck.restart(receivedpacket.arg); //Arg should be the time the buck is held off before startup is called again 
+
 }
