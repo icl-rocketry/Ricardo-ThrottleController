@@ -5,9 +5,7 @@
 
 #include <vector>
 
-//Kinda stupid packet that only has 1 float but it'll probably change in the future
-//also shamelessly copied from ricardo-os
-
+//shamelessly copied from pickle rick's telemetry packet
 
 class ChadTelemPacket : public RnpPacket{
     private:
@@ -15,8 +13,11 @@ class ChadTelemPacket : public RnpPacket{
         static constexpr auto getSerializer()
         {
             auto ret = RnpSerializer(
-                &ChadTelemPacket::servoVoltage
+                &ChadTelemPacket::servoVoltage,
+                &ChadTelemPacket::system_status,
+                &ChadTelemPacket::system_time
             );
+
             return ret;
         }
         
@@ -39,6 +40,8 @@ class ChadTelemPacket : public RnpPacket{
         void serialize(std::vector<uint8_t>& buf) override;
 
         float servoVoltage;
+        uint32_t system_status;
+        uint64_t system_time;
 
         static constexpr size_t size(){
             return getSerializer().member_size();

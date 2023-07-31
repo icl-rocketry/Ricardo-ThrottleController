@@ -52,7 +52,9 @@ void Commands::ChadTelemCommand(System& sm, const RnpPacketSerialized& packet)
 	chadtelem.header.destination_service = commandpacket.header.source_service;
 	chadtelem.header.uid = commandpacket.header.uid; 
 	chadtelem.servoVoltage = sm.Buck.getOutputV();
-
+	chadtelem.system_status = sm.systemstatus.getStatus();
+	chadtelem.system_time = millis();
+	
 	sm.networkmanager.sendPacket(chadtelem);
 	
 }
