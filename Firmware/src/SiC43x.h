@@ -39,6 +39,11 @@ public:
             pinMode(_ENPin, OUTPUT);
             setEN(_defaultEN); 
         }
+        if (_VReadPin >= 0){
+            analogReadResolution(12);
+            analogSetPinAttenuation(_VReadPin, ADC_11db);
+            adcAttachPin(_VReadPin);
+        }
     };
 
     /**
@@ -58,7 +63,7 @@ public:
     void update()
     {
         OutputV = ((float)(_RHighS + _RLowS) / (float)_RLowS) * (float)analogRead(_VReadPin) / (float)ADCMax;
-
+        Serial.println(OutputV);
         if (_PGoodPin >= 0)
         {
             PGOOD = digitalRead(_PGoodPin);
@@ -103,14 +108,14 @@ private:
     // Pin Definitions
     int8_t _PGoodPin = -1;
     int8_t _ENPin = -1;
+    bool _defaultEN = 0;
+    bool _invertEN = 0;
     int8_t _VReadPin = -1;
 
     // Potential divider setup. Default is no divider.
     float _RHighS = 0;
     float _RLowS = 1;
 
-    bool _defaultEN = 0;
-    bool _invertEN = 0;
     bool _restartFlag = 0;
 
     uint32_t _prevtime;

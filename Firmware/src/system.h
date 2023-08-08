@@ -6,6 +6,7 @@
 #include "config/systemflags_config.h"
 #include "config/commands_config.h"
 #include "config/pinmap_config.h"
+#include <libriccore/networkinterfaces/can/canbus.h>
 
 #include "commands/commands.h"
 
@@ -21,6 +22,8 @@ class System : public RicCoreSystem<System,SYSTEM_FLAG,Commands::ID>
         void systemUpdate();
 
         SiC43x Buck;
+
+        CanBus<SYSTEM_FLAG> canbus;
 
     private:
 
