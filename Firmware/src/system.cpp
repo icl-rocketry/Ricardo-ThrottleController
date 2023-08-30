@@ -21,8 +21,8 @@ System::System():
 RicCoreSystem(Commands::command_map,Commands::defaultEnabledCommands,Serial),
 Buck(PinMap::BuckPGOOD, PinMap::BuckEN, 1, 1, PinMap::BuckOutputV, 1500, 470),
 canbus(systemstatus,PinMap::TxCan,PinMap::RxCan,3),
-Servo1(PinMap::ServoPWM1, 1, networkmanager),
-Servo2(PinMap::ServoPWM2, 2, networkmanager)
+Servo1(PinMap::ServoPWM1, 0, networkmanager),
+Servo2(PinMap::ServoPWM2, 1, networkmanager)
 {};
 
 
@@ -55,6 +55,7 @@ void System::systemSetup(){
 
     networkmanager.registerService(servoservice1,Servo1.getThisNetworkCallback());
     networkmanager.registerService(servoservice2,Servo2.getThisNetworkCallback());
+    
 };
 
 long prevTime = 0;
@@ -62,18 +63,4 @@ bool update = false;
 
 void System::systemUpdate(){
     Buck.update();
-    // if(millis() - prevTime > 1000){
-    //     if(update == false){
-    //     Servo1.goto_Angle(180);
-    //     Servo2.goto_Angle(0);
-    //     update = true;
-    //     prevTime = millis();
-    //     }
-    //     else{
-    //     Servo1.goto_Angle(0);
-    //     Servo2.goto_Angle(180);
-    //     update = false;
-    //     prevTime = millis();
-    //     }
-    // }
 };
