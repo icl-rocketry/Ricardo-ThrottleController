@@ -19,8 +19,9 @@ namespace Services{
      * 
      */
     enum class ID:uint8_t{
-        Servo1 = 10,
-        Servo2 = 11
+        Thanos = 10,
+        chamberPTap = 11,
+        fuelPTap = 12
     };
 
 };

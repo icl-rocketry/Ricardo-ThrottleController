@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 #include <Arduino.h>
+#include <esp_adc_cal.h>
+#include <esp32-hal-adc.h>
 
 class SiC43x
 {
@@ -62,8 +64,8 @@ public:
      */
     void update()
     {
-        OutputV = ((float)(_RHighS + _RLowS) / (float)_RLowS) * (float)analogRead(_VReadPin) / (float)ADCMax;
-        Serial.println(OutputV);
+        OutputV = ((float)(_RHighS + _RLowS) / (float)_RLowS) * (float)adc1_get_raw(ADC1_CHANNEL_3) * (_VReadPin) / (float)ADCMax;
+        //Serial.println(OutputV);
         if (_PGoodPin >= 0)
         {
             PGOOD = digitalRead(_PGoodPin);
