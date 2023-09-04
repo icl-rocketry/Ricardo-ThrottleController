@@ -66,13 +66,13 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             ShutDown = 1,
             EngineController = 2,
             Default = 3,
-            Override = 4
+            Debug = 4
         };
 
         bool default_called = false;
         bool shutdown_called = false;
 
-        EngineState currentEngineState = EngineState::Override;
+        EngineState currentEngineState;
 
         uint64_t ignitionTime;
 

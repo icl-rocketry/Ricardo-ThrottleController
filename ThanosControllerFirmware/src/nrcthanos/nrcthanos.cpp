@@ -17,99 +17,104 @@ void NRCThanos::setup()
 
 void NRCThanos::update()
 {
-    if (millis()-prevLogMessageTime > 1000)
-    {
-        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Thanos update");
-        prevLogMessageTime = millis();
-    }
 
-    if (currentEngineState == EngineState::Ignition){    //ignition sequence
+    switch(currentEngineState){
+    
 
-        if (millis()-prevLogMessageTime > 1000)
-        {
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
-            prevLogMessageTime = millis();
-        }
+        case EngineState::Ignition:
         
-        if (timeFrameCheck(pyroFires, fuelValvePreposition) && !ignitionStarted)
-        {
-            firePyro(fuelValvePreposition - pyroFires);
-            ignitionStarted = true; //add chamber pressure check
-        }
-
-        else if (timeFrameCheck(fuelValvePreposition, oxValvePreposition))
-        {
-            fuelServo.goto_Angle(fuelServoPreAngle);
-        }
-
-        else if (timeFrameCheck(oxValvePreposition, fuelValveFullBore))
-        {
-            oxServo.goto_Angle(oxServoPreAngle);
-        }
-
-        else if (timeFrameCheck(fuelValveFullBore, oxValveFullBore))
-        {
-            fuelServo.goto_Angle(180);
-        }
-
-        else if (timeFrameCheck(oxValveFullBore, endOfIgnitionSeq))
-        {
-            oxServo.goto_Angle(180);
-        }
-
-        else if (timeFrameCheck(endOfIgnitionSeq))
-        {
-            currentEngineState = EngineState::EngineController;
-        }
-
-    }
-
-
-    if (currentEngineState == EngineState::EngineController) {
-
-        if (nominalEngineOp()){
-            error = demandedFuelP() - _fuelP;
-            fuelServoDemandAngle = currFuelServoAngle + Kp*error;
-
-            if (fuelServoDemandAngle < 90){
-                fuelServo.goto_Angle(90);
-                currFuelServoAngle = 90;
+        {    //ignition sequence
+        
+            if (timeFrameCheck(pyroFires, fuelValvePreposition) && !ignitionStarted)
+            {
+                firePyro(fuelValvePreposition - pyroFires);
+                ignitionStarted = true; //add chamber pressure check?
             }
-            else if (fuelServoDemandAngle > 180){
+
+            else if (timeFrameCheck(fuelValvePreposition, oxValvePreposition))
+            {
+                fuelServo.goto_Angle(fuelServoPreAngle);
+            }
+
+            else if (timeFrameCheck(oxValvePreposition, fuelValveFullBore))
+            {
+                oxServo.goto_Angle(oxServoPreAngle);
+            }
+
+            else if (timeFrameCheck(fuelValveFullBore, oxValveFullBore))
+            {
                 fuelServo.goto_Angle(180);
-                currFuelServoAngle = 180;
             }
-            else{
-                fuelServo.goto_Angle(fuelServoDemandAngle);
-                currFuelServoAngle = fuelServoDemandAngle;                
+
+            else if (timeFrameCheck(oxValveFullBore, endOfIgnitionSeq))
+            {
+                oxServo.goto_Angle(180);
             }
+
+            else if (timeFrameCheck(endOfIgnitionSeq))
+            {
+                currentEngineState = EngineState::EngineController;
+            }
+
         }
 
-        if (!nominalEngineOp() || !pValUpdated()){
-            currentEngineState = EngineState::Default;
+
+        case EngineState::EngineController: {
+
+            if (nominalEngineOp()){
+                error = demandedFuelP() - _fuelP;
+                fuelServoDemandAngle = currFuelServoAngle + Kp*error;
+
+                if (fuelServoDemandAngle < 90){
+                    fuelServo.goto_Angle(90);
+                    currFuelServoAngle = 90;
+                }
+                else if (fuelServoDemandAngle > 180){
+                    fuelServo.goto_Angle(180);
+                    currFuelServoAngle = 180;
+                }
+                else{
+                    fuelServo.goto_Angle(fuelServoDemandAngle);
+                    currFuelServoAngle = fuelServoDemandAngle;                
+                }
+            }
+
+            if (!nominalEngineOp() || !pValUpdated()){
+                currentEngineState = EngineState::Default;
+            }
+
         }
 
-    }
+        case EngineState::Default:
+        {
+            if (!default_called){
+                fuelServo.goto_Angle(180);
+                oxServo.goto_Angle(180);
+                default_called = true;
+            }
+            
+            if (nominalEngineOp() && pValUpdated()){
+                currentEngineState = EngineState::EngineController;
+                default_called = false;
+            }
 
-    if (currentEngineState == EngineState::Default)
-    {
-        if (!default_called){
-            fuelServo.goto_Angle(180);
-            oxServo.goto_Angle(180);
-            default_called = true;
         }
-        
-        if (nominalEngineOp() && pValUpdated()){
-            currentEngineState = EngineState::EngineController;
-            default_called = false;
+
+        case EngineState::ShutDown:
+        {
+            if (!shutdown_called){
+                fuelServo.goto_Angle(0);
+                oxServo.goto_Angle(0);
+                shutdown_called = true;
+                ignitionStarted = false;            
+            }
+
         }
 
-    }
-
-    if (currentEngineState == EngineState::ShutDown && !shutdown_called) {
-        fuelServo.goto_Angle(0);
-        oxServo.goto_Angle(0);
-        shutdown_called = true;
+        default:
+        {
+            break;
+        }
     }
 
 }
@@ -152,20 +157,21 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
     {
         case 1:
         {
-            if (currentEngineState == EngineState::Override){
-                currentEngineState = EngineState::Ignition;
-                ignitionTime = millis();
-                RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition called");
-                break;
-            }
-            else{
-                break;
-            }
+            currentEngineState = EngineState::Ignition;
+            ignitionTime = millis();
+            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
+            break;
         }
         case 2:
         {
             currentEngineState = EngineState::ShutDown;
             RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("ShutDown");
+            break;
+        }
+        case 3:
+        {
+            currentEngineState = EngineState::Debug;
+            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Entered debug");
             break;
         }
     }
@@ -176,19 +182,24 @@ void NRCThanos::extendedCommandHandler_impl(const NRCPacket::NRC_COMMAND_ID comm
     SimpleCommandPacket command_packet(*packetptr);
     switch(static_cast<uint8_t>(commandID))
     {
-        
-
         case 6:
         {
-            fuelServo.goto_Angle(command_packet.arg);
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Fuel servo write");
-            break;
+            if(currentEngineState == EngineState::Debug){
+                fuelServo.goto_Angle(command_packet.arg);
+                break;
+            }
+            else{
+                break;
+            }
         }
         case 7:
         {
-            oxServo.goto_Angle(command_packet.arg);
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ox servo write");
-            break;
+            if(currentEngineState == EngineState::Debug){
+                oxServo.goto_Angle(command_packet.arg);
+            }
+            else{
+                break;
+            }
         }
         default:
         {
@@ -219,9 +230,9 @@ void NRCThanos::firePyro(uint32_t duration)
 {
     SimpleCommandPacket ignition_command(2, duration);
     ignition_command.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
-    ignition_command.header.destination_service = 10;
+    ignition_command.header.destination_service = 11;
     ignition_command.header.source = _address;
-    ignition_command.header.destination = 9;
+    ignition_command.header.destination = 11;
     ignition_command.header.uid = 0;
     _networkmanager.sendPacket(ignition_command);
 }

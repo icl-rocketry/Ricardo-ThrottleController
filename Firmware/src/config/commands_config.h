@@ -22,7 +22,7 @@ namespace Commands
         Free_Ram = 250
     };
 
-    inline std::initializer_list<ID> defaultEnabledCommands = {ID::Free_Ram};
+    inline std::initializer_list<ID> defaultEnabledCommands = {ID::Free_Ram, ID::ChadTelem};
 
     inline std::unordered_map<ID, std::function<void(ForwardDecl_SystemClass &, const RnpPacketSerialized &)>> command_map{
         {ID::Free_Ram, FreeRamCommand}, {ID::ChadTelem, ChadTelemCommand}, {ID::BuckRestart, BuckRestartCommand}};
