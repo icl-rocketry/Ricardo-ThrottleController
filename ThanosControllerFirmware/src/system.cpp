@@ -16,13 +16,14 @@
 
 #include "states/idle.h"
 
+#include <librrc/rocketcomponent.h>
 
 System::System():
 RicCoreSystem(Commands::command_map,Commands::defaultEnabledCommands,Serial),
 Buck(PinMap::BuckPGOOD, PinMap::BuckEN, 1, 1, PinMap::BuckOutputV, 1500, 470),
 canbus(systemstatus,PinMap::TxCan,PinMap::RxCan,3),
-chamberPTap(1, 10, static_cast<uint8_t>(Services::ID::chamberPTap), 10, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
-fuelPTap(2, 10, static_cast<uint8_t>(Services::ID::fuelPTap), 11, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
+chamberPTap(1, 10, static_cast<uint8_t>(Services::ID::chamberPTap), 19, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
+fuelPTap(2, 10, static_cast<uint8_t>(Services::ID::fuelPTap), 20, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
 chamberPTapPoller(50, &chamberPTap),
 fuelPTapPoller(50, &fuelPTap),
 Thanos(networkmanager,PinMap::ServoPWM1,0,PinMap::ServoPWM2,1,networkmanager.getAddress())
@@ -47,7 +48,8 @@ void System::systemSetup(){
     fuelPTapPoller.setup();
     Thanos.setup();
     canbus.setup();
-    
+    networkmanager.addInterface(&canbus);
+
     networkmanager.setNodeType(NODETYPE::HUB);
     networkmanager.setNoRouteAction(NOROUTE_ACTION::BROADCAST,{1,3});
 
@@ -56,22 +58,23 @@ void System::systemSetup(){
     uint8_t chamberPTapservice = static_cast<uint8_t>(Services::ID::chamberPTap);
     uint8_t fuelPTapservice = static_cast<uint8_t>(Services::ID::fuelPTap);
 
-    networkmanager.addInterface(&canbus);
-
     networkmanager.registerService(thanosservice,Thanos.getThisNetworkCallback());
     networkmanager.registerService(chamberPTapservice,[this](packetptr_t packetptr){chamberPTap.networkCallback(std::move(packetptr));});
-    networkmanager.registerService(fuelPTapservice,[this](packetptr_t packetptr){chamberPTap.networkCallback(std::move(packetptr));});
+    networkmanager.registerService(fuelPTapservice,[this](packetptr_t packetptr){fuelPTap.networkCallback(std::move(packetptr));});
 };
 
 long prevTime = 0;
+
 bool update = false;
 
 void System::systemUpdate(){
     Buck.update();
 
-    chamberPTapPoller.update();
-    fuelPTapPoller.update();
-
+    if(Thanos.getStatus() & static_cast<uint16_t>(COMPONENT_STATUS_FLAGS::NOMINAL)){  
+        chamberPTapPoller.update();
+        fuelPTapPoller.update();
+    }
+    
     if(chamberPTapPoller.newdata)
     {
         Thanos.updateChamberP(chamberPTapPoller.getVal());

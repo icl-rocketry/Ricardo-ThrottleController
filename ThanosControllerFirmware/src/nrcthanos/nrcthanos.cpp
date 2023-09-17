@@ -14,21 +14,35 @@ void NRCThanos::setup()
     prevLogMessageTime = millis();
 }
 
+long stateTime = 0;
+long servoTime = 0;
 
 void NRCThanos::update()
 {
+    // if (millis() - prevprint > 50)
+    // {
+    //     RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("ChamberP: " + std::to_string(_chamberP));
+    //     RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("FuelP: " + std::to_string(_fuelP));
+    //     prevprint = millis();
+    // }
+    // if (millis() - servoTime > 500){
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Chamber Pressure: " + std::to_string(_chamberP));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Fuel valve: " + std::to_string(currFuelServoAngle));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Fuel valve demand: " + std::to_string(fuelServoDemandAngle));
+    // servoTime = millis();
+    // }
 
     switch(currentEngineState){
-    
+        
+
 
         case EngineState::Ignition:
         
         {    //ignition sequence
-        
-            if (timeFrameCheck(pyroFires, fuelValvePreposition) && !ignitionStarted)
+            // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition state");
+            if (timeFrameCheck(pyroFires, fuelValvePreposition))
             {
                 firePyro(fuelValvePreposition - pyroFires);
-                ignitionStarted = true; //add chamber pressure check?
             }
 
             else if (timeFrameCheck(fuelValvePreposition, oxValvePreposition))
@@ -56,11 +70,15 @@ void NRCThanos::update()
                 currentEngineState = EngineState::EngineController;
             }
 
+            break;
         }
 
 
         case EngineState::EngineController: {
-
+            // if(millis()-stateTime > 5000){
+            // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("EngineController state");
+            // stateTime = millis();
+            // }
             if (nominalEngineOp()){
                 error = demandedFuelP() - _fuelP;
                 fuelServoDemandAngle = currFuelServoAngle + Kp*error;
@@ -68,6 +86,8 @@ void NRCThanos::update()
                 if (fuelServoDemandAngle < 90){
                     fuelServo.goto_Angle(90);
                     currFuelServoAngle = 90;
+                    RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Valve demand below min angle!");
+
                 }
                 else if (fuelServoDemandAngle > 180){
                     fuelServo.goto_Angle(180);
@@ -82,11 +102,12 @@ void NRCThanos::update()
             if (!nominalEngineOp() || !pValUpdated()){
                 currentEngineState = EngineState::Default;
             }
-
+            break;
         }
 
         case EngineState::Default:
-        {
+        {   
+            // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Default state");
             if (!default_called){
                 fuelServo.goto_Angle(180);
                 oxServo.goto_Angle(180);
@@ -98,17 +119,16 @@ void NRCThanos::update()
                 default_called = false;
             }
 
+            break;
         }
 
         case EngineState::ShutDown:
         {
-            if (!shutdown_called){
-                fuelServo.goto_Angle(0);
-                oxServo.goto_Angle(0);
-                shutdown_called = true;
-                ignitionStarted = false;            
-            }
+            // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Shutdown state");
+            fuelServo.goto_Angle(0);
+            oxServo.goto_Angle(0);
 
+            break;
         }
 
         default:
@@ -148,35 +168,41 @@ float NRCThanos::demandedFuelP()
     return (0.016 * pow(_chamberP,2) + _chamberP);
 }
 
-
 void NRCThanos::execute_impl(packetptr_t packetptr)
 {
     SimpleCommandPacket execute_command(*packetptr);
 
-    switch(execute_command.arg) 
+    switch (execute_command.arg)
     {
-        case 1:
+    case 1:
+    {
+        if (currentEngineState != EngineState::ShutDown)
         {
-            currentEngineState = EngineState::Ignition;
-            ignitionTime = millis();
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
             break;
         }
-        case 2:
+        currentEngineState = EngineState::Ignition;
+        ignitionTime = millis();
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
+        break;
+    }
+    case 2:
+    {
+        currentEngineState = EngineState::ShutDown;
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("ShutDown");
+        break;
+    }
+    case 3:
+    {
+        if (currentEngineState != EngineState::ShutDown)
         {
-            currentEngineState = EngineState::ShutDown;
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("ShutDown");
             break;
         }
-        case 3:
-        {
-            currentEngineState = EngineState::Debug;
-            RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Entered debug");
-            break;
-        }
+        currentEngineState = EngineState::Debug;
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Entered debug");
+        break;
+    }
     }
 }
-
 
 void NRCThanos::extendedCommandHandler_impl(const NRCPacket::NRC_COMMAND_ID commandID,packetptr_t packetptr){
     SimpleCommandPacket command_packet(*packetptr);
@@ -228,19 +254,23 @@ bool NRCThanos::timeFrameCheck(int64_t start_time, int64_t end_time)
 
 void NRCThanos::firePyro(uint32_t duration)
 {
-    SimpleCommandPacket ignition_command(2, duration);
-    ignition_command.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
-    ignition_command.header.destination_service = 11;
-    ignition_command.header.source = _address;
-    ignition_command.header.destination = 11;
-    ignition_command.header.uid = 0;
-    _networkmanager.sendPacket(ignition_command);
+    if (millis() - prevFiring > 50)
+    {
+        SimpleCommandPacket ignition_command(2, duration);
+        ignition_command.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
+        ignition_command.header.destination_service = 11;
+        ignition_command.header.source = _address;
+        ignition_command.header.destination = 11;
+        ignition_command.header.uid = 0;
+        _networkmanager.sendPacket(ignition_command);
+        prevFiring = millis();
+    }
 }
 
 
 bool NRCThanos::pValUpdated()
 {
-    if (lastTimeChamberPUpdate > pressureUpdateTimeLim || lastTimeFuelPUpdate > pressureUpdateTimeLim ){
+    if ((millis() - lastTimeChamberPUpdate) > pressureUpdateTimeLim || (millis() - lastTimeFuelPUpdate) > pressureUpdateTimeLim ){
         return false;
     }
     else{

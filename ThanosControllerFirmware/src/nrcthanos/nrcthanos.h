@@ -72,11 +72,9 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         bool default_called = false;
         bool shutdown_called = false;
 
-        EngineState currentEngineState;
+        EngineState currentEngineState = EngineState::ShutDown;
 
         uint64_t ignitionTime;
-
-        bool ignitionStarted = false;
 
         float _chamberP;
         float _fuelP;
@@ -96,6 +94,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t fuelValveFullBore = 1300;
         const uint64_t oxValveFullBore = 1350;
         const uint64_t endOfIgnitionSeq = 2100;
+        long prevprint = 0;
+
 
         float error;
         const float Kp = 2.5;
@@ -106,7 +106,10 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         uint64_t lastTimeFuelPUpdate;
         uint64_t lastTimeChamberPUpdate;
+
         const uint64_t pressureUpdateTimeLim = 1000;
 
         uint64_t prevLogMessageTime;
+
+        uint64_t prevFiring = 0;
 };
