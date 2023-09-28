@@ -45,7 +45,7 @@ void Commands::ChadTelemCommand(System& sm, const RnpPacketSerialized& packet)
 
 	ChadTelemPacket chadtelem;
 
-	chadtelem.header.type = 106;
+	chadtelem.header.type = static_cast<uint8_t>(decltype(System::commandhandler)::PACKET_TYPES::CHADTELEMETRY_RESPONSE);
 	chadtelem.header.source = sm.networkmanager.getAddress();
 	chadtelem.header.source_service = sm.commandhandler.getServiceID();
 	chadtelem.header.destination = commandpacket.header.source;
