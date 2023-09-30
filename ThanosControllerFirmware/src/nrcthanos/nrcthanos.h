@@ -62,17 +62,18 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         enum class EngineState : uint8_t
         {
-            Ignition = 0,
-            ShutDown = 1,
-            EngineController = 2,
-            Default = 3,
-            Debug = 4
+            Default = 0,
+            Ignition = 1,
+            ShutDown = 2,
+            EngineController = 3,
+            Fullbore = 4,
+            Debug = 5
         };
 
-        bool default_called = false;
+        bool fullbore_called = false;
         bool shutdown_called = false;
 
-        EngineState currentEngineState = EngineState::ShutDown;
+        EngineState currentEngineState = EngineState::Default;
 
         uint64_t ignitionTime;
 

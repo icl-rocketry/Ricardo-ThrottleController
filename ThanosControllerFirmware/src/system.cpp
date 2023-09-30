@@ -23,9 +23,9 @@ RicCoreSystem(Commands::command_map,Commands::defaultEnabledCommands,Serial),
 Buck(PinMap::BuckPGOOD, PinMap::BuckEN, 1, 1, PinMap::BuckOutputV, 1500, 470),
 canbus(systemstatus,PinMap::TxCan,PinMap::RxCan,3),
 chamberPTap(1, 10, static_cast<uint8_t>(Services::ID::chamberPTap), 19, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
-fuelPTap(2, 10, static_cast<uint8_t>(Services::ID::fuelPTap), 20, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
-chamberPTapPoller(50, &chamberPTap),
-fuelPTapPoller(50, &fuelPTap),
+fuelPTap(2, 10, static_cast<uint8_t>(Services::ID::fuelPTap), 18, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
+chamberPTapPoller(10, &chamberPTap),
+fuelPTapPoller(10, &fuelPTap),
 Thanos(networkmanager,PinMap::ServoPWM1,0,PinMap::ServoPWM2,1,networkmanager.getAddress())
 {};
 

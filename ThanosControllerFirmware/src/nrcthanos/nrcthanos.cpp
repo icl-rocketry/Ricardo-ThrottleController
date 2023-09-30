@@ -17,12 +17,17 @@ void NRCThanos::update()
 {
     if (this -> _state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
-        fuelServo.goto_Angle(0);
-        oxServo.goto_Angle(0);
+        currentEngineState = EngineState::Default;
     }
 
     switch (currentEngineState)
     {
+
+    case EngineState::Default:
+    {
+        fuelServo.goto_Angle(0);
+        oxServo.goto_Angle(0);
+    }
 
     case EngineState::Ignition:
 
@@ -89,24 +94,24 @@ void NRCThanos::update()
 
         if (!nominalEngineOp() || !pValUpdated())
         {
-            currentEngineState = EngineState::Default;
+            currentEngineState = EngineState::Fullbore;
         }
         break;
     }
 
-    case EngineState::Default:
+    case EngineState::Fullbore:
     {
-        if (!default_called)
+        if (!fullbore_called)
         {
             fuelServo.goto_Angle(180);
             oxServo.goto_Angle(180);
-            default_called = true;
+            fullbore_called = true;
         }
 
         if (nominalEngineOp() && pValUpdated())
         {
             currentEngineState = EngineState::EngineController;
-            default_called = false;
+            fullbore_called = false;
         }
 
         break;
