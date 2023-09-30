@@ -3,12 +3,12 @@
 #include <libriccore/riccoresystem.h>
 #include <librrc/nrcremoteservo.h>
 
-#include "config/systemflags_config.h"
-#include "config/commands_config.h"
-#include "config/pinmap_config.h"
+#include "Config/systemflags_config.h"
+#include "Config/commands_config.h"
+#include "Config/pinmap_config.h"
 #include <libriccore/networkinterfaces/can/canbus.h>
 
-#include "commands/commands.h"
+#include "Commands/commands.h"
 
 #include "SiC43x.h"
 class System : public RicCoreSystem<System,SYSTEM_FLAG,Commands::ID>

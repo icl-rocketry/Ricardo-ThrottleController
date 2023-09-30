@@ -6,15 +6,15 @@
 
 #include <HardwareSerial.h>
 
-#include "config/systemflags_config.h"
-#include "config/commands_config.h"
-#include "config/pinmap_config.h"
-#include "config/general_config.h"
-#include "config/services_config.h"
+#include "Config/systemflags_config.h"
+#include "Config/commands_config.h"
+#include "Config/pinmap_config.h"
+#include "Config/general_config.h"
+#include "Config/services_config.h"
 
-#include "commands/commands.h"
+#include "Commands/commands.h"
 
-#include "states/idle.h"
+#include "States/idle.h"
 
 #include <librrc/rocketcomponent.h>
 
@@ -63,14 +63,10 @@ void System::systemSetup(){
     networkmanager.registerService(fuelPTapservice,[this](packetptr_t packetptr){fuelPTap.networkCallback(std::move(packetptr));});
 };
 
-long prevTime = 0;
-
-bool update = false;
-
 void System::systemUpdate(){
     Buck.update();
 
-    if(Thanos.getStatus() & static_cast<uint16_t>(COMPONENT_STATUS_FLAGS::NOMINAL)){  
+    if(Thanos.getPollingStatus()){  
         chamberPTapPoller.update();
         fuelPTapPoller.update();
     }
@@ -86,19 +82,4 @@ void System::systemUpdate(){
     }
 
     Thanos.update();
-
-    // if(millis() - prevTime > 1000){
-    //     if(update == false){
-    //     Servo1.goto_Angle(180);
-    //     Servo2.goto_Angle(0);
-    //     update = true;
-    //     prevTime = millis();
-    //     }
-    //     else{
-    //     Servo1.goto_Angle(0);
-    //     Servo2.goto_Angle(180);
-    //     update = false;
-    //     prevTime = millis();
-    //     }
-    // }
 };

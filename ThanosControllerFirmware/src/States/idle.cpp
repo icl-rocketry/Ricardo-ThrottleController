@@ -7,8 +7,8 @@
 #include <libriccore/commands/commandhandler.h>
 #include <libriccore/riccorelogging.h>
 
-#include "config/systemflags_config.h"
-#include "config/types.h"
+#include "Config/systemflags_config.h"
+#include "Config/types.h"
 
 #include "system.h"
 

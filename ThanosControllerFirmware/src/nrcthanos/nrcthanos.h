@@ -27,8 +27,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             _oxServoGPIO(oxServoGPIO),
             _oxServoChannel(oxServoChannel),
             _address(address),
-            fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager),
-            oxServo(oxServoGPIO,oxServoChannel,networkmanager)
+            fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,170),
+            oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,170)
             {};
         
 
@@ -36,8 +36,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         void update();
         void updateFuelP(float fuelP);
         void updateChamberP(float chamberP);
+        bool getPollingStatus(){return(_polling);};
         
-
     protected:
 
         RnpNetworkManager& _networkmanager;
@@ -94,22 +94,23 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t fuelValveFullBore = 1300;
         const uint64_t oxValveFullBore = 1350;
         const uint64_t endOfIgnitionSeq = 2100;
-        long prevprint = 0;
-
 
         float error;
         const float Kp = 2.5;
         uint16_t currFuelServoAngle;
         uint16_t fuelServoDemandAngle;
         const uint16_t fuelServoPreAngle = 60;
-        const uint16_t oxServoPreAngle = 90;
+        const uint16_t oxServoPreAngle = 55;
 
         uint64_t lastTimeFuelPUpdate;
         uint64_t lastTimeChamberPUpdate;
 
         const uint64_t pressureUpdateTimeLim = 1000;
 
-        uint64_t prevLogMessageTime;
+        uint8_t _ignitionCalls = 0;
+        const uint8_t _ignitionCommandMaxCalls = 2;
+        const uint8_t _ignitionCommandSendDelta = 50;
+        uint32_t _prevFiring = 0;
 
-        uint64_t prevFiring = 0;
+        bool _polling = false;
 };
