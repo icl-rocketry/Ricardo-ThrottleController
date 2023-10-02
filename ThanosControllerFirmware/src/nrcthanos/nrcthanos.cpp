@@ -27,6 +27,7 @@ void NRCThanos::update()
     {
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
+        _polling = false;
     }
 
     case EngineState::Ignition:

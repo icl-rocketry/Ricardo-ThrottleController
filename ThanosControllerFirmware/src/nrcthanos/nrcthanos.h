@@ -36,7 +36,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         void update();
         void updateFuelP(float fuelP);
         void updateChamberP(float chamberP);
-        bool getPollingStatus(){return(_polling);};
+        bool getPollingStatus(){return _polling;};
         
     protected:
 
