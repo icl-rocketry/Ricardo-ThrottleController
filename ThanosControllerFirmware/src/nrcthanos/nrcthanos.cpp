@@ -27,6 +27,8 @@ void NRCThanos::update()
     {
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
+        _polling = false;
+        break;
     }
 
     case EngineState::Ignition:
@@ -169,7 +171,7 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
     {
     case 1:
     {
-        if (currentEngineState != EngineState::ShutDown)
+        if (currentEngineState != EngineState::Default)
         {
             break;
         }
@@ -189,7 +191,7 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
     }
     case 3:
     {
-        if (currentEngineState != EngineState::ShutDown)
+        if (currentEngineState != EngineState::Default)
         {
             break;
         }
@@ -269,6 +271,7 @@ void NRCThanos::firePyro(uint32_t duration)
             ignition_command.header.uid = 0;
             _networkmanager.sendPacket(ignition_command);
             _prevFiring = millis();
+            _ignitionCalls++;
         }
     }
 }
