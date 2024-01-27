@@ -62,6 +62,9 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(endOfIgnitionSeq))
         {
+            m_fuelServoPrevAngle = 180;
+            m_oxServoPrevAngle = 180;
+            throttleStateEntry = millis();
             currentEngineState = EngineState::EngineController;
         }
 
@@ -71,50 +74,40 @@ void NRCThanos::update()
     case EngineState::EngineController:
     {
 
-        if (nominalEngineOp())
+        
+        if (!nominalEngineOp())
         {
-            error = demandedFuelP() - _fuelP;
-            fuelServoDemandAngle = currFuelServoAngle + Kp * error;
-
-            if (fuelServoDemandAngle < 90)
-            {
-                fuelServo.goto_Angle(90);
-                currFuelServoAngle = 90;
-                RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Valve demand below min angle!");
-            }
-            else if (fuelServoDemandAngle > 180)
-            {
-                fuelServo.goto_Angle(180);
-                currFuelServoAngle = 180;
-            }
-            else
-            {
-                fuelServo.goto_Angle(fuelServoDemandAngle);
-                currFuelServoAngle = fuelServoDemandAngle;
-            }
+            gotoWithSpeed(fuelServo, 180, m_servoOpenSpeed, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
+            gotoWithSpeed(oxServo, 180, m_servoOpenSpeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
+            break;
         }
 
-        if (!nominalEngineOp() || !pValUpdated())
+        if ( m_targetThrust * 1.01 < _thrust){
+            gotoWithSpeed(fuelServo, 0, m_servoCloseSpeed, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
+            gotoWithSpeed(oxServo, 0, m_servoCloseSpeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
+        }
+        else if (_thrust < m_targetThrust * 0.99){
+            gotoWithSpeed(fuelServo, 180, m_servoOpenSpeed, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
+            gotoWithSpeed(oxServo, 180, m_servoOpenSpeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
+        }
+        else{
+            fuelServo.goto_AngleHighRes(m_fuelServoCurrAngle);
+            oxServo.goto_AngleHighRes(m_oxServoCurrAngle);
+        }
+
+        if (millis() - throttleStateEntry > throttledDownTime)
         {
             currentEngineState = EngineState::Fullbore;
         }
+
         break;
     }
 
     case EngineState::Fullbore:
     {
-        if (!fullbore_called)
-        {
-            fuelServo.goto_Angle(180);
-            oxServo.goto_Angle(180);
-            fullbore_called = true;
-        }
 
-        if (nominalEngineOp() && pValUpdated())
-        {
-            currentEngineState = EngineState::EngineController;
-            fullbore_called = false;
-        }
+        fuelServo.goto_Angle(180);
+        oxServo.goto_Angle(180);
 
         break;
     }
@@ -152,16 +145,12 @@ void NRCThanos::updateChamberP(float chamberP)
     _chamberP = chamberP;
 }
 
-void NRCThanos::updateFuelP(float fuelP)
+void NRCThanos::updateThrust(float thrust)
 {
-    lastTimeFuelPUpdate = millis();
-    _fuelP = fuelP;
+    lastTimeThrustUpdate = millis();
+    _thrust = thrust;
 }
 
-float NRCThanos::demandedFuelP()
-{
-    return (0.02 * pow(_chamberP, 2) + _chamberP);
-}
 
 void NRCThanos::execute_impl(packetptr_t packetptr)
 {
@@ -257,6 +246,34 @@ bool NRCThanos::timeFrameCheck(int64_t start_time, int64_t end_time)
     }
 }
 
+
+void NRCThanos::gotoWithSpeed(NRCRemoteServo& Servo, uint16_t demandAngle, float speed, float& prevAngle, float& currAngle, uint32_t& prevUpdateT){
+    if(millis() - prevUpdateT < 5){
+        return;
+    }
+
+    if(prevUpdateT == 0){
+        prevUpdateT = millis();
+        return;
+    }
+
+    float timeSinceLast = (float)(millis()-prevUpdateT)/1000.0; //in seconds;
+    
+    if(demandAngle - prevAngle > 0){
+        currAngle = prevAngle + timeSinceLast * speed;
+    }
+    else if(demandAngle - prevAngle < 0){
+        currAngle = prevAngle - timeSinceLast * speed;
+    }
+    else{
+        currAngle = currAngle;
+    }
+
+    prevAngle = currAngle;
+    Servo.goto_AngleHighRes(currAngle);
+    prevUpdateT = millis();
+}
+
 void NRCThanos::firePyro(uint32_t duration)
 {
     if (millis() - _prevFiring > _ignitionCommandSendDelta)
@@ -265,9 +282,9 @@ void NRCThanos::firePyro(uint32_t duration)
         {
             SimpleCommandPacket ignition_command(2, duration);
             ignition_command.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
-            ignition_command.header.destination_service = 11;
+            ignition_command.header.destination_service = m_ingitionService;
             ignition_command.header.source = _address;
-            ignition_command.header.destination = 11;
+            ignition_command.header.destination = m_ignitionNode;
             ignition_command.header.uid = 0;
             _networkmanager.sendPacket(ignition_command);
             _prevFiring = millis();
@@ -278,7 +295,7 @@ void NRCThanos::firePyro(uint32_t duration)
 
 bool NRCThanos::pValUpdated()
 {
-    if ((millis() - lastTimeChamberPUpdate) > pressureUpdateTimeLim || (millis() - lastTimeFuelPUpdate) > pressureUpdateTimeLim)
+    if ((millis() - lastTimeChamberPUpdate) > pressureUpdateTimeLim || (millis() - lastTimeThrustUpdate) > pressureUpdateTimeLim)
     {
         return false;
     }

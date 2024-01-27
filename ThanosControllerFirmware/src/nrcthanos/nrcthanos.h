@@ -34,7 +34,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         void setup();
         void update();
-        void updateFuelP(float fuelP);
+        void updateThrust(float fuelP);
         void updateChamberP(float chamberP);
         bool getPollingStatus(){return _polling;};
         
@@ -78,12 +78,13 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint64_t ignitionTime;
 
         float _chamberP;
-        float _fuelP;
+        float _thrust;
 
         bool timeFrameCheck(int64_t start_time, int64_t end_time = -1);
         bool nominalEngineOp();
         bool pValUpdated();
-        float demandedFuelP();
+
+        void gotoWithSpeed(NRCRemoteServo& Servo, uint16_t demandAngle, float speed, float& prevAngle, float& currAngle, uint32_t& prevUpdateT);
         
         void firePyro(uint32_t duration);
 
@@ -96,17 +97,15 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t oxValveFullBore = 1350;
         const uint64_t endOfIgnitionSeq = 2100;
 
-        float error;
-        const float Kp = 2.5;
-        uint16_t currFuelServoAngle;
-        uint16_t fuelServoDemandAngle;
         const uint16_t fuelServoPreAngle = 60;
         const uint16_t oxServoPreAngle = 55;
 
-        uint64_t lastTimeFuelPUpdate;
+        uint64_t lastTimeThrustUpdate;
         uint64_t lastTimeChamberPUpdate;
+        uint32_t throttleStateEntry;
 
         const uint64_t pressureUpdateTimeLim = 1000;
+        const uint32_t throttledDownTime = 3000;
 
         uint8_t _ignitionCalls = 0;
         const uint8_t _ignitionCommandMaxCalls = 2;
@@ -114,4 +113,22 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint32_t _prevFiring = 0;
 
         bool _polling = false;
+
+        //
+        uint8_t m_ingitionService = 11;
+        uint8_t m_ignitionNode = 11;
+        float m_targetThrust = 950;
+
+        float m_fuelServoCurrAngle = 0;
+        float m_oxServoCurrAngle = 0;
+
+        float m_fuelServoPrevAngle = 0;
+        float m_oxServoPrevAngle = 0;
+
+        uint32_t m_fuelServoPrevUpdate = 0;
+        uint32_t m_oxServoPrevUpdate = 0;
+
+        const float m_servoCloseSpeed = 180; //degs per second
+        const float m_servoOpenSpeed = 10; //degs per second
+
 };

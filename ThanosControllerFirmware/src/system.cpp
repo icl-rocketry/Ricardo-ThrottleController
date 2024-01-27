@@ -22,10 +22,10 @@ System::System():
 RicCoreSystem(Commands::command_map,Commands::defaultEnabledCommands,Serial),
 Buck(PinMap::BuckPGOOD, PinMap::BuckEN, 1, 1, PinMap::BuckOutputV, 1500, 470),
 canbus(systemstatus,PinMap::TxCan,PinMap::RxCan,3),
-chamberPTap(1, 10, static_cast<uint8_t>(Services::ID::chamberPTap), 19, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
-fuelPTap(2, 10, static_cast<uint8_t>(Services::ID::fuelPTap), 18, networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
-chamberPTapPoller(25, &chamberPTap),
-fuelPTapPoller(25, &fuelPTap),
+chamberPTap(1, GeneralConfig::Kermitaddr, static_cast<uint8_t>(Services::ID::chamberPTap), static_cast<uint8_t>(Services::ID::chamberPTap), networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
+thrustGauge(2, GeneralConfig::Kermitaddr, static_cast<uint8_t>(Services::ID::thrustGauge), static_cast<uint8_t>(Services::ID::thrustGauge), networkmanager, [](const std::string& msg){RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(msg);}),
+chamberPTapPoller(50, &chamberPTap),
+thrustGaugePoller(20, &thrustGauge),
 Thanos(networkmanager,PinMap::ServoPWM1,0,PinMap::ServoPWM2,1,networkmanager.getAddress())
 {};
 
@@ -45,7 +45,7 @@ void System::systemSetup(){
     
     Buck.setup();
     chamberPTapPoller.setup();
-    fuelPTapPoller.setup();
+    thrustGaugePoller.setup();
     Thanos.setup();
     canbus.setup();
     networkmanager.addInterface(&canbus);
@@ -56,11 +56,11 @@ void System::systemSetup(){
     //Defining these so the methods following are less ugly
     uint8_t thanosservice = static_cast<uint8_t>(Services::ID::Thanos);
     uint8_t chamberPTapservice = static_cast<uint8_t>(Services::ID::chamberPTap);
-    uint8_t fuelPTapservice = static_cast<uint8_t>(Services::ID::fuelPTap);
+    uint8_t thrustGaugeservice = static_cast<uint8_t>(Services::ID::thrustGauge);
 
     networkmanager.registerService(thanosservice,Thanos.getThisNetworkCallback());
     networkmanager.registerService(chamberPTapservice,[this](packetptr_t packetptr){chamberPTap.networkCallback(std::move(packetptr));});
-    networkmanager.registerService(fuelPTapservice,[this](packetptr_t packetptr){fuelPTap.networkCallback(std::move(packetptr));});
+    networkmanager.registerService(thrustGaugeservice,[this](packetptr_t packetptr){thrustGauge.networkCallback(std::move(packetptr));});
 };
 
 void System::systemUpdate(){
@@ -68,7 +68,7 @@ void System::systemUpdate(){
 
     if(Thanos.getPollingStatus()){  
         chamberPTapPoller.update();
-        fuelPTapPoller.update();
+        thrustGaugePoller.update();
     }
     
     if(chamberPTapPoller.newdata)
@@ -76,9 +76,9 @@ void System::systemUpdate(){
         Thanos.updateChamberP(chamberPTapPoller.getVal());
     }
 
-    if(fuelPTapPoller.newdata)
+    if(thrustGaugePoller.newdata)
     {
-        Thanos.updateFuelP(fuelPTapPoller.getVal());
+        Thanos.updateThrust(thrustGaugePoller.getVal());
     }
 
     Thanos.update();
