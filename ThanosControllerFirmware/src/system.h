@@ -30,13 +30,17 @@ class System : public RicCoreSystem<System,SYSTEM_FLAG,Commands::ID>
 
         CanBus<SYSTEM_FLAG> canbus;
 
-    private:
-
         NetworkSensor chamberPTap;
         NetworkSensor thrustGauge;
         SensorPoller chamberPTapPoller;
         SensorPoller thrustGaugePoller;
 
         NRCThanos Thanos;
+
+    // private:
+
+        
+
+        
 
 };
