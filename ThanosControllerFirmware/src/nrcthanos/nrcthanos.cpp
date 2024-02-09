@@ -12,8 +12,11 @@ void NRCThanos::setup()
     fuelServo.setup();
     oxServo.setup();
 
-    fuelServo.setAngleLims(0,170);
-    oxServo.setAngleLims(0,160);
+    fuelServo.setAngleLims(0, 170);
+    oxServo.setAngleLims(0, 160);
+
+    m_oxThrottleRange = 160 - oxServoPreAngle;
+    m_fuelThrottleRange = 170 - fuelServoPreAngle;
 
     pinMode(_overrideGPIO, INPUT_PULLUP);
 }
@@ -24,7 +27,7 @@ void NRCThanos::update()
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
         currentEngineState = EngineState::Default;
-        _Buck.restart(5); //abuse restart command to prevent servos from getting too hot when in disarmed state
+        _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
     // Close valves if abort is used
@@ -98,9 +101,25 @@ void NRCThanos::update()
             break;
         }
 
-        if(_thrust < 400){
+        if (_thrust < 400)
+        {
+            
             oxServo.goto_Angle(90);
-            fuelServo.goto_Angle(105);
+
+            m_oxPercent = (float)(90 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            
+            m_fuelPercent = m_oxPercent + m_fuelExtra;
+            float fuelAngle = (float)(m_fuelPercent * m_fuelThrottleRange) + fuelServoPreAngle;
+
+            if (fuelAngle < fuelServoPreAngle)
+            {
+                fuelServo.goto_AngleHighRes(fuelServoPreAngle);
+            }
+            else
+            {
+                fuelServo.goto_AngleHighRes(fuelAngle);
+            }
+
             break;
         }
 
@@ -147,7 +166,7 @@ void NRCThanos::update()
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
         _polling = false;
-        
+
         break;
     }
 
@@ -295,7 +314,7 @@ void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float
 
     if ((demandAngle - prevAngle) > 0)
     {
-        currAngle = prevAngle + (timeSinceLast * speed); 
+        currAngle = prevAngle + (timeSinceLast * speed);
     }
     else if ((demandAngle - prevAngle) < 0)
     {
@@ -311,6 +330,7 @@ void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float
     // Servo.goto_Angle(static_cast<uint16_t>(currAngle));
     Servo.goto_AngleHighRes(currAngle);
     prevAngle = currAngle;
+
     prevUpdateT = millis();
 }
 
@@ -338,11 +358,17 @@ void NRCThanos::gotoThrust(float target, float closespeed, float openspeed)
         oxServo.goto_Angle(m_oxServoCurrAngle);
     }
 
-    if ((oxServo.getValue() + 15) < fuelServoPreAngle){
-        fuelServo.goto_Angle(fuelServoPreAngle);
+    m_oxPercent = (float)(m_oxServoCurrAngle - oxServoPreAngle) / (float)(m_oxThrottleRange);
+    m_fuelPercent = m_oxPercent + m_fuelExtra;
+    float fuelAngle = (float)(m_fuelPercent * m_fuelThrottleRange) + fuelServoPreAngle;
+
+    if (fuelAngle < fuelServoPreAngle)
+    {
+        fuelServo.goto_AngleHighRes(fuelServoPreAngle);
     }
-    else{
-        fuelServo.goto_Angle(oxServo.getValue()+15);
+    else
+    {
+        fuelServo.goto_AngleHighRes(fuelAngle);
     }
 }
 

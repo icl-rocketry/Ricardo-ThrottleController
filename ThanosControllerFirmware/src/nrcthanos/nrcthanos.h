@@ -167,4 +167,12 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint32_t m_throttledEntry;
         uint32_t m_nominalEntry;
         bool m_firstNominal = false;
+
+        //
+        float m_oxPercent = 0;
+        float m_fuelPercent = 0;
+        uint16_t m_oxThrottleRange = 0;
+        uint16_t m_fuelThrottleRange = 0;
+
+        float m_fuelExtra = 0.05;
 };
