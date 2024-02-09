@@ -54,6 +54,7 @@ void Commands::ChadTelemCommand(System& sm, const RnpPacketSerialized& packet)
 	chadtelem.servoVoltage = sm.Buck.getOutputV();
 	chadtelem.fuelAngle = sm.Thanos.getFuelAngle();
 	chadtelem.oxAngle = sm.Thanos.getOxAngle();
+	chadtelem.thanosState = sm.Thanos.getStatus();
 	chadtelem.system_status = sm.systemstatus.getStatus();
 	chadtelem.system_time = millis();
 	

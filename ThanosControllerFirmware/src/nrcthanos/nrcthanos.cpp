@@ -12,6 +12,9 @@ void NRCThanos::setup()
     fuelServo.setup();
     oxServo.setup();
 
+    fuelServo.setAngleLims(0,170);
+    oxServo.setAngleLims(0,160);
+
     pinMode(_overrideGPIO, INPUT_PULLUP);
 }
 
@@ -26,13 +29,14 @@ void NRCThanos::update()
     // Close valves if abort is used
     if (digitalRead(_overrideGPIO) == 1)
     {
-        currentEngineState = EngineState::Default;
+        currentEngineState = EngineState::ShutDown;
     }
 
     // Close valves after a flat 14 seconds
-    if (millis() - ignitionTime > 14000)
+    if ((millis() - ignitionTime > 14000) && _ignitionCalls > 0)
     {
-        currentEngineState = EngineState::Default;
+        currentEngineState = EngineState::ShutDown;
+        _ignitionCalls = 0;
     }
 
     switch (currentEngineState)
@@ -70,6 +74,7 @@ void NRCThanos::update()
         else if (timeFrameCheck(endOfIgnitionSeq))
         {
             currentEngineState = EngineState::NominalT;
+            m_nominalEntry = millis();
             m_firstNominal = true;
         }
 
@@ -79,12 +84,10 @@ void NRCThanos::update()
     case EngineState::ThrottledT:
     {
 
-        if ((millis() - m_timeThrustreached > m_throttledDownTime) && m_thrustreached)
+        if ((millis() - m_throttledEntry > m_throttledDownTime))
         {
             currentEngineState = EngineState::NominalT;
-            m_fuelServoPrevUpdate = 0;
-            m_oxServoPrevUpdate = 0;
-            m_thrustreached = false;
+            resetVars();
             break;
         }
 
@@ -95,7 +98,12 @@ void NRCThanos::update()
             break;
         }
 
-        gotoThrust(m_targetThrottled, m_servoFast, m_servoSlow);
+        gotoThrust(m_targetThrottled, m_servoFast, 0);
+
+        if(_thrust < 500){
+            oxServo.goto_Angle(90);
+            fuelServo.goto_Angle(105);
+        }
 
         break;
     }
@@ -103,12 +111,11 @@ void NRCThanos::update()
     case EngineState::NominalT:
     {
 
-        if ((millis() - m_timeThrustreached > m_firstNominalTime) && m_firstNominal)
+        if ((millis() - m_nominalEntry > m_firstNominalTime) && m_firstNominal)
         {
             currentEngineState = EngineState::ThrottledT;
-            m_fuelServoPrevUpdate = 0;
-            m_oxServoPrevUpdate = 0;
-            m_thrustreached = false;
+            resetVars();
+            m_throttledEntry = millis();
             m_firstNominal = false;
             break;
         }
@@ -120,7 +127,7 @@ void NRCThanos::update()
         //     break;
         // }
 
-        gotoThrust(m_nominal, m_servoSlow, m_servoFast);
+        gotoThrust(m_nominal, 0, m_servoFast);
 
         break;
     }
@@ -138,7 +145,8 @@ void NRCThanos::update()
     {
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
-
+        _polling = false;
+        
         break;
     }
 
@@ -151,7 +159,7 @@ void NRCThanos::update()
 
 bool NRCThanos::nominalEngineOp()
 {
-    if (_chamberP > 5)
+    if (_chamberP > 5 || _chamberP < 1)
     {
         return true;
     }
@@ -170,7 +178,7 @@ void NRCThanos::updateChamberP(float chamberP)
 void NRCThanos::updateThrust(float thrust)
 {
     lastTimeThrustUpdate = millis();
-    _thrust = thrust;
+    _thrust = abs(thrust);
 }
 
 void NRCThanos::execute_impl(packetptr_t packetptr)
@@ -188,9 +196,7 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
         currentEngineState = EngineState::Ignition;
         ignitionTime = millis();
         _ignitionCalls = 0;
-        m_fuelServoPrevUpdate = 0;
-        m_oxServoPrevUpdate = 0;
-        m_thrustreached = false;
+        resetVars();
         _polling = true;
         RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
         break;
@@ -273,7 +279,7 @@ bool NRCThanos::timeFrameCheck(int64_t start_time, int64_t end_time)
 
 void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float speed, float &prevAngle, float &currAngle, uint32_t &prevUpdateT)
 {
-    if (millis() - prevUpdateT < 5)
+    if (millis() - prevUpdateT < 10)
     {
         return;
     }
@@ -286,46 +292,51 @@ void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float
 
     float timeSinceLast = (float)(millis() - prevUpdateT) / 1000.0; // in seconds;
 
-    if (demandAngle - prevAngle > 0)
+    if (demandAngle - Servo.getValue() > 0)
     {
-        currAngle = prevAngle + timeSinceLast * speed;
+        currAngle = Servo.getValue() + (timeSinceLast * speed);
+        
     }
-    else if (demandAngle - prevAngle < 0)
+    else if (demandAngle - Servo.getValue() < 0)
     {
-        currAngle = prevAngle - timeSinceLast * speed;
+        currAngle = Servo.getValue() - (timeSinceLast * speed);
     }
     else
     {
         currAngle = currAngle;
     }
 
-    prevAngle = currAngle;
-    Servo.goto_AngleHighRes(currAngle);
+    Servo.goto_Angle(static_cast<uint16_t>(currAngle));
     prevUpdateT = millis();
 }
 
 void NRCThanos::gotoThrust(float target, float closespeed, float openspeed)
 {
-    if ((target * 1.02 > _thrust || target * 0.98 < _thrust) && !m_thrustreached)
-    {
-        m_timeThrustreached = millis();
-        m_thrustreached = true;
-    }
+    // if ((target * 1.02 > _thrust || target * 0.98 < _thrust) && !m_thrustreached)
+    // {
+    //     m_timeThrustreached = millis();
+    //     m_thrustreached = true;
+    // }
 
     if (target * 1.02 < _thrust)
     {
-        gotoWithSpeed(fuelServo, 60, closespeed, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
-        gotoWithSpeed(oxServo, 60, closespeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
+        gotoWithSpeed(oxServo, 70, closespeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
     }
     else if (_thrust < target * 0.98)
     {
-        gotoWithSpeed(fuelServo, 180, openspeed, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
+
         gotoWithSpeed(oxServo, 180, openspeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
     }
     else
     {
-        fuelServo.goto_AngleHighRes(m_fuelServoCurrAngle);
-        oxServo.goto_AngleHighRes(m_oxServoCurrAngle);
+        oxServo.goto_Angle(m_oxServoCurrAngle);
+    }
+
+    if ((oxServo.getValue() + 15) < fuelServoPreAngle){
+        fuelServo.goto_Angle(fuelServoPreAngle);
+    }
+    else{
+        fuelServo.goto_Angle(oxServo.getValue()+15);
     }
 }
 

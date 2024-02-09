@@ -75,7 +75,7 @@ void System::systemUpdate(){
     {
         // Thanos.updateChamberP(chamberPTapPoller.getVal());
     }
-
+    Thanos.updateChamberP(10);
     if(thrustGaugePoller.newdata)
     {
         Thanos.updateThrust(thrustGaugePoller.getVal());

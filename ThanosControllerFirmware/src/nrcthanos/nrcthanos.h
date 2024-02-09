@@ -30,7 +30,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             _overrideGPIO(overrideGPIO),
             _address(address),
             fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,170),
-            oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,170)
+            oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160)
             {};
 
         void setup();
@@ -41,6 +41,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         uint16_t getFuelAngle() { return fuelServo.getAngle(); };
         uint16_t getOxAngle() { return oxServo.getAngle(); };
+        uint8_t getStatus(){return static_cast<uint8_t>(currentEngineState);};
 
     protected:
         RnpNetworkManager &_networkmanager;
@@ -63,16 +64,28 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         void override_impl(packetptr_t packetptr);
         void extendedCommandHandler_impl(const NRCPacket::NRC_COMMAND_ID commandID, packetptr_t packetptr);
 
+        // enum class EngineState : uint8_t
+        // {
+        //     Default = 0,
+        //     Ignition = 1,
+        //     ShutDown = 2,
+        //     NominalT = 3,
+        //     ThrottledT = 4,
+        //     // Fullbore = 4,
+        //     Debug = 5
+        // };
+
         enum class EngineState : uint8_t
         {
-            Default = 0,
-            Ignition = 1,
-            ShutDown = 2,
-            NominalT = 3,
-            ThrottledT = 4,
+            Default = 1<<0,
+            Ignition = 1<<1,
+            ShutDown = 1<<2,
+            NominalT = 1<<3,
+            ThrottledT = 1<<4,
             // Fullbore = 4,
-            Debug = 5
+            Debug = 1<<5
         };
+
 
         bool fullbore_called = false;
         bool shutdown_called = false;
@@ -92,7 +105,12 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         void gotoThrust(float target, float closespeed, float openspeed);
         void firePyro(uint32_t duration);
-        uint8_t getStatus(){return static_cast<uint8_t>(currentEngineState);};
+
+        void resetVars(){
+            m_fuelServoPrevUpdate = 0;
+            m_oxServoPrevUpdate = 0;
+            m_thrustreached = false;
+        };
 
         // Ignition sequence timings from moment ignition command received
         const uint64_t pyroFires = 0;
@@ -100,16 +118,16 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t oxValvePreposition = 550;
         const uint64_t endOfIgnitionSeq = 1300;
 
-        const uint16_t fuelServoPreAngle = 60;
-        const uint16_t oxServoPreAngle = 55;
+        const uint16_t fuelServoPreAngle = 105;
+        const uint16_t oxServoPreAngle = 70;
 
         uint64_t lastTimeThrustUpdate;
         uint64_t lastTimeChamberPUpdate;
 
         const uint64_t pressureUpdateTimeLim = 1000;
-        const uint32_t m_firstNominalTime = 4100;
-        const uint32_t m_throttledDownTime = 2100;
-        const uint32_t m_secondNominalTime = 1500;
+        const uint32_t m_firstNominalTime = 4500;
+        const uint32_t m_throttledDownTime = 2500;
+        const uint32_t m_secondNominalTime = 2000;
 
         uint8_t _ignitionCalls = 0;
         const uint8_t _ignitionCommandMaxCalls = 2;
@@ -139,6 +157,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         //
         bool m_thrustreached = false;
-        uint32_t m_timeThrustreached;
+        uint32_t m_throttledEntry;
+        uint32_t m_nominalEntry;
         bool m_firstNominal = false;
 };
