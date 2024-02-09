@@ -31,7 +31,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             _oxServoChannel(oxServoChannel),
             _overrideGPIO(overrideGPIO),
             _address(address),
-            fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,170),
+            fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,175),
             oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160),
             _Buck(Buck)
             {};
@@ -123,7 +123,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t pyroFires = 0;
         const uint64_t fuelValvePreposition = 500;
         const uint64_t oxValvePreposition = 550;
-        const uint64_t endOfIgnitionSeq = 1300;
+        const uint64_t endOfIgnitionSeq = 1050;
 
         const uint16_t fuelServoPreAngle = 105;
         const uint16_t oxServoPreAngle = 70;
@@ -132,9 +132,9 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint64_t lastTimeChamberPUpdate;
 
         const uint64_t pressureUpdateTimeLim = 1000;
-        const uint32_t m_firstNominalTime = 4500;
-        const uint32_t m_throttledDownTime = 2500;
-        const uint32_t m_secondNominalTime = 2000;
+        const uint32_t m_firstNominalTime = 5000;
+        const uint32_t m_throttledDownTime = 4100;
+        const uint32_t m_secondNominalTime = 3000;
 
         uint8_t _ignitionCalls = 0;
         const uint8_t _ignitionCommandMaxCalls = 2;
@@ -159,7 +159,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint32_t m_fuelServoPrevUpdate = 0;
         uint32_t m_oxServoPrevUpdate = 0;
 
-        const float m_servoFast = 70; // degs per second
+        const float m_servoFast = 75; // degs per second
+        const float m_firstNominalSpeed = 120; // degs per second
         const float m_servoSlow = 20;  // degs per second
 
         //

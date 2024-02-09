@@ -12,11 +12,11 @@ void NRCThanos::setup()
     fuelServo.setup();
     oxServo.setup();
 
-    fuelServo.setAngleLims(0, 170);
+    fuelServo.setAngleLims(0, 175);
     oxServo.setAngleLims(0, 160);
 
     m_oxThrottleRange = 160 - oxServoPreAngle;
-    m_fuelThrottleRange = 170 - fuelServoPreAngle;
+    m_fuelThrottleRange = 175 - fuelServoPreAngle;
 
     pinMode(_overrideGPIO, INPUT_PULLUP);
 }
@@ -103,7 +103,7 @@ void NRCThanos::update()
 
         if (_thrust < 400)
         {
-            
+
             oxServo.goto_Angle(90);
 
             m_oxPercent = (float)(90 - oxServoPreAngle) / (float)(m_oxThrottleRange);
@@ -146,8 +146,12 @@ void NRCThanos::update()
         //     gotoWithSpeed(oxServo, 180, m_servoSlow, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
         //     break;
         // }
-
-        gotoThrust(m_nominal, 0, m_servoFast);
+        if (m_firstNominal){
+            gotoThrust(m_nominal, 0, m_firstNominalSpeed);
+        }
+        else{
+            gotoThrust(m_nominal, 0, m_servoFast);
+        }
 
         break;
     }
