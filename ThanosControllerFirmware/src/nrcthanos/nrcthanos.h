@@ -6,6 +6,7 @@
 #include <librnp/rnp_networkmanager.h>
 #include <librnp/rnp_packet.h>
 
+#include <SiC43x.h>
 
 
 class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
@@ -19,7 +20,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
                     uint8_t oxServoGPIO,
                     uint8_t oxServoChannel,
                     uint8_t overrideGPIO,
-                    uint8_t address
+                    uint8_t address,
+                    SiC43x& Buck
                     ):
             NRCRemoteActuatorBase(networkmanager),
             _networkmanager(networkmanager),      
@@ -30,7 +32,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             _overrideGPIO(overrideGPIO),
             _address(address),
             fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,170),
-            oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160)
+            oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160),
+            _Buck(Buck)
             {};
 
         void setup();
@@ -54,6 +57,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         NRCRemoteServo fuelServo;
         NRCRemoteServo oxServo;
+
+        SiC43x& _Buck;
 
         friend class NRCRemoteActuatorBase;
         friend class NRCRemoteBase;
@@ -109,6 +114,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         void resetVars(){
             m_fuelServoPrevUpdate = 0;
             m_oxServoPrevUpdate = 0;
+            m_fuelServoPrevAngle = fuelServo.getValue();
+            m_oxServoPrevAngle = oxServo.getValue();
             m_thrustreached = false;
         };
 
@@ -152,7 +159,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint32_t m_fuelServoPrevUpdate = 0;
         uint32_t m_oxServoPrevUpdate = 0;
 
-        const float m_servoFast = 180; // degs per second
+        const float m_servoFast = 70; // degs per second
         const float m_servoSlow = 20;  // degs per second
 
         //

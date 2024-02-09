@@ -24,6 +24,7 @@ void NRCThanos::update()
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
         currentEngineState = EngineState::Default;
+        _Buck.restart(5); //abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
     // Close valves if abort is used
@@ -62,13 +63,11 @@ void NRCThanos::update()
         else if (timeFrameCheck(fuelValvePreposition, oxValvePreposition))
         {
             fuelServo.goto_Angle(fuelServoPreAngle);
-            m_fuelServoPrevAngle = fuelServoPreAngle;
         }
 
         else if (timeFrameCheck(oxValvePreposition, endOfIgnitionSeq))
         {
             oxServo.goto_Angle(oxServoPreAngle);
-            m_oxServoPrevAngle = oxServoPreAngle;
         }
 
         else if (timeFrameCheck(endOfIgnitionSeq))
@@ -76,6 +75,7 @@ void NRCThanos::update()
             currentEngineState = EngineState::NominalT;
             m_nominalEntry = millis();
             m_firstNominal = true;
+            resetVars();
         }
 
         break;
@@ -98,12 +98,13 @@ void NRCThanos::update()
             break;
         }
 
-        gotoThrust(m_targetThrottled, m_servoFast, 0);
-
-        if(_thrust < 500){
+        if(_thrust < 400){
             oxServo.goto_Angle(90);
             fuelServo.goto_Angle(105);
+            break;
         }
+
+        gotoThrust(m_targetThrottled, m_servoFast, 0);
 
         break;
     }
@@ -292,21 +293,24 @@ void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float
 
     float timeSinceLast = (float)(millis() - prevUpdateT) / 1000.0; // in seconds;
 
-    if (demandAngle - Servo.getValue() > 0)
+    if ((demandAngle - prevAngle) > 0)
     {
-        currAngle = Servo.getValue() + (timeSinceLast * speed);
-        
+        currAngle = prevAngle + (timeSinceLast * speed); 
     }
-    else if (demandAngle - Servo.getValue() < 0)
+    else if ((demandAngle - prevAngle) < 0)
     {
-        currAngle = Servo.getValue() - (timeSinceLast * speed);
+        currAngle = prevAngle - (timeSinceLast * speed);
     }
     else
     {
         currAngle = currAngle;
     }
 
-    Servo.goto_Angle(static_cast<uint16_t>(currAngle));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(currAngle));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(_thrust));
+    // Servo.goto_Angle(static_cast<uint16_t>(currAngle));
+    Servo.goto_AngleHighRes(currAngle);
+    prevAngle = currAngle;
     prevUpdateT = millis();
 }
 
@@ -318,13 +322,15 @@ void NRCThanos::gotoThrust(float target, float closespeed, float openspeed)
     //     m_thrustreached = true;
     // }
 
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(target));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(_thrust));
+
     if (target * 1.02 < _thrust)
     {
         gotoWithSpeed(oxServo, 70, closespeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
     }
     else if (_thrust < target * 0.98)
     {
-
         gotoWithSpeed(oxServo, 180, openspeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
     }
     else
