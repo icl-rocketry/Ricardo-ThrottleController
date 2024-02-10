@@ -148,7 +148,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint8_t m_ignitionNode = 107;
 
         float m_nominal = 2400;
-        float m_targetThrottled = 800;
+        float m_targetThrottled = 792;
 
         float m_fuelServoCurrAngle = 0;
         float m_oxServoCurrAngle = 0;
