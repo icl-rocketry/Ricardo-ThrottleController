@@ -27,7 +27,7 @@ void NRCThanos::update()
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
         currentEngineState = EngineState::Default;
-        _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
+        // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
     // Close valves if abort is used
