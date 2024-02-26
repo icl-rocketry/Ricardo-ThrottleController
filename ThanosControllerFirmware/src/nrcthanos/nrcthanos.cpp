@@ -19,6 +19,9 @@ void NRCThanos::setup()
     m_fuelThrottleRange = 175 - fuelServoPreAngle;
 
     pinMode(_overrideGPIO, INPUT_PULLUP);
+    pinMode(_tvcpin0, OUTPUT);
+    pinMode(_tvcpin1, OUTPUT);
+    pinMode(_tvcpin2, OUTPUT);
 }
 
 void NRCThanos::update()
@@ -27,6 +30,8 @@ void NRCThanos::update()
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
         currentEngineState = EngineState::Default;
+        motorsOff();
+        
         // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
@@ -37,10 +42,15 @@ void NRCThanos::update()
     }
 
     // Close valves after a flat 14 seconds
-    if ((millis() - ignitionTime > 14000) && _ignitionCalls > 0)
+    if ((millis() - ignitionTime > m_cutoffTime) && _ignitionCalls > 0)
     {
         currentEngineState = EngineState::ShutDown;
         _ignitionCalls = 0;
+    }
+
+     if ((millis() - ignitionTime > m_oxFillCloseTime) && _ignitionCalls > 0)
+    {
+        closeOxFill();
     }
 
     switch (currentEngineState)
@@ -51,6 +61,12 @@ void NRCThanos::update()
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
         _polling = false;
+
+        if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::NOMINAL) && m_calibrationDone)
+        {
+            motorsArmed();
+            // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
+        }
         break;
     }
 
@@ -58,27 +74,30 @@ void NRCThanos::update()
 
     { // ignition sequence
         // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition state");
-        if (timeFrameCheck(pyroFires, fuelValvePreposition))
+        if (timeFrameCheck(pyroFires, endOfIgnitionSeq))
         {
-            firePyro(fuelValvePreposition - pyroFires);
-        }
-
-        else if (timeFrameCheck(fuelValvePreposition, oxValvePreposition))
-        {
-            fuelServo.goto_Angle(fuelServoPreAngle);
-        }
-
-        else if (timeFrameCheck(oxValvePreposition, endOfIgnitionSeq))
-        {
-            oxServo.goto_Angle(oxServoPreAngle);
+            firePyro(500);
         }
 
         else if (timeFrameCheck(endOfIgnitionSeq))
         {
             currentEngineState = EngineState::NominalT;
+            openOxFill();
             m_nominalEntry = millis();
             m_firstNominal = true;
             resetVars();
+        }
+
+        break;
+    }
+
+    case EngineState::Calibration:
+    {
+        motorsCalibrate();
+        if (millis() - m_calibrationStart > m_calibrationTime)
+        {
+            currentEngineState = EngineState::Default;   
+            m_calibrationDone = true;         
         }
 
         break;
@@ -140,36 +159,23 @@ void NRCThanos::update()
             break;
         }
 
-        // if (!nominalEngineOp())
-        // {
-        //     gotoWithSpeed(fuelServo, 180, m_servoSlow, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
-        //     gotoWithSpeed(oxServo, 180, m_servoSlow, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
-        //     break;
-        // }
         if (m_firstNominal){
             gotoThrust(m_nominal, 0, m_firstNominalSpeed);
         }
         else{
-            gotoThrust(m_nominal, 0, m_servoFast);
+            gotoThrust(2380, 0, m_servoFast);
         }
 
         break;
     }
-
-        // case EngineState::Fullbore:
-        // {
-
-        //     fuelServo.goto_Angle(180);
-        //     oxServo.goto_Angle(180);
-
-        //     break;
-        // }
 
     case EngineState::ShutDown:
     {
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
         _polling = false;
+
+        motorsOff();
 
         break;
     }
@@ -183,7 +189,7 @@ void NRCThanos::update()
 
 bool NRCThanos::nominalEngineOp()
 {
-    if (_chamberP > 5 || _chamberP < 1)
+    if (_chamberP > 3 || _chamberP < 1)
     {
         return true;
     }
@@ -242,6 +248,18 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
         _polling = false;
         currentEngineState = EngineState::Debug;
         RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Entered debug");
+        break;
+    }
+    case 4:
+    {
+        if (currentEngineState != EngineState::Default)
+        {
+            break;
+        }
+        _polling = false;
+        currentEngineState = EngineState::Calibration;
+        m_calibrationStart = millis();
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Started calibration");
         break;
     }
     }
@@ -404,5 +422,38 @@ bool NRCThanos::pValUpdated()
     else
     {
         return true;
+    }
+}
+
+void NRCThanos::openOxFill()
+{
+    SimpleCommandPacket openOxFillCmd(2, 180);
+    openOxFillCmd.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
+    openOxFillCmd.header.destination_service = m_oxFillService;
+    openOxFillCmd.header.source = _address;
+    openOxFillCmd.header.destination = m_oxFillNode;
+    openOxFillCmd.header.uid = 0;
+    _networkmanager.sendPacket(openOxFillCmd);
+    oxFillClosed = false;
+}
+
+void NRCThanos::closeOxFill()
+{
+    if (!oxFillClosed){
+        SimpleCommandPacket closeOxFillCmd(2, 0);
+        closeOxFillCmd.header.source_service = static_cast<uint8_t>(Services::ID::Thanos);
+        closeOxFillCmd.header.destination_service = m_oxFillService;
+        closeOxFillCmd.header.source = _address;
+        closeOxFillCmd.header.destination = m_oxFillNode;
+        closeOxFillCmd.header.uid = 0;
+        _networkmanager.sendPacket(closeOxFillCmd);
+
+        if (closeOxFillCalls >= 2){     // this is clapped i know
+            oxFillClosed = true;
+            closeOxFillCalls = 0;
+        }
+        else{
+            closeOxFillCalls++;
+        }
     }
 }
