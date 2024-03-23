@@ -5,6 +5,9 @@
 #include <libriccore/commands/commandhandler.h>
 #include <libriccore/riccorelogging.h>
 
+#include "LuT.h"
+#include "LinearInterp.h"
+
 #include "Config/services_config.h"
 
 void NRCThanos::setup()
@@ -19,9 +22,6 @@ void NRCThanos::setup()
     m_fuelThrottleRange = 175 - fuelServoPreAngle;
 
     pinMode(_overrideGPIO, INPUT_PULLUP);
-    pinMode(_tvcpin0, OUTPUT);
-    pinMode(_tvcpin1, OUTPUT);
-    pinMode(_tvcpin2, OUTPUT);
 }
 
 void NRCThanos::update()
@@ -29,9 +29,7 @@ void NRCThanos::update()
     // Close valves if component disarmed
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
-        currentEngineState = EngineState::Default;
-        motorsOff();
-        
+        currentEngineState = EngineState::Default;        
         // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
@@ -48,7 +46,7 @@ void NRCThanos::update()
         _ignitionCalls = 0;
     }
 
-     if ((millis() - ignitionTime > m_oxFillCloseTime) && _ignitionCalls > 0)
+    if ((millis() - ignitionTime > m_oxFillCloseTime) && _ignitionCalls > 0)
     {
         closeOxFill();
     }
@@ -62,11 +60,6 @@ void NRCThanos::update()
         oxServo.goto_Angle(0);
         _polling = false;
 
-        if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::NOMINAL) && m_calibrationDone)
-        {
-            motorsArmed();
-            // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
-        }
         break;
     }
 
@@ -74,14 +67,21 @@ void NRCThanos::update()
 
     { // ignition sequence
         // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition state");
-        if (timeFrameCheck(pyroFires, endOfIgnitionSeq))
+        if (timeFrameCheck(pyroFires, preAngleTime))
         {
             firePyro(500);
         }
 
+        else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
+        {
+            oxServo.goto_Angle(102);
+            m_oxPercent = (float)(102 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            fuelServo.goto_AngleHighRes(nextFuelAngle());
+        }
+        
         else if (timeFrameCheck(endOfIgnitionSeq))
         {
-            currentEngineState = EngineState::NominalT;
+            currentEngineState = EngineState::Controlled;
             openOxFill();
             m_nominalEntry = millis();
             m_firstNominal = true;
@@ -91,91 +91,27 @@ void NRCThanos::update()
         break;
     }
 
-    case EngineState::Calibration:
+    case EngineState::Controlled:
     {
-        motorsCalibrate();
-        if (millis() - m_calibrationStart > m_calibrationTime)
+         //Kill the engine if chamber gets too high during feedback portion of test
+        if (_chamberP > m_maxPc)
         {
-            currentEngineState = EngineState::Default;   
-            m_calibrationDone = true;         
+            currentEngineState = EngineState::ShutDown; 
         }
+
+        oxServo.goto_AngleHighRes(nextOxAngle());
+    
+        fuelServo.goto_AngleHighRes(nextFuelAngle());
 
         break;
     }
 
-    case EngineState::ThrottledT:
-    {
-
-        if ((millis() - m_throttledEntry > m_throttledDownTime))
-        {
-            currentEngineState = EngineState::NominalT;
-            resetVars();
-            break;
-        }
-
-        if (!nominalEngineOp())
-        {
-            gotoWithSpeed(fuelServo, 180, m_servoSlow, m_fuelServoPrevAngle, m_fuelServoCurrAngle, m_fuelServoPrevUpdate);
-            gotoWithSpeed(oxServo, 180, m_servoSlow, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
-            break;
-        }
-
-        if (_thrust < 400)
-        {
-
-            oxServo.goto_Angle(90);
-
-            m_oxPercent = (float)(90 - oxServoPreAngle) / (float)(m_oxThrottleRange);
-            
-            m_fuelPercent = m_oxPercent + m_fuelExtra;
-            float fuelAngle = (float)(m_fuelPercent * m_fuelThrottleRange) + fuelServoPreAngle;
-
-            if (fuelAngle < fuelServoPreAngle)
-            {
-                fuelServo.goto_AngleHighRes(fuelServoPreAngle);
-            }
-            else
-            {
-                fuelServo.goto_AngleHighRes(fuelAngle);
-            }
-
-            break;
-        }
-
-        gotoThrust(m_targetThrottled, m_servoFast, 0);
-
-        break;
-    }
-
-    case EngineState::NominalT:
-    {
-
-        if ((millis() - m_nominalEntry > m_firstNominalTime) && m_firstNominal)
-        {
-            currentEngineState = EngineState::ThrottledT;
-            resetVars();
-            m_throttledEntry = millis();
-            m_firstNominal = false;
-            break;
-        }
-
-        if (m_firstNominal){
-            gotoThrust(m_nominal, 0, m_firstNominalSpeed);
-        }
-        else{
-            gotoThrust(2380, 0, m_servoFast);
-        }
-
-        break;
-    }
 
     case EngineState::ShutDown:
     {
         fuelServo.goto_Angle(0);
         oxServo.goto_Angle(0);
         _polling = false;
-
-        motorsOff();
 
         break;
     }
@@ -199,16 +135,98 @@ bool NRCThanos::nominalEngineOp()
     }
 }
 
+float NRCThanos::nextOxAngle(){
+
+    float demandPc = PcSetpoint();
+    float pcErr = demandPc - _chamberP;
+        
+    float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)10e6); //Calculate the time since the last
+    m_prev_int_t = esp_timer_get_time();
+    m_I_err = m_I_err + pcErr*dt; //Increment the        integral counter
+
+    float I_term = K_i*m_I_err;
+
+    //Set upper and lower bounds to the integral term to prevent windup
+    
+    if (I_term > m_I_max)
+    {
+        I_term = m_I_max;
+    }
+    else if (I_term < -m_I_max)
+    {
+        I_term = -m_I_max;
+    }
+
+    float oxAngle = (int) (K_p*pcErr + I_term + oxAngleFF(demandPc));
+
+    if (oxAngle > m_maxControlledOx){
+        oxAngle = m_maxControlledOx;
+    }
+    else if (oxAngle < oxServoPreAngle){
+        oxAngle = oxServoPreAngle;
+    }
+
+    m_oxPercent = (float)(oxAngle - oxServoPreAngle) / (float)(m_oxThrottleRange);
+
+    return oxAngle;
+}
+
+float NRCThanos::oxAngleFF(float Pc){
+
+    return PcAngleLuT.get(Pc);
+}
+
+float NRCThanos::nextFuelAngle(){
+    m_fuelPercent = m_oxPercent + m_fuelExtra;
+    
+    float fuelAngle = (float)(m_fuelPercent * m_fuelThrottleRange) + fuelServoPreAngle;
+
+    if (fuelAngle < fuelServoPreAngle)
+    {
+        fuelAngle = fuelServoPreAngle;
+    }
+
+    return fuelAngle;
+}
+
+float NRCThanos::PcSetpoint(){
+    uint32_t currTime = millis() - ignitionTime;
+
+    //some stupid lookup, not my proudest work
+    int i = 0;
+    for (i = 0; i < m_testTime.size(); ++i){ 
+        if (currTime > m_testTime[i]){
+            continue;
+        }
+        if (currTime < m_testTime[i]){
+            break;
+        }
+        else{
+            break;
+        }
+    }
+
+    if (i > m_testTime.size()-1){
+        float Pc = m_targetPc[i];
+        // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc1: " + std::to_string(Pc));
+        return Pc;
+    }
+     i -= 1;
+    //find how far we are into the next timestep
+    float dt = (float)(currTime - m_testTime[i])/(float)(m_testTime[i+1]-m_testTime[i]);
+
+    float Pc = dt * (float)(m_targetPc[i+1] - m_targetPc[i]) + (float)m_targetPc[i];
+
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc2: " + std::to_string(Pc));
+
+    return Pc;
+}
+
+
 void NRCThanos::updateChamberP(float chamberP)
 {
     lastTimeChamberPUpdate = millis();
     _chamberP = chamberP;
-}
-
-void NRCThanos::updateThrust(float thrust)
-{
-    lastTimeThrustUpdate = millis();
-    _thrust = abs(thrust);
 }
 
 void NRCThanos::execute_impl(packetptr_t packetptr)
@@ -248,18 +266,6 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
         _polling = false;
         currentEngineState = EngineState::Debug;
         RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Entered debug");
-        break;
-    }
-    case 4:
-    {
-        if (currentEngineState != EngineState::Default)
-        {
-            break;
-        }
-        _polling = false;
-        currentEngineState = EngineState::Calibration;
-        m_calibrationStart = millis();
-        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Started calibration");
         break;
     }
     }
@@ -319,81 +325,6 @@ bool NRCThanos::timeFrameCheck(int64_t start_time, int64_t end_time)
     }
 }
 
-void NRCThanos::gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float speed, float &prevAngle, float &currAngle, uint32_t &prevUpdateT)
-{
-    if (millis() - prevUpdateT < 10)
-    {
-        return;
-    }
-
-    if (prevUpdateT == 0)
-    {
-        prevUpdateT = millis();
-        return;
-    }
-
-    float timeSinceLast = (float)(millis() - prevUpdateT) / 1000.0; // in seconds;
-
-    if ((demandAngle - prevAngle) > 0)
-    {
-        currAngle = prevAngle + (timeSinceLast * speed);
-    }
-    else if ((demandAngle - prevAngle) < 0)
-    {
-        currAngle = prevAngle - (timeSinceLast * speed);
-    }
-    else
-    {
-        currAngle = currAngle;
-    }
-
-    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(currAngle));
-    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(_thrust));
-    // Servo.goto_Angle(static_cast<uint16_t>(currAngle));
-    Servo.goto_AngleHighRes(currAngle);
-    prevAngle = currAngle;
-
-    prevUpdateT = millis();
-}
-
-void NRCThanos::gotoThrust(float target, float closespeed, float openspeed)
-{
-    // if ((target * 1.02 > _thrust || target * 0.98 < _thrust) && !m_thrustreached)
-    // {
-    //     m_timeThrustreached = millis();
-    //     m_thrustreached = true;
-    // }
-
-    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(target));
-    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>(std::to_string(_thrust));
-
-    if (target * 1.02 < _thrust)
-    {
-        gotoWithSpeed(oxServo, 70, closespeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
-    }
-    else if (_thrust < target * 0.98)
-    {
-        gotoWithSpeed(oxServo, 180, openspeed, m_oxServoPrevAngle, m_oxServoCurrAngle, m_oxServoPrevUpdate);
-    }
-    else
-    {
-        oxServo.goto_Angle(m_oxServoCurrAngle);
-    }
-
-    m_oxPercent = (float)(m_oxServoCurrAngle - oxServoPreAngle) / (float)(m_oxThrottleRange);
-    m_fuelPercent = m_oxPercent + m_fuelExtra;
-    float fuelAngle = (float)(m_fuelPercent * m_fuelThrottleRange) + fuelServoPreAngle;
-
-    if (fuelAngle < fuelServoPreAngle)
-    {
-        fuelServo.goto_AngleHighRes(fuelServoPreAngle);
-    }
-    else
-    {
-        fuelServo.goto_AngleHighRes(fuelAngle);
-    }
-}
-
 void NRCThanos::firePyro(uint32_t duration)
 {
     if (millis() - _prevFiring > _ignitionCommandSendDelta)
@@ -415,7 +346,7 @@ void NRCThanos::firePyro(uint32_t duration)
 
 bool NRCThanos::pValUpdated()
 {
-    if ((millis() - lastTimeChamberPUpdate) > pressureUpdateTimeLim || (millis() - lastTimeThrustUpdate) > pressureUpdateTimeLim)
+    if ((millis() - lastTimeChamberPUpdate) > pressureUpdateTimeLim)
     {
         return false;
     }
