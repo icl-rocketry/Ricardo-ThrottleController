@@ -74,8 +74,8 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
         {
-            oxServo.goto_Angle(102);
-            m_oxPercent = (float)(102 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            oxServo.goto_Angle(100);
+            m_oxPercent = (float)(100 - oxServoPreAngle) / (float)(m_oxThrottleRange);
             fuelServo.goto_AngleHighRes(nextFuelAngle());
         }
         
@@ -144,20 +144,20 @@ float NRCThanos::nextOxAngle(){
     m_prev_int_t = esp_timer_get_time();
     m_I_err = m_I_err + pcErr*dt; //Increment the        integral counter
 
+    if (m_I_err > m_I_max)
+    {
+        m_I_err = m_I_max;
+    }
+    else if (m_I_err < -m_I_max)
+    {
+        m_I_err = -m_I_max;
+    }
+    
     float I_term = K_i*m_I_err;
 
     //Set upper and lower bounds to the integral term to prevent windup
-    
-    if (I_term > m_I_max)
-    {
-        I_term = m_I_max;
-    }
-    else if (I_term < -m_I_max)
-    {
-        I_term = -m_I_max;
-    }
 
-    float oxAngle = (int) (K_p*pcErr + I_term + oxAngleFF(demandPc));
+    float oxAngle = (float)K_p*pcErr + (float) I_term + (float) oxAngleFF(demandPc);
 
     if (oxAngle > m_maxControlledOx){
         oxAngle = m_maxControlledOx;
