@@ -165,15 +165,15 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint16_t m_oxThrottleRange = 0;
         uint16_t m_fuelThrottleRange = 0;
 
-        float m_fuelExtra = -0.4;
+        float m_fuelExtra = -0.45;
 
         //vectors to define throttle profile from ignition
-        std::vector<float> m_targetPc = {13.8,13.8,6.8,6.8,13.8,13.8};
-        std::vector<uint32_t> m_testTime = {1500,5900,6800,9800,10700,16000};
+        std::vector<float> m_targetPc = {12,13.8,13.8,6.8,6.8,13.8,13.8};
+        std::vector<uint32_t> m_testTime = {1500,2000,5900,6800,9800,10700,16000};
 
         //controller params
         static constexpr uint16_t m_maxControlledOx = 145;
-        static constexpr float K_p = 1.5;
+        static constexpr float K_p = 3.0;
         static constexpr float K_i = 3.0;
         float last_demand_Pc = 0;
         float m_I_err = 0;
