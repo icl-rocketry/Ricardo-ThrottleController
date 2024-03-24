@@ -74,14 +74,15 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
         {
-            oxServo.goto_Angle(100);
-            m_oxPercent = (float)(100 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            oxServo.goto_Angle(95);
+            m_oxPercent = (float)(95 - oxServoPreAngle) / (float)(m_oxThrottleRange);
             fuelServo.goto_AngleHighRes(nextFuelAngle());
         }
         
         else if (timeFrameCheck(endOfIgnitionSeq))
         {
             currentEngineState = EngineState::Controlled;
+            m_prev_int_t = esp_timer_get_time();
             openOxFill();
             m_nominalEntry = millis();
             m_firstNominal = true;
@@ -137,7 +138,15 @@ bool NRCThanos::nominalEngineOp()
 
 float NRCThanos::nextOxAngle(){
 
+    
     float demandPc = PcSetpoint();
+
+    if(abs(demandPc - last_demand_Pc) > 0.01){
+        m_I_err = 0;
+    }
+
+    last_demand_Pc = demandPc;
+
     float pcErr = demandPc - _chamberP;
         
     float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)10e6); //Calculate the time since the last

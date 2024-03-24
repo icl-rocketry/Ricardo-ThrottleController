@@ -110,15 +110,18 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         float oxAngleFF(float Pc);
 
         void resetVars(){
-
+            last_demand_Pc = 0;
+            m_I_err = 0;
+            m_prev_int_t= 0;
+            m_I_max = 10;
         };
 
         // Ignition sequence timings from moment ignition command received
         const uint64_t pyroFires = 0;
         // const uint64_t fuelValvePreposition = 500;
         // const uint64_t oxValvePreposition = 550;
-        const uint64_t preAngleTime = 500;
-        const uint64_t endOfIgnitionSeq = 1000;
+        const uint64_t preAngleTime = 1000;
+        const uint64_t endOfIgnitionSeq = 1500;
 
         const uint16_t fuelServoPreAngle = 105;
         const uint16_t oxServoPreAngle = 70;
@@ -162,16 +165,17 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         uint16_t m_oxThrottleRange = 0;
         uint16_t m_fuelThrottleRange = 0;
 
-        float m_fuelExtra = -0.25;
+        float m_fuelExtra = -0.4;
 
         //vectors to define throttle profile from ignition
         std::vector<float> m_targetPc = {13.8,13.8,6.8,6.8,13.8,13.8};
-        std::vector<uint32_t> m_testTime = {1000,5400,6300,9300,10200,15500};
+        std::vector<uint32_t> m_testTime = {1500,5900,6800,9800,10700,16000};
 
         //controller params
         static constexpr uint16_t m_maxControlledOx = 145;
         static constexpr float K_p = 1.5;
         static constexpr float K_i = 3.0;
+        float last_demand_Pc = 0;
         float m_I_err = 0;
         float m_prev_int_t= 0;
         float m_I_max = 10;
