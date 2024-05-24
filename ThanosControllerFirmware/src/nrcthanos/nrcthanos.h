@@ -120,7 +120,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t pyroFires = 0;
         // const uint64_t fuelValvePreposition = 500;
         // const uint64_t oxValvePreposition = 550;
-        const uint64_t preAngleTime = 1000;
+        const uint64_t preAngleTime = 500;
         const uint64_t endOfIgnitionSeq = 1500;
 
         const uint16_t fuelServoPreAngle = 105;

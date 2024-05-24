@@ -74,8 +74,8 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
         {
-            oxServo.goto_Angle(90);
-            m_oxPercent = (float)(90 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            oxServo.goto_Angle(95);
+            m_oxPercent = (float)(95 - oxServoPreAngle) / (float)(m_oxThrottleRange);
             fuelServo.goto_AngleHighRes(nextFuelAngle());
         }
         
@@ -98,6 +98,7 @@ void NRCThanos::update()
         if (_chamberP > m_maxPc)
         {
             currentEngineState = EngineState::ShutDown; 
+            break;
         }
 
         oxServo.goto_AngleHighRes(nextOxAngle());
@@ -141,7 +142,7 @@ float NRCThanos::nextOxAngle(){
     
     float demandPc = PcSetpoint();
 
-    if(abs(demandPc - last_demand_Pc) > 0.0001){
+    if(abs(demandPc - last_demand_Pc) > 0.001){
         m_I_err = 0;
     }
 
@@ -149,10 +150,11 @@ float NRCThanos::nextOxAngle(){
 
     float pcErr = demandPc - _chamberP;
         
-    float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)10e6); //Calculate the time since the last
+    float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)10e6); //Calculate the time since the last update in s
     m_prev_int_t = esp_timer_get_time();
-    m_I_err = m_I_err + pcErr*dt; //Increment the        integral counter
+    m_I_err = m_I_err + pcErr*dt; //Increment the integral counter
 
+    //Set upper and lower bounds to the integral term to prevent windup
     if (m_I_err > m_I_max)
     {
         m_I_err = m_I_max;
@@ -163,8 +165,6 @@ float NRCThanos::nextOxAngle(){
     }
     
     float I_term = K_i*m_I_err;
-
-    //Set upper and lower bounds to the integral term to prevent windup
 
     float oxAngle = (float)K_p*pcErr + (float) I_term + (float) oxAngleFF(demandPc);
 
