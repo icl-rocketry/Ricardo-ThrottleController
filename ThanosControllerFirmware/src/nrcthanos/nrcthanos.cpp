@@ -26,6 +26,7 @@ void NRCThanos::setup()
 
 void NRCThanos::update()
 {
+    _value = getStatus();
     // Close valves if component disarmed
     if (this->_state.flagSet(COMPONENT_STATUS_FLAGS::DISARMED))
     {
