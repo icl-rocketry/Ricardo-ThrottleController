@@ -75,9 +75,9 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
         {
-            oxServo.goto_Angle(95);
-            ox_angl_high_res = 95;
-            m_oxPercent = (float)(95 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            oxServo.goto_Angle(105);
+            ox_angl_high_res = 105;
+            m_oxPercent = (float)(105 - oxServoPreAngle) / (float)(m_oxThrottleRange);
             fuelServo.goto_AngleHighRes(nextFuelAngle());
         }
         
@@ -117,6 +117,8 @@ void NRCThanos::update()
         oxServo.goto_Angle(0);
         fuel_angl_high_res = 0;
         ox_angl_high_res = 0;
+        I_angle = 0;
+        P_angle = 0;
         _polling = false;
 
         break;
@@ -176,6 +178,8 @@ float NRCThanos::nextOxAngle(){
 
     
     float I_term = K_i*m_I_err;
+    I_angle = I_term;
+    P_angle = (float)K_p*pcErr;
 
     float oxAngle = (float)K_p*pcErr + (float) I_term + (float) oxAngleFF(demandPc);
 
