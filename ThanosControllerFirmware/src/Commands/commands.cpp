@@ -52,6 +52,8 @@ void Commands::ChadTelemCommand(System& sm, const RnpPacketSerialized& packet)
 	chadtelem.header.destination_service = commandpacket.header.source_service;
 	chadtelem.header.uid = commandpacket.header.uid; 
 	chadtelem.servoVoltage = sm.Buck.getOutputV();
+	chadtelem.P_angle = sm.Thanos.getP();
+	chadtelem.I_angle = sm.Thanos.getI();
 	chadtelem.fuelAngle = sm.Thanos.getFuelAngle();
 	chadtelem.oxAngle = sm.Thanos.getOxAngle();
 	chadtelem.system_status = sm.systemstatus.getStatus();

@@ -46,8 +46,11 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         void updateChamberP(float chamberP);
         bool getPollingStatus() { return _polling; };
 
-        uint16_t getFuelAngle() { return fuelServo.getAngle(); };
-        uint16_t getOxAngle() { return oxServo.getAngle(); };
+        float getFuelAngle() { return fuel_angl_high_res; };
+        float getOxAngle() { return ox_angl_high_res; };
+
+        float getI() {return I_angle;};
+        float getP() {return P_angle;};
         uint8_t getStatus(){return static_cast<uint8_t>(currentEngineState);};
 
     protected:
@@ -97,9 +100,6 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         bool nominalEngineOp();
         bool pValUpdated();
 
-        void gotoWithSpeed(NRCRemoteServo &Servo, uint16_t demandAngle, float speed, float &prevAngle, float &currAngle, uint32_t &prevUpdateT);
-
-        void gotoThrust(float target, float closespeed, float openspeed);
         void firePyro(uint32_t duration);
         void openOxFill();
         void closeOxFill();
@@ -123,7 +123,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint64_t preAngleTime = 500;
         const uint64_t endOfIgnitionSeq = 1500;
 
-        const uint16_t fuelServoPreAngle = 105;
+        const uint16_t fuelServoPreAngle = 100;
         const uint16_t oxServoPreAngle = 70;
 
 
@@ -131,7 +131,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         const uint32_t m_cutoffTime = 14500;
         const uint32_t m_oxDelay = 100;
-        const uint32_t m_oxFillCloseTime = 13500;
+        const uint32_t m_oxFillCloseTime = 13000;
        
         bool _polling = false;
 
@@ -168,17 +168,27 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         float m_fuelExtra = -0.45;
 
         //vectors to define throttle profile from ignition
-        std::vector<float> m_targetPc = {12,13.8,13.8,6.8,6.8,13.8,13.8};
-        std::vector<uint32_t> m_testTime = {1500,2000,5900,6800,9800,10700,16000};
+        std::vector<float> m_targetPc = {12,13,13,6.4,6.4,13,13};
+        std::vector<uint32_t> m_testTime = {1500,1750,5900,6800,9800,10700,16000};
 
         //controller params
         static constexpr uint16_t m_maxControlledOx = 145;
-        static constexpr float K_p = 3.0;
-        static constexpr float K_i = 3.0;
+        static constexpr float K_p = 9.0;
+        static constexpr float K_i = 2;
         float last_demand_Pc = 0;
         float m_I_err = 0;
         float m_prev_int_t= 0;
-        float m_I_max = 10;
+        float m_I_max = 7.5;
         static constexpr uint16_t m_maxPc = 23;
+
+        float I_angle;
+        float P_angle;
+
+        float fuel_angl_high_res;
+        float ox_angl_high_res;
+
+        float prev_err = 0;
+
+        float lastindex = 0;
         
 };
