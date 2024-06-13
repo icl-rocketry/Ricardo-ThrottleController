@@ -34,7 +34,7 @@ void NRCThanos::update()
         // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
-    // Close valves if abort is used
+    // // Close valves if abort is used
     if (digitalRead(_overrideGPIO) == 1)
     {
         currentEngineState = EngineState::ShutDown;
@@ -75,9 +75,9 @@ void NRCThanos::update()
 
         else if (timeFrameCheck(preAngleTime, endOfIgnitionSeq))
         {
-            oxServo.goto_Angle(105);
-            ox_angl_high_res = 105;
-            m_oxPercent = (float)(105 - oxServoPreAngle) / (float)(m_oxThrottleRange);
+            ox_angl_high_res = oxAngleFF(m_targetPc[0]);
+            oxServo.goto_Angle(ox_angl_high_res);
+            m_oxPercent = (float)(ox_angl_high_res - oxServoPreAngle) / (float)(m_oxThrottleRange);
             fuelServo.goto_AngleHighRes(nextFuelAngle());
         }
         
@@ -148,10 +148,6 @@ float NRCThanos::nextOxAngle(){
     
     float demandPc = PcSetpoint();
 
-    if(abs(demandPc - last_demand_Pc) > 0.001){
-        m_I_err = 0;
-    }
-
     last_demand_Pc = demandPc;
 
     float pcErr = demandPc - _chamberP;
@@ -173,11 +169,10 @@ float NRCThanos::nextOxAngle(){
     if(pcErr * prev_err < 0){
         m_I_err = 0;
     }
-
     prev_err = pcErr;
 
-    
     float I_term = K_i*m_I_err;
+    
     I_angle = I_term;
     P_angle = (float)K_p*pcErr;
 
@@ -234,16 +229,21 @@ float NRCThanos::PcSetpoint(){
 
     if (i > m_testTime.size()-1){
         float Pc = m_targetPc[i];
-        // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc1: " + std::to_string(Pc));
+        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc1: " + std::to_string(Pc));
         return Pc;
     }
-     i -= 1;
+    i -= 1;
+    if(m_pcIndPrev != i){
+        m_I_err = 0; //reset integrator on setpoint change
+    }
+    m_pcIndPrev = i;
     //find how far we are into the next timestep
     float dt = (float)(currTime - m_testTime[i])/(float)(m_testTime[i+1]-m_testTime[i]);
 
     float Pc = dt * (float)(m_targetPc[i+1] - m_targetPc[i]) + (float)m_targetPc[i];
 
-    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc2: " + std::to_string(Pc));
+    RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc2: " + std::to_string(Pc));
+    RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("I err: " + std::to_string(m_I_err));
 
     return Pc;
 }
@@ -271,6 +271,7 @@ void NRCThanos::execute_impl(packetptr_t packetptr)
         ignitionTime = millis();
         _ignitionCalls = 0;
         resetVars();
+        m_prev_int_t = 0;
         _polling = true;
         RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Ignition");
         break;
