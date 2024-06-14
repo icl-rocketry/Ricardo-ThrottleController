@@ -42,7 +42,6 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
 
         void setup();
         void update();
-        void updateThrust(float thrust);
         void updateChamberP(float chamberP);
         bool getPollingStatus() { return _polling; };
 
@@ -150,11 +149,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         static constexpr uint32_t pressureUpdateTimeLim = 1000;
 
         //
-        bool m_thrustreached = false;
-        uint32_t m_throttledEntry;
         uint32_t m_nominalEntry;
-        bool m_firstNominal = false;
-        bool m_calibrationDone = false;
 
         //
         float m_oxPercent = 0;
@@ -165,17 +160,17 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         float m_fuelExtra = -0.45;
 
         //vectors to define throttle profile from ignition
-        std::vector<float> m_targetPc = {12.8,12.8,12.8,6.4,6.4,13.2,13.2};
-        std::vector<uint32_t> m_testTime = {1500,1750,6900,7800,10800,11700,17000};
+        std::vector<float> m_targetPc = {12.8,12.8,6.4,6.4,13.2,13.2};
+        std::vector<uint32_t> m_testTime = {1500,6900,7800,10800,11700,17000};
 
         //controller params
         static constexpr uint16_t m_maxControlledOx = 145;
         static constexpr float K_p = 6.0;
-        static constexpr float K_i = 3;
+        static constexpr float K_i = 1.5;
         float last_demand_Pc = 0;
         float m_I_err = 0;
-        float m_prev_int_t = 0;
-        float m_I_max = 5; 
+        uint64_t m_prev_int_t = 0;
+        float m_I_max = 10; 
         static constexpr uint16_t m_maxPc = 23;
 
         float I_angle;

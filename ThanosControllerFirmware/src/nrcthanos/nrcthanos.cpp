@@ -34,7 +34,7 @@ void NRCThanos::update()
         // _Buck.restart(5); // abuse restart command to prevent servos from getting too hot when in disarmed state
     }
 
-    // // Close valves if abort is used
+    // Close valves if abort is used
     if (digitalRead(_overrideGPIO) == 1)
     {
         currentEngineState = EngineState::ShutDown;
@@ -87,7 +87,6 @@ void NRCThanos::update()
             m_prev_int_t = esp_timer_get_time();
             openOxFill();
             m_nominalEntry = millis();
-            m_firstNominal = true;
             resetVars();
         }
 
@@ -229,7 +228,7 @@ float NRCThanos::PcSetpoint(){
 
     if (i > m_testTime.size()-1){
         float Pc = m_targetPc[i];
-        RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc1: " + std::to_string(Pc));
+        // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc1: " + std::to_string(Pc));
         return Pc;
     }
     i -= 1;
@@ -242,8 +241,8 @@ float NRCThanos::PcSetpoint(){
 
     float Pc = dt * (float)(m_targetPc[i+1] - m_targetPc[i]) + (float)m_targetPc[i];
 
-    RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc2: " + std::to_string(Pc));
-    RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("I err: " + std::to_string(m_I_err));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("Pc2: " + std::to_string(Pc));
+    // RicCoreLogging::log<RicCoreLoggingConfig::LOGGERS::SYS>("I err: " + std::to_string(m_I_err));
 
     return Pc;
 }
