@@ -152,7 +152,7 @@ float NRCThanos::nextOxAngle(){
 
     float pcErr = demandPc - _chamberP;
         
-    float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)10e6); //Calculate the time since the last update in s
+    float dt = (float)(esp_timer_get_time() - m_prev_int_t)/((float)1e6); //Calculate the time since the last update in s
     m_prev_int_t = esp_timer_get_time();
     m_I_err = m_I_err + pcErr*dt; //Increment the integral counter
 
@@ -172,7 +172,7 @@ float NRCThanos::nextOxAngle(){
     prev_err = pcErr;
 
     float I_term = K_i*m_I_err;
-    
+
     I_angle = I_term;
     P_angle = (float)K_p*pcErr;
 
