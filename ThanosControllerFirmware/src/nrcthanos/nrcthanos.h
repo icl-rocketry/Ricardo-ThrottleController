@@ -37,7 +37,8 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             fuelServo(fuelServoGPIO,fuelServoChannel,networkmanager,0,0,180,0,175),
             oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160),
             _Buck(Buck),
-            PcAngleLuT({4,14},{61.52,129.40})
+            // PcAngleLuT({4,14},{61.52,129.40})
+            PcAngleLuT({4,5.8,13.13,14},{61.52,83.1,121,129.40})
             {};
 
         void setup();
@@ -160,7 +161,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         float m_fuelExtra = -0.45;
 
         //vectors to define throttle profile from ignition
-        std::vector<float> m_targetPc = {12.8,12.8,6.4,6.4,13.2,13.2};
+        std::vector<float> m_targetPc = {13.2,13.2,5.8,5.8,13.2,13.2};
         std::vector<uint32_t> m_testTime = {1500,6900,7800,10800,11700,17000};
 
         //controller params
