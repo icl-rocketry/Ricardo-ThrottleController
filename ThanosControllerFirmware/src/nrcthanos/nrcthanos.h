@@ -38,7 +38,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
             oxServo(oxServoGPIO,oxServoChannel,networkmanager,0,0,180,10,160),
             _Buck(Buck),
             // PcAngleLuT({4,14},{61.52,129.40})
-            PcAngleLuT({4,5.8,13.13,14},{61.52,83.1,121,129.40})
+            PcAngleLuT({4.2,12.0},{92.9,136.88})
             {};
 
         void setup();
@@ -140,7 +140,7 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         const uint8_t m_oxFillNode = 103;
 
         //vars related to the ignition command
-        static constexpr uint8_t m_ingitionService = 12;
+        static constexpr uint8_t m_ingitionService = 10;
         static constexpr uint8_t m_ignitionNode = 107;
         uint8_t _ignitionCalls = 0;
         static constexpr uint8_t _ignitionCommandMaxCalls = 2;
@@ -161,17 +161,17 @@ class NRCThanos : public NRCRemoteActuatorBase<NRCThanos>
         float m_fuelExtra = -0.45;
 
         //vectors to define throttle profile from ignition
-        std::vector<float> m_targetPc = {13.2,13.2,5.8,5.8,13.2,13.2};
-        std::vector<uint32_t> m_testTime = {1500,6900,7800,10800,11700,17000};
+        std::vector<float> m_targetPc = {13.2,13.2,8.3,5.8,5.8,8.3,13.2,13.2};
+        std::vector<uint32_t> m_testTime = {1500,6900,7500,7800,10500,10800,11700,17000};
 
         //controller params
-        static constexpr uint16_t m_maxControlledOx = 145;
+        static constexpr uint16_t m_maxControlledOx = 155;
         static constexpr float K_p = 6.0;
-        static constexpr float K_i = 1.5;
+        static constexpr float K_i = 6.0;
         float last_demand_Pc = 0;
         float m_I_err = 0;
         uint64_t m_prev_int_t = 0;
-        float m_I_max = 10; 
+        float m_I_max = 5; 
         static constexpr uint16_t m_maxPc = 23;
 
         float I_angle;
